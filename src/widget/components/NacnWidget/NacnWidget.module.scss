@@ -1,0 +1,22 @@
+.triggerContainer {
+  position: relative;
+
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #29394d;
+}
+
+.triggerBtn {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  color: #ffffff;
+  background-color: #3b82f6;
+  cursor: pointer;
+}

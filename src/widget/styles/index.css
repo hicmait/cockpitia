@@ -1,0 +1,149 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+*:focus {
+  outline: none;
+}
+
+/* Remove default padding */
+
+ul,
+li {
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+li,
+ul[class],
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.gradientBtn {
+  display: flex;
+  padding: 8px 14px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #ffffff;
+  background: var(--Linear, linear-gradient(90deg, #06d9b1 0%, #18a0fb 100%));
+}
+.gradientBtn:disabled {
+  opacity: 0.5;
+}
+
+.primaryBtn {
+  display: flex;
+  padding: 8px 14px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #ffffff;
+  background: #18a0fb;
+}
+.primaryBtn:disabled {
+  opacity: 0.5;
+}
+
+.defaultBtn {
+  display: flex;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  /* border-radius: 8px; */
+  cursor: pointer;
+  border-radius: 12px;
+  border: 0.5px solid #b2bcc6;
+  background: #f1f2f4;
+}
+.defaultBtn:disabled {
+  opacity: 0.5;
+}
+
+.defaultBtn:hover {
+  border-color: #29394d;
+  background: #e1e4e8;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.dots {
+  width: 13.4px;
+  height: 13.4px;
+  background: #18a0fb;
+  color: #18a0fb;
+  border-radius: 50%;
+  box-shadow: 13.4px 0, -26.9px 0;
+  animation: dots-h5boszmd 0.5s infinite linear alternate;
+}
+
+@keyframes dots-h5boszmd {
+  50% {
+    box-shadow: 13.4px 0, -13.4px 0;
+  }
+
+  100% {
+    box-shadow: 26.9px 0, -13.4px 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  transform-origin: center;
+  animation: spin 2s linear infinite;
+}
