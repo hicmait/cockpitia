@@ -62,11 +62,11 @@ const SourceStep = ({
     //   setStep(2);
     //   setIsFetching(false);
     // }
-    let txt = `🌿 À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.
+    let txt = `<p>🌿 À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.</p>
 
-🏙️ Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.
+<p>🏙️ Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.</p>
 
-⚖️ Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.`;
+<p>⚖️ Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.</p>`;
     let tab = [
       { value: "version1", label: "version 1", content: txt, isUsed: false },
     ];
@@ -93,11 +93,11 @@ const SourceStep = ({
       return null;
     }
 
-    const txt = `À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.
+    const txt = `<p>À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.</p>
 
-Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.
+<p>Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.</p>
 
-Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.`;
+<p>Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.</p>`;
     let tab = [
       ...resultVersions,
       { value: "version2", label: "version 2", content: txt, isUsed: false },
@@ -292,12 +292,19 @@ Tout manquement aux obligations fixées par le présent article pourra entraîne
               </div>
             </div>
 
-            <textarea
+            <div
+              className={styles.resultContainer}
+              dangerouslySetInnerHTML={{
+                __html: selectedVersion ? selectedVersion.content : "",
+              }}
+            ></div>
+
+            {/* <textarea
               className={`${styles.textContent} ${styles.textarea} `}
               rows="10"
               value={selectedVersion ? selectedVersion.content : ""}
               disabled
-            ></textarea>
+            ></textarea> */}
 
             {selectedVersion &&
               (!selectedVersion.isUsed ? (

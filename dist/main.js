@@ -32,7 +32,7 @@ const Ib = "data:image/svg+xml,%3csvg%20width='30'%20height='30'%20viewBox='0%20
       )
     ]
   }
-), Mr = "_popover_ipm37_1", br = "_popover_arrow_ipm37_13", zr = "_title_ipm37_24", er = "_subtitle_ipm37_38", pr = "_textContent_ipm37_46", cr = "_notop_radius_ipm37_61", Or = "_textPreview_ipm37_65", or = "_textarea_ipm37_76", Ar = "_actionList_ipm37_80", tr = "_actionList_item_ipm37_86", nr = "_actionList_title_ipm37_96", rr = "_actionList_desc_ipm37_106", ar = "_articleList_ipm37_114", ir = "_articleList_active_ipm37_120", sr = "_articleContainer_ipm37_131", dr = "_container_ipm37_139", ur = "_article_actions_ipm37_150", qr = "_article_actions_left_ipm37_156", lr = "_article_actions_left_select_ipm37_162", fr = "_article_actions_right_ipm37_165", Wr = "_actions_ipm37_169", Rr = "_topBar_ipm37_180", mr = "_topBar_right_ipm37_186", hr = "_loader_ipm37_192", Lr = "_tamtamIt_ipm37_199", gr = "_spinner_ipm37_213", vr = "_box_ipm37_220", Nr = "_box_left_ipm37_225", Xr = "_box_right_ipm37_228", Br = "_prompts_ipm37_234", yr = "_prompt_ipm37_234", Ir = "_prompt_active_ipm37_252", Tr = "_date_ipm37_266", Cr = "_triggerContainer_ipm37_274", wr = "_popoverContent_ipm37_279", Pr = "_triggerElement_ipm37_292", Er = "_tabs_ipm37_300", xr = "_tabs_item_ipm37_308", Dr = "_active_ipm37_319", Sr = "_alt_tabs_ipm37_323", Gr = "_alt_tabs_item_ipm37_326", kr = "_tab_plus_ipm37_343", Hr = "_resultContainer_ipm37_355", jr = "_itemResult_ipm37_363", Yr = "_itemResult_add_icon_ipm37_378", Fr = "_itemResult_check_icon_ipm37_391", Vr = "_itemResult_check_icon_2_ipm37_404", Zr = "_itemResult_check_icon_1_ipm37_411", Ur = "_result_top_ipm37_418", Qr = "_result_top_left_ipm37_424", Jr = "_result_top_right_ipm37_429", Kr = "_result_actions_ipm37_435", _r = "_update_instruction_ipm37_441", $r = "_update_arrow_ipm37_445", Ma = "_result_used_ipm37_463", y = {
+), Mr = "_popover_ipm37_1", br = "_popover_arrow_ipm37_13", zr = "_title_ipm37_24", er = "_subtitle_ipm37_38", pr = "_textContent_ipm37_46", cr = "_notop_radius_ipm37_61", Or = "_textPreview_ipm37_65", or = "_textarea_ipm37_76", Ar = "_actionList_ipm37_80", tr = "_actionList_item_ipm37_86", nr = "_actionList_title_ipm37_96", rr = "_actionList_desc_ipm37_106", ar = "_articleList_ipm37_114", ir = "_articleList_active_ipm37_120", sr = "_articleContainer_ipm37_131", dr = "_container_ipm37_139", ur = "_article_actions_ipm37_150", qr = "_article_actions_left_ipm37_156", lr = "_article_actions_left_select_ipm37_162", fr = "_article_actions_right_ipm37_165", Wr = "_actions_ipm37_169", Rr = "_topBar_ipm37_180", mr = "_topBar_right_ipm37_186", hr = "_loader_ipm37_192", Lr = "_tamtamIt_ipm37_199", gr = "_spinner_ipm37_213", vr = "_box_ipm37_220", Nr = "_box_left_ipm37_225", Xr = "_box_right_ipm37_228", Br = "_prompts_ipm37_234", yr = "_prompt_ipm37_234", Ir = "_prompt_active_ipm37_252", Tr = "_date_ipm37_266", Cr = "_triggerContainer_ipm37_274", wr = "_popoverContent_ipm37_279", Pr = "_triggerElement_ipm37_292", Er = "_tabs_ipm37_300", xr = "_tabs_item_ipm37_308", Dr = "_active_ipm37_319", Sr = "_alt_tabs_ipm37_323", Gr = "_alt_tabs_item_ipm37_326", kr = "_tab_plus_ipm37_343", Hr = "_resultContainer_ipm37_355", jr = "_itemResult_ipm37_363", Yr = "_itemResult_add_icon_ipm37_378", Fr = "_itemResult_check_icon_ipm37_391", Vr = "_itemResult_check_icon_2_ipm37_404", Zr = "_itemResult_check_icon_1_ipm37_411", Ur = "_result_top_ipm37_418", Qr = "_result_top_left_ipm37_424", Jr = "_result_top_right_ipm37_429", Kr = "_result_actions_ipm37_435", _r = "_update_instruction_ipm37_441", $r = "_update_arrow_ipm37_445", Ma = "_result_used_ipm37_463", I = {
   popover: Mr,
   popover_arrow: br,
   title: zr,
@@ -93,19 +93,19 @@ const Ib = "data:image/svg+xml,%3csvg%20width='30'%20height='30'%20viewBox='0%20
 <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 <p>Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</p>`);
   return /* @__PURE__ */ S(f1, { children: [
-    /* @__PURE__ */ S("h2", { className: y.title, children: [
+    /* @__PURE__ */ S("h2", { className: I.title, children: [
       /* @__PURE__ */ g("img", { src: Ib, alt: "NACN AI", width: 30 }),
       "Cockpit : ",
       /* @__PURE__ */ g("span", { children: "éditeur de l’article" })
     ] }),
-    /* @__PURE__ */ S("ul", { className: y.actionList, children: [
+    /* @__PURE__ */ S("ul", { className: I.actionList, children: [
       /* @__PURE__ */ S(
         "li",
         {
-          className: y.actionList_item,
+          className: I.actionList_item,
           onClick: () => b("ARTICLE_SOURCE"),
           children: [
-            /* @__PURE__ */ S("h3", { className: y.actionList_title, children: [
+            /* @__PURE__ */ S("h3", { className: I.actionList_title, children: [
               /* @__PURE__ */ S(
                 "svg",
                 {
@@ -148,12 +148,12 @@ const Ib = "data:image/svg+xml,%3csvg%20width='30'%20height='30'%20viewBox='0%20
               ),
               "Générer un article complet"
             ] }),
-            /* @__PURE__ */ g("p", { className: y.actionList_desc, children: "Montius nos tumore inusitato quodam et novo ut rebellis et maiestati recalcitrantes." })
+            /* @__PURE__ */ g("p", { className: I.actionList_desc, children: "Montius nos tumore inusitato quodam et novo ut rebellis et maiestati recalcitrantes." })
           ]
         }
       ),
-      /* @__PURE__ */ S("li", { className: y.actionList_item, children: [
-        /* @__PURE__ */ S("h3", { className: y.actionList_title, children: [
+      /* @__PURE__ */ S("li", { className: I.actionList_item, children: [
+        /* @__PURE__ */ S("h3", { className: I.actionList_title, children: [
           /* @__PURE__ */ S(
             "svg",
             {
@@ -193,10 +193,10 @@ const Ib = "data:image/svg+xml,%3csvg%20width='30'%20height='30'%20viewBox='0%20
           ),
           "Générer un titre"
         ] }),
-        /* @__PURE__ */ g("p", { className: y.actionList_desc, children: "Montius nos tumore inusitato quodam et novo ut rebellis et maiestati recalcitrantes." })
+        /* @__PURE__ */ g("p", { className: I.actionList_desc, children: "Montius nos tumore inusitato quodam et novo ut rebellis et maiestati recalcitrantes." })
       ] }),
-      /* @__PURE__ */ S("li", { className: y.actionList_item, children: [
-        /* @__PURE__ */ S("h3", { className: y.actionList_title, children: [
+      /* @__PURE__ */ S("li", { className: I.actionList_item, children: [
+        /* @__PURE__ */ S("h3", { className: I.actionList_title, children: [
           /* @__PURE__ */ S(
             "svg",
             {
@@ -236,11 +236,11 @@ const Ib = "data:image/svg+xml,%3csvg%20width='30'%20height='30'%20viewBox='0%20
           ),
           "Choisir / Générer image"
         ] }),
-        /* @__PURE__ */ g("p", { className: y.actionList_desc, children: "Montius nos tumore inusitato quodam et novo ut rebellis et maiestati recalcitrantes." })
+        /* @__PURE__ */ g("p", { className: I.actionList_desc, children: "Montius nos tumore inusitato quodam et novo ut rebellis et maiestati recalcitrantes." })
       ] }),
-      /* @__PURE__ */ S("li", { className: y.actionList_item, children: [
-        /* @__PURE__ */ g("h3", { className: y.actionList_title, children: "Corriger l’orthographe" }),
-        /* @__PURE__ */ g("p", { className: y.actionList_desc, children: "Montius nos tumore inusitato quodam et novo ut rebellis et maiestati recalcitrantes." })
+      /* @__PURE__ */ S("li", { className: I.actionList_item, children: [
+        /* @__PURE__ */ g("h3", { className: I.actionList_title, children: "Corriger l’orthographe" }),
+        /* @__PURE__ */ g("p", { className: I.actionList_desc, children: "Montius nos tumore inusitato quodam et novo ut rebellis et maiestati recalcitrantes." })
       ] })
     ] })
   ] });
@@ -582,11 +582,11 @@ function Pb(M, b, z) {
       if (N.endsWith(L, "{}"))
         L = e ? L : L.slice(0, -2), f = JSON.stringify(f);
       else if (N.isArray(f) && Ha(f) || (N.isFileList(f) || N.endsWith(L, "[]")) && (v = N.toArray(f)))
-        return L = ac(L), v.forEach(function(I, B) {
-          !(N.isUndefined(I) || I === null) && b.append(
+        return L = ac(L), v.forEach(function(y, B) {
+          !(N.isUndefined(y) || y === null) && b.append(
             // eslint-disable-next-line no-nested-ternary
             A === !0 ? Gp([L], B, o) : A === null ? L : L + "[]",
-            a(I)
+            a(y)
           );
         }), !1;
     }
@@ -1280,13 +1280,13 @@ const Wc = (M) => {
     function v() {
       if (!l)
         return;
-      const I = a1.from(
+      const y = a1.from(
         "getAllResponseHeaders" in l && l.getAllResponseHeaders()
       ), R = {
         data: !i || i === "text" || i === "json" ? l.responseText : l.response,
         status: l.status,
         statusText: l.statusText,
-        headers: I,
+        headers: y,
         config: M,
         request: l
       };
@@ -1314,8 +1314,8 @@ const Wc = (M) => {
       )), l = null;
     }, o === void 0 && A.setContentType(null), "setRequestHeader" in l && N.forEach(A.toJSON(), function(B, R) {
       l.setRequestHeader(R, B);
-    }), N.isUndefined(p.withCredentials) || (l.withCredentials = !!p.withCredentials), i && i !== "json" && (l.responseType = p.responseType), a && ([q, f] = qb(a, !0), l.addEventListener("progress", q)), n && l.upload && ([u, h] = qb(n), l.upload.addEventListener("progress", u), l.upload.addEventListener("loadend", h)), (p.cancelToken || p.signal) && (d = (I) => {
-      l && (e(!I || I.type ? new V2(null, M, l) : I), l.abort(), l = null);
+    }), N.isUndefined(p.withCredentials) || (l.withCredentials = !!p.withCredentials), i && i !== "json" && (l.responseType = p.responseType), a && ([q, f] = qb(a, !0), l.addEventListener("progress", q)), n && l.upload && ([u, h] = qb(n), l.upload.addEventListener("progress", u), l.upload.addEventListener("loadend", h)), (p.cancelToken || p.signal) && (d = (y) => {
+      l && (e(!y || y.type ? new V2(null, M, l) : y), l.abort(), l = null);
     }, p.cancelToken && p.cancelToken.subscribe(d), p.signal && (p.signal.aborted ? d() : p.signal.addEventListener("abort", d)));
     const E = ti(p.url);
     if (E && O1.protocols.indexOf(E) === -1) {
@@ -1468,7 +1468,7 @@ const Wc = (M) => {
       method: l,
       data: v,
       signal: E,
-      cancelToken: I,
+      cancelToken: y,
       timeout: B,
       onDownloadProgress: R,
       onUploadProgress: C,
@@ -1478,7 +1478,7 @@ const Wc = (M) => {
       fetchOptions: o0
     } = Wc(f), l0 = b || fetch;
     T = T ? (T + "").toLowerCase() : "text";
-    let Y = li([E, I && I.toAbortSignal()], B), O0 = null;
+    let Y = li([E, y && y.toAbortSignal()], B), O0 = null;
     const a0 = Y && Y.unsubscribe && (() => {
       Y.unsubscribe();
     });
@@ -4670,7 +4670,7 @@ function w5() {
       function E(m) {
         m && this._set(v(m));
       }
-      function I(m, w) {
+      function y(m, w) {
         var P = w.length;
         if (m < w[0])
           return 0;
@@ -4688,7 +4688,7 @@ function w5() {
         },
         _index: function(m) {
           var w = +m, P = this.untils, H;
-          if (H = I(w, P), H >= 0)
+          if (H = y(w, P), H >= 0)
             return H;
         },
         countries: function() {
@@ -5005,7 +5005,7 @@ function lO() {
           return r;
         return c._isValid;
       }
-      function I(c) {
+      function y(c) {
         var O = f(NaN);
         return c != null ? h(l(O), c) : l(O).userInvalidated = !0, O;
       }
@@ -6109,7 +6109,7 @@ Arguments: ` + Array.prototype.slice.call(r).join("") + `
       }
       function dp(c) {
         var O = c._i, t = c._f;
-        return c._locale = c._locale || j1(c._l), O === null || t === void 0 && O === "" ? I({ nullInput: !0 }) : (typeof O == "string" && (c._i = O = c._locale.preparse(O)), G(O) ? new T(nz(O)) : (u(O) ? c._d = O : o(t) ? TA(c) : t ? iz(c) : PA(c), E(c) || (c._d = null), c));
+        return c._locale = c._locale || j1(c._l), O === null || t === void 0 && O === "" ? y({ nullInput: !0 }) : (typeof O == "string" && (c._i = O = c._locale.preparse(O)), G(O) ? new T(nz(O)) : (u(O) ? c._d = O : o(t) ? TA(c) : t ? iz(c) : PA(c), E(c) || (c._d = null), c));
       }
       function PA(c) {
         var O = c._i;
@@ -6128,13 +6128,13 @@ Arguments: ` + Array.prototype.slice.call(r).join("") + `
         "moment().min is deprecated, use moment.max instead. http://momentjs.com/guides/#/warnings/min-max/",
         function() {
           var c = G0.apply(null, arguments);
-          return this.isValid() && c.isValid() ? c < this ? this : c : I();
+          return this.isValid() && c.isValid() ? c < this ? this : c : y();
         }
       ), xA = o0(
         "moment().max is deprecated, use moment.min instead. http://momentjs.com/guides/#/warnings/min-max/",
         function() {
           var c = G0.apply(null, arguments);
-          return this.isValid() && c.isValid() ? c > this ? this : c : I();
+          return this.isValid() && c.isValid() ? c > this ? this : c : y();
         }
       );
       function qp(c, O) {
@@ -7157,7 +7157,7 @@ Arguments: ` + Array.prototype.slice.call(r).join("") + `
         t._d = new Date(i0(c));
       });
       //! moment.js
-      return e.version = "2.30.1", p(G0), e.fn = x, e.min = DA, e.max = SA, e.now = GA, e.utc = f, e.unix = dn, e.months = qn, e.isDate = u, e.locale = A2, e.invalid = I, e.duration = L1, e.isMoment = G, e.weekdays = fn, e.parseZone = un, e.localeData = j1, e.isDuration = kM, e.monthsShort = ln, e.weekdaysMin = Rn, e.defineLocale = tz, e.updateLocale = dA, e.locales = uA, e.weekdaysShort = Wn, e.normalizeUnits = u0, e.relativeTimeRounding = Un, e.relativeTimeThreshold = Qn, e.calendarFormat = rt, e.prototype = x, e.HTML5_FMT = {
+      return e.version = "2.30.1", p(G0), e.fn = x, e.min = DA, e.max = SA, e.now = GA, e.utc = f, e.unix = dn, e.months = qn, e.isDate = u, e.locale = A2, e.invalid = y, e.duration = L1, e.isMoment = G, e.weekdays = fn, e.parseZone = un, e.localeData = j1, e.isDuration = kM, e.monthsShort = ln, e.weekdaysMin = Rn, e.defineLocale = tz, e.updateLocale = dA, e.locales = uA, e.weekdaysShort = Wn, e.normalizeUnits = u0, e.relativeTimeRounding = Un, e.relativeTimeThreshold = Qn, e.calendarFormat = rt, e.prototype = x, e.HTML5_FMT = {
         DATETIME_LOCAL: "YYYY-MM-DDTHH:mm",
         // <input type="datetime-local" />
         DATETIME_LOCAL_SECONDS: "YYYY-MM-DDTHH:mm:ss",
@@ -7736,7 +7736,7 @@ const fO = (M, b, z) => {
     ]
   }
 ), ou = ({ onPost: M, setIsOpen: b, token: z, apiUrl: e, aiUrl: p }) => {
-  const [o, A] = c0(1), [i, n] = c0(""), [a, d] = c0("TEXT"), [u, q] = c0(""), [h, f] = c0(""), [L, l] = c0(!1), [v, E] = c0(!1), [I, B] = c0([]), [R, C] = c0(!1), [T, G] = c0(null), b0 = () => {
+  const [o, A] = c0(1), [i, n] = c0(""), [a, d] = c0("TEXT"), [u, q] = c0(""), [h, f] = c0(""), [L, l] = c0(!1), [v, E] = c0(!1), [y, B] = c0([]), [R, C] = c0(!1), [T, G] = c0(null), b0 = () => {
     M && M({
       type: "ARTICLE_DATA",
       data: {
@@ -7745,7 +7745,7 @@ const fO = (M, b, z) => {
     }), b(!1);
   };
   re(() => {
-    if (I.length === 0 && o === 1) {
+    if (y.length === 0 && o === 1) {
       async function Y() {
         C(!0);
         try {
@@ -7789,20 +7789,20 @@ const fO = (M, b, z) => {
     }
   };
   return /* @__PURE__ */ S(f1, { children: [
-    /* @__PURE__ */ S("h2", { className: y.title, children: [
+    /* @__PURE__ */ S("h2", { className: I.title, children: [
       /* @__PURE__ */ g("img", { src: Ib, alt: "NACN AI", width: 30 }),
       "Création d’un article"
     ] }),
-    /* @__PURE__ */ g("div", { className: y.articleContainer, children: /* @__PURE__ */ S(f1, { children: [
+    /* @__PURE__ */ g("div", { className: I.articleContainer, children: /* @__PURE__ */ S(f1, { children: [
       o === 1 && /* @__PURE__ */ S(f1, { children: [
-        /* @__PURE__ */ S("div", { className: y.box, children: [
-          /* @__PURE__ */ S("div", { className: y.box_left, children: [
+        /* @__PURE__ */ S("div", { className: I.box, children: [
+          /* @__PURE__ */ S("div", { className: I.box_left, children: [
             /* @__PURE__ */ g("h3", { children: "Sélectionnez la source de l’article :" }),
-            /* @__PURE__ */ S("ul", { className: y.articleList, children: [
+            /* @__PURE__ */ S("ul", { className: I.articleList, children: [
               /* @__PURE__ */ S(
                 "li",
                 {
-                  className: a === "TEXT" && y.articleList_active,
+                  className: a === "TEXT" && I.articleList_active,
                   onClick: (Y) => {
                     q(""), d("TEXT");
                   },
@@ -7815,7 +7815,7 @@ const fO = (M, b, z) => {
               /* @__PURE__ */ S(
                 "li",
                 {
-                  className: a === "LINK" && y.articleList_active,
+                  className: a === "LINK" && I.articleList_active,
                   onClick: (Y) => {
                     q(""), d("LINK");
                   },
@@ -7829,28 +7829,28 @@ const fO = (M, b, z) => {
             a === "TEXT" ? /* @__PURE__ */ g(
               "textarea",
               {
-                className: `${y.textContent} ${y.textarea}`,
+                className: `${I.textContent} ${I.textarea}`,
                 rows: "10",
                 value: u,
                 onChange: (Y) => q(Y.target.value)
               }
             ) : a === "LINK" ? /* @__PURE__ */ S(f1, { children: [
-              /* @__PURE__ */ S("div", { className: y.tamtamIt, children: [
+              /* @__PURE__ */ S("div", { className: I.tamtamIt, children: [
                 /* @__PURE__ */ g(
                   "input",
                   {
                     type: "text",
-                    className: y.textContent,
+                    className: I.textContent,
                     value: h,
                     onChange: (Y) => f(Y.target.value)
                   }
                 ),
-                /* @__PURE__ */ g("button", { className: "defaultBtn", onClick: o0, children: v ? /* @__PURE__ */ g("span", { className: y.spinner, children: /* @__PURE__ */ g(Ub, { size: "20" }) }) : /* @__PURE__ */ g(WO, {}) })
+                /* @__PURE__ */ g("button", { className: "defaultBtn", onClick: o0, children: v ? /* @__PURE__ */ g("span", { className: I.spinner, children: /* @__PURE__ */ g(Ub, { size: "20" }) }) : /* @__PURE__ */ g(WO, {}) })
               ] }),
               /* @__PURE__ */ g(
                 "textarea",
                 {
-                  className: `${y.textContent} ${y.textarea}`,
+                  className: `${I.textContent} ${I.textarea}`,
                   rows: "10",
                   disabled: !0,
                   value: u,
@@ -7859,9 +7859,9 @@ const fO = (M, b, z) => {
               )
             ] }) : null
           ] }),
-          /* @__PURE__ */ S("div", { className: y.box_right, children: [
+          /* @__PURE__ */ S("div", { className: I.box_right, children: [
             /* @__PURE__ */ g("h3", { children: "Choisissez un prompt :" }),
-            R && /* @__PURE__ */ g("div", { className: y.loader, children: /* @__PURE__ */ g(
+            R && /* @__PURE__ */ g("div", { className: I.loader, children: /* @__PURE__ */ g(
               ze,
               {
                 style: {
@@ -7870,10 +7870,10 @@ const fO = (M, b, z) => {
                 color: "#6D7F92"
               }
             ) }),
-            /* @__PURE__ */ g("ul", { className: y.prompts, children: I.map((Y) => /* @__PURE__ */ S(
+            /* @__PURE__ */ g("ul", { className: I.prompts, children: y.map((Y) => /* @__PURE__ */ S(
               "li",
               {
-                className: `${y.prompt} ${T?.id === Y.id && y.prompt_active}`,
+                className: `${I.prompt} ${T?.id === Y.id && I.prompt_active}`,
                 onClick: () => {
                   T?.id !== Y.id ? G(Y) : G(null);
                 },
@@ -7883,14 +7883,14 @@ const fO = (M, b, z) => {
                     " ",
                     Y.name
                   ] }),
-                  /* @__PURE__ */ g("p", { className: y.date, children: Q5(Y.created_at, "fr", !0) })
+                  /* @__PURE__ */ g("p", { className: I.date, children: Q5(Y.created_at, "fr", !0) })
                 ]
               },
               `prom${Y.id}`
             )) })
           ] })
         ] }),
-        /* @__PURE__ */ g("div", { className: y.actions, children: L ? /* @__PURE__ */ g(
+        /* @__PURE__ */ g("div", { className: I.actions, children: L ? /* @__PURE__ */ g(
           "button",
           {
             className: "gradientBtn",
@@ -7943,30 +7943,30 @@ const fO = (M, b, z) => {
         ) })
       ] }),
       o === 2 && /* @__PURE__ */ S(f1, { children: [
-        /* @__PURE__ */ S("div", { className: y.topBar, children: [
+        /* @__PURE__ */ S("div", { className: I.topBar, children: [
           /* @__PURE__ */ S("div", { children: [
             /* @__PURE__ */ g("span", { children: "Article:" }),
             " version 1"
           ] }),
-          /* @__PURE__ */ S("div", { className: y.topBar_right, children: [
+          /* @__PURE__ */ S("div", { className: I.topBar_right, children: [
             "Source:",
             " ",
             a === "TEXT" ? "Texte manuel" : a === "LINK" ? "Lien" : "",
             /* @__PURE__ */ g("span", {}),
-            /* @__PURE__ */ S("div", { className: y.triggerContainer, children: [
-              /* @__PURE__ */ g("span", { className: y.triggerElement, children: /* @__PURE__ */ g(RO, { size: "18" }) }),
-              /* @__PURE__ */ g("div", { className: y.popoverContent, children: u })
+            /* @__PURE__ */ S("div", { className: I.triggerContainer, children: [
+              /* @__PURE__ */ g("span", { className: I.triggerElement, children: /* @__PURE__ */ g(RO, { size: "18" }) }),
+              /* @__PURE__ */ g("div", { className: I.popoverContent, children: u })
             ] })
           ] })
         ] }),
         /* @__PURE__ */ g(
           "p",
           {
-            className: y.textPreview,
+            className: I.textPreview,
             dangerouslySetInnerHTML: { __html: i }
           }
         ),
-        /* @__PURE__ */ g("div", { className: y.actions, children: /* @__PURE__ */ g("button", { className: "primaryBtn", onClick: b0, children: "Utiliser cette version" }) })
+        /* @__PURE__ */ g("div", { className: I.actions, children: /* @__PURE__ */ g("button", { className: "primaryBtn", onClick: b0, children: "Utiliser cette version" }) })
       ] })
     ] }) })
   ] });
@@ -8085,7 +8085,7 @@ function O2(M, b) {
 }
 var iu = ["defaultInputValue", "defaultMenuIsOpen", "defaultValue", "inputValue", "menuIsOpen", "onChange", "onInputChange", "onMenuClose", "onMenuOpen", "value"];
 function su(M) {
-  var b = M.defaultInputValue, z = b === void 0 ? "" : b, e = M.defaultMenuIsOpen, p = e === void 0 ? !1 : e, o = M.defaultValue, A = o === void 0 ? null : o, i = M.inputValue, n = M.menuIsOpen, a = M.onChange, d = M.onInputChange, u = M.onMenuClose, q = M.onMenuOpen, h = M.value, f = O2(M, iu), L = c0(i !== void 0 ? i : z), l = b2(L, 2), v = l[0], E = l[1], I = c0(n !== void 0 ? n : p), B = b2(I, 2), R = B[0], C = B[1], T = c0(h !== void 0 ? h : A), G = b2(T, 2), b0 = G[0], o0 = G[1], l0 = t1(function(m0, U0) {
+  var b = M.defaultInputValue, z = b === void 0 ? "" : b, e = M.defaultMenuIsOpen, p = e === void 0 ? !1 : e, o = M.defaultValue, A = o === void 0 ? null : o, i = M.inputValue, n = M.menuIsOpen, a = M.onChange, d = M.onInputChange, u = M.onMenuClose, q = M.onMenuOpen, h = M.value, f = O2(M, iu), L = c0(i !== void 0 ? i : z), l = b2(L, 2), v = l[0], E = l[1], y = c0(n !== void 0 ? n : p), B = b2(y, 2), R = B[0], C = B[1], T = c0(h !== void 0 ? h : A), G = b2(T, 2), b0 = G[0], o0 = G[1], l0 = t1(function(m0, U0) {
     typeof a == "function" && a(m0, U0), o0(m0);
   }, [a]), Y = t1(function(m0, U0) {
     var X0;
@@ -8386,7 +8386,7 @@ function Gu(M) {
   return yO(db("", null, null, null, [""], M = BO(M), 0, [0], M));
 }
 function db(M, b, z, e, p, o, A, i, n) {
-  for (var a = 0, d = 0, u = A, q = 0, h = 0, f = 0, L = 1, l = 1, v = 1, E = 0, I = "", B = p, R = o, C = e, T = I; l; )
+  for (var a = 0, d = 0, u = A, q = 0, h = 0, f = 0, L = 1, l = 1, v = 1, E = 0, y = "", B = p, R = o, C = e, T = y; l; )
     switch (f = E, E = d1()) {
       // (
       case 40:
@@ -8443,7 +8443,7 @@ function db(M, b, z, e, p, o, A, i, n) {
             T += ";";
           // { rule/at-rule
           default:
-            if (_M(C = u3(T, b, z, a, d, p, i, I, B = [], R = [], u), o), E === 123)
+            if (_M(C = u3(T, b, z, a, d, p, i, y, B = [], R = [], u), o), E === 123)
               if (d === 0)
                 db(T, b, C, C, B, o, u, i, R);
               else
@@ -8453,13 +8453,13 @@ function db(M, b, z, e, p, o, A, i, n) {
                   case 108:
                   case 109:
                   case 115:
-                    db(M, C, C, e && _M(u3(M, C, C, 0, 0, p, i, I, p, B = [], u), R), p, R, u, i, e ? B : R);
+                    db(M, C, C, e && _M(u3(M, C, C, 0, 0, p, i, y, p, B = [], u), R), p, R, u, i, e ? B : R);
                     break;
                   default:
                     db(T, C, C, C, [""], R, 0, i, R);
                 }
         }
-        a = d = h = 0, L = v = 1, I = T = "", u = A;
+        a = d = h = 0, L = v = 1, y = T = "", u = A;
         break;
       // :
       case 58:
@@ -8482,7 +8482,7 @@ function db(M, b, z, e, p, o, A, i, n) {
             break;
           // @
           case 64:
-            P1() === 45 && (T += sb(d1())), q = P1(), d = u = T1(I = T += Su(ib())), E++;
+            P1() === 45 && (T += sb(d1())), q = P1(), d = u = T1(y = T += Su(ib())), E++;
             break;
           // -
           case 45:
@@ -8493,8 +8493,8 @@ function db(M, b, z, e, p, o, A, i, n) {
 }
 function u3(M, b, z, e, p, o, A, i, n, a, d) {
   for (var u = p - 1, q = p === 0 ? o : [""], h = He(q), f = 0, L = 0, l = 0; f < e; ++f)
-    for (var v = 0, E = qM(M, u + 1, u = Bu(L = A[f])), I = M; v < h; ++v)
-      (I = NO(L > 0 ? q[v] + " " + E : I0(E, /&\f/g, q[v]))) && (n[l++] = I);
+    for (var v = 0, E = qM(M, u + 1, u = Bu(L = A[f])), y = M; v < h; ++v)
+      (y = NO(L > 0 ? q[v] + " " + E : I0(E, /&\f/g, q[v]))) && (n[l++] = y);
   return Kb(M, b, z, p === 0 ? Ge : i, n, a, d);
 }
 function ku(M, b, z) {
@@ -8791,8 +8791,8 @@ var Ku = function(b, z, e, p) {
     })], q = ju(a.concat(p, u)), h = function(l) {
       return k2(Gu(l), q);
     };
-    n = function(l, v, E, I) {
-      d = E, h(l ? l + "{" + v.styles + "}" : v.styles), I && (f.inserted[v.name] = !0);
+    n = function(l, v, E, y) {
+      d = E, h(l ? l + "{" + v.styles + "}" : v.styles), y && (f.inserted[v.name] = !0);
     };
   }
   var f = {
@@ -8825,7 +8825,7 @@ function Mq() {
   if (f3) return C0;
   f3 = 1;
   var M = typeof Symbol == "function" && Symbol.for, b = M ? Symbol.for("react.element") : 60103, z = M ? Symbol.for("react.portal") : 60106, e = M ? Symbol.for("react.fragment") : 60107, p = M ? Symbol.for("react.strict_mode") : 60108, o = M ? Symbol.for("react.profiler") : 60114, A = M ? Symbol.for("react.provider") : 60109, i = M ? Symbol.for("react.context") : 60110, n = M ? Symbol.for("react.async_mode") : 60111, a = M ? Symbol.for("react.concurrent_mode") : 60111, d = M ? Symbol.for("react.forward_ref") : 60112, u = M ? Symbol.for("react.suspense") : 60113, q = M ? Symbol.for("react.suspense_list") : 60120, h = M ? Symbol.for("react.memo") : 60115, f = M ? Symbol.for("react.lazy") : 60116, L = M ? Symbol.for("react.block") : 60121, l = M ? Symbol.for("react.fundamental") : 60117, v = M ? Symbol.for("react.responder") : 60118, E = M ? Symbol.for("react.scope") : 60119;
-  function I(R) {
+  function y(R) {
     if (typeof R == "object" && R !== null) {
       var C = R.$$typeof;
       switch (C) {
@@ -8856,35 +8856,35 @@ function Mq() {
     }
   }
   function B(R) {
-    return I(R) === a;
+    return y(R) === a;
   }
   return C0.AsyncMode = n, C0.ConcurrentMode = a, C0.ContextConsumer = i, C0.ContextProvider = A, C0.Element = b, C0.ForwardRef = d, C0.Fragment = e, C0.Lazy = f, C0.Memo = h, C0.Portal = z, C0.Profiler = o, C0.StrictMode = p, C0.Suspense = u, C0.isAsyncMode = function(R) {
-    return B(R) || I(R) === n;
+    return B(R) || y(R) === n;
   }, C0.isConcurrentMode = B, C0.isContextConsumer = function(R) {
-    return I(R) === i;
+    return y(R) === i;
   }, C0.isContextProvider = function(R) {
-    return I(R) === A;
+    return y(R) === A;
   }, C0.isElement = function(R) {
     return typeof R == "object" && R !== null && R.$$typeof === b;
   }, C0.isForwardRef = function(R) {
-    return I(R) === d;
+    return y(R) === d;
   }, C0.isFragment = function(R) {
-    return I(R) === e;
+    return y(R) === e;
   }, C0.isLazy = function(R) {
-    return I(R) === f;
+    return y(R) === f;
   }, C0.isMemo = function(R) {
-    return I(R) === h;
+    return y(R) === h;
   }, C0.isPortal = function(R) {
-    return I(R) === z;
+    return y(R) === z;
   }, C0.isProfiler = function(R) {
-    return I(R) === o;
+    return y(R) === o;
   }, C0.isStrictMode = function(R) {
-    return I(R) === p;
+    return y(R) === p;
   }, C0.isSuspense = function(R) {
-    return I(R) === u;
+    return y(R) === u;
   }, C0.isValidElementType = function(R) {
     return typeof R == "string" || typeof R == "function" || R === e || R === a || R === o || R === p || R === u || R === q || typeof R == "object" && R !== null && (R.$$typeof === f || R.$$typeof === h || R.$$typeof === A || R.$$typeof === i || R.$$typeof === d || R.$$typeof === l || R.$$typeof === v || R.$$typeof === E || R.$$typeof === L);
-  }, C0.typeOf = I, C0;
+  }, C0.typeOf = y, C0;
 }
 var w0 = {};
 /** @license React v16.13.1
@@ -8899,7 +8899,7 @@ var W3;
 function bq() {
   return W3 || (W3 = 1, process.env.NODE_ENV !== "production" && (function() {
     var M = typeof Symbol == "function" && Symbol.for, b = M ? Symbol.for("react.element") : 60103, z = M ? Symbol.for("react.portal") : 60106, e = M ? Symbol.for("react.fragment") : 60107, p = M ? Symbol.for("react.strict_mode") : 60108, o = M ? Symbol.for("react.profiler") : 60114, A = M ? Symbol.for("react.provider") : 60109, i = M ? Symbol.for("react.context") : 60110, n = M ? Symbol.for("react.async_mode") : 60111, a = M ? Symbol.for("react.concurrent_mode") : 60111, d = M ? Symbol.for("react.forward_ref") : 60112, u = M ? Symbol.for("react.suspense") : 60113, q = M ? Symbol.for("react.suspense_list") : 60120, h = M ? Symbol.for("react.memo") : 60115, f = M ? Symbol.for("react.lazy") : 60116, L = M ? Symbol.for("react.block") : 60121, l = M ? Symbol.for("react.fundamental") : 60117, v = M ? Symbol.for("react.responder") : 60118, E = M ? Symbol.for("react.scope") : 60119;
-    function I(Q) {
+    function y(Q) {
       return typeof Q == "string" || typeof Q == "function" || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
       Q === e || Q === a || Q === o || Q === p || Q === u || Q === q || typeof Q == "object" && Q !== null && (Q.$$typeof === f || Q.$$typeof === h || Q.$$typeof === A || Q.$$typeof === i || Q.$$typeof === d || Q.$$typeof === l || Q.$$typeof === v || Q.$$typeof === E || Q.$$typeof === L);
     }
@@ -8975,7 +8975,7 @@ function bq() {
     function o2(Q) {
       return B(Q) === u;
     }
-    w0.AsyncMode = R, w0.ConcurrentMode = C, w0.ContextConsumer = T, w0.ContextProvider = G, w0.Element = b0, w0.ForwardRef = o0, w0.Fragment = l0, w0.Lazy = Y, w0.Memo = O0, w0.Portal = a0, w0.Profiler = d0, w0.StrictMode = J, w0.Suspense = T0, w0.isAsyncMode = U0, w0.isConcurrentMode = X0, w0.isContextConsumer = D0, w0.isContextProvider = $, w0.isElement = h0, w0.isForwardRef = B0, w0.isFragment = k, w0.isLazy = P0, w0.isMemo = U, w0.isPortal = A0, w0.isProfiler = M1, w0.isStrictMode = m1, w0.isSuspense = o2, w0.isValidElementType = I, w0.typeOf = B;
+    w0.AsyncMode = R, w0.ConcurrentMode = C, w0.ContextConsumer = T, w0.ContextProvider = G, w0.Element = b0, w0.ForwardRef = o0, w0.Fragment = l0, w0.Lazy = Y, w0.Memo = O0, w0.Portal = a0, w0.Profiler = d0, w0.StrictMode = J, w0.Suspense = T0, w0.isAsyncMode = U0, w0.isConcurrentMode = X0, w0.isContextConsumer = D0, w0.isContextProvider = $, w0.isElement = h0, w0.isForwardRef = B0, w0.isFragment = k, w0.isLazy = P0, w0.isMemo = U, w0.isPortal = A0, w0.isProfiler = M1, w0.isStrictMode = m1, w0.isSuspense = o2, w0.isValidElementType = y, w0.typeOf = B;
   })()), w0;
 }
 var R3;
@@ -9033,9 +9033,9 @@ function eq() {
       }
       var E = n(L);
       a && (E = E.concat(a(L)));
-      for (var I = A(f), B = A(L), R = 0; R < E.length; ++R) {
+      for (var y = A(f), B = A(L), R = 0; R < E.length; ++R) {
         var C = E[R];
-        if (!z[C] && !(l && l[C]) && !(B && B[C]) && !(I && I[C])) {
+        if (!z[C] && !(l && l[C]) && !(B && B[C]) && !(y && y[C])) {
           var T = d(L, C);
           try {
             i(f, C, T);
@@ -9879,8 +9879,8 @@ function I3(M, b, z, e) {
     const q = e2(o), h = e;
     let f = q, L = Ae(f);
     for (; L && e && h !== f; ) {
-      const l = y3(L), v = L.getBoundingClientRect(), E = Ve(L), I = v.left + (L.clientLeft + parseFloat(E.paddingLeft)) * l.x, B = v.top + (L.clientTop + parseFloat(E.paddingTop)) * l.y;
-      n *= l.x, a *= l.y, d *= l.x, u *= l.y, n += I, a += B, f = e2(L), L = Ae(f);
+      const l = y3(L), v = L.getBoundingClientRect(), E = Ve(L), y = v.left + (L.clientLeft + parseFloat(E.paddingLeft)) * l.x, B = v.top + (L.clientTop + parseFloat(E.paddingTop)) * l.y;
+      n *= l.x, a *= l.y, d *= l.x, u *= l.y, n += y, a += B, f = e2(L), L = Ae(f);
     }
   }
   return Bq({
@@ -9910,7 +9910,7 @@ function Gq(M, b) {
     } = a;
     if (i || b(), !q || !h)
       return;
-    const f = bb(u), L = bb(p.clientWidth - (d + q)), l = bb(p.clientHeight - (u + h)), v = bb(d), I = {
+    const f = bb(u), L = bb(p.clientWidth - (d + q)), l = bb(p.clientHeight - (u + h)), v = bb(d), y = {
       rootMargin: -f + "px " + -L + "px " + -l + "px " + -v + "px",
       threshold: Xq(0, Nq(1, n)) || 1
     };
@@ -9928,12 +9928,12 @@ function Gq(M, b) {
     }
     try {
       z = new IntersectionObserver(R, {
-        ...I,
+        ...y,
         // Handle <iframe>s
         root: p.ownerDocument
       });
     } catch {
-      z = new IntersectionObserver(R, I);
+      z = new IntersectionObserver(R, y);
     }
     z.observe(M);
   }
@@ -9958,8 +9958,8 @@ function kq(M, b, z, e) {
   A && (h = new ResizeObserver((v) => {
     let [E] = v;
     E && E.target === a && h && (h.unobserve(b), cancelAnimationFrame(q), q = requestAnimationFrame(() => {
-      var I;
-      (I = h) == null || I.observe(b);
+      var y;
+      (y = h) == null || y.observe(b);
     })), z();
   }), a && !n && h.observe(a), h.observe(b));
   let f, L = n ? I3(M) : null;
@@ -10105,7 +10105,7 @@ function el(M) {
     maxHeight: b
   };
   if (!z || !z.offsetParent) return a;
-  var d = n.getBoundingClientRect(), u = d.height, q = z.getBoundingClientRect(), h = q.bottom, f = q.height, L = q.top, l = z.offsetParent.getBoundingClientRect(), v = l.top, E = A ? window.innerHeight : Fq(n), I = jO(n), B = parseInt(getComputedStyle(z).marginBottom, 10), R = parseInt(getComputedStyle(z).marginTop, 10), C = v - R, T = E - L, G = C + I, b0 = u - I - L, o0 = h - E + I + B, l0 = I + L - R, Y = 160;
+  var d = n.getBoundingClientRect(), u = d.height, q = z.getBoundingClientRect(), h = q.bottom, f = q.height, L = q.top, l = z.offsetParent.getBoundingClientRect(), v = l.top, E = A ? window.innerHeight : Fq(n), y = jO(n), B = parseInt(getComputedStyle(z).marginBottom, 10), R = parseInt(getComputedStyle(z).marginTop, 10), C = v - R, T = E - L, G = C + y, b0 = u - y - L, o0 = h - E + y + B, l0 = y + L - R, Y = 160;
   switch (p) {
     case "auto":
     case "bottom":
@@ -10188,7 +10188,7 @@ var FO = function(b) {
     marginTop: i.menuGutter
   });
 }, VO = /* @__PURE__ */ _n(null), Ol = function(b) {
-  var z = b.children, e = b.minMenuHeight, p = b.maxMenuHeight, o = b.menuPlacement, A = b.menuPosition, i = b.menuShouldScrollIntoView, n = b.theme, a = bc(VO) || {}, d = a.setPortalPlacement, u = J1(null), q = c0(p), h = b2(q, 2), f = h[0], L = h[1], l = c0(null), v = b2(l, 2), E = v[0], I = v[1], B = n.spacing.controlHeight;
+  var z = b.children, e = b.minMenuHeight, p = b.maxMenuHeight, o = b.menuPlacement, A = b.menuPosition, i = b.menuShouldScrollIntoView, n = b.theme, a = bc(VO) || {}, d = a.setPortalPlacement, u = J1(null), q = c0(p), h = b2(q, 2), f = h[0], L = h[1], l = c0(null), v = b2(l, 2), E = v[0], y = v[1], B = n.spacing.controlHeight;
   return te(function() {
     var R = u.current;
     if (R) {
@@ -10201,7 +10201,7 @@ var FO = function(b) {
         isFixedPosition: C,
         controlHeight: B
       });
-      L(G.maxHeight), I(G.placement), d?.(G.placement);
+      L(G.maxHeight), y(G.placement), d?.(G.placement);
     }
   }, [p, o, A, i, e, d, B]), z({
     ref: u,
@@ -10277,7 +10277,7 @@ var FO = function(b) {
     return {
       setPortalPlacement: h
     };
-  }, []), L = c0(null), l = b2(L, 2), v = l[0], E = l[1], I = t1(function() {
+  }, []), L = c0(null), l = b2(L, 2), v = l[0], E = l[1], y = t1(function() {
     if (p) {
       var T = Uq(p), G = i === "fixed" ? 0 : window.pageYOffset, b0 = T[q] + G;
       (b0 !== v?.offset || T.left !== v?.rect.left || T.width !== v?.rect.width) && E({
@@ -10287,13 +10287,13 @@ var FO = function(b) {
     }
   }, [p, i, q, v?.offset, v?.rect.left, v?.rect.width]);
   te(function() {
-    I();
-  }, [I]);
+    y();
+  }, [y]);
   var B = t1(function() {
-    typeof a.current == "function" && (a.current(), a.current = null), p && n.current && (a.current = kq(p, n.current, I, {
+    typeof a.current == "function" && (a.current(), a.current = null), p && n.current && (a.current = kq(p, n.current, y, {
       elementResize: "ResizeObserver" in window
     }));
-  }, [p, I]);
+  }, [p, y]);
   te(function() {
     B();
   }, [B]);
@@ -10879,7 +10879,7 @@ var W6 = process.env.NODE_ENV === "production" ? {
     return "".concat(e).concat(z ? " for search term " + z : "", ".");
   }
 }, h6 = function(b) {
-  var z = b.ariaSelection, e = b.focusedOption, p = b.focusedValue, o = b.focusableOptions, A = b.isFocused, i = b.selectValue, n = b.selectProps, a = b.id, d = b.isAppleDevice, u = n.ariaLiveMessages, q = n.getOptionLabel, h = n.inputValue, f = n.isMulti, L = n.isOptionDisabled, l = n.isSearchable, v = n.menuIsOpen, E = n.options, I = n.screenReaderStatus, B = n.tabSelectsValue, R = n.isLoading, C = n["aria-label"], T = n["aria-live"], G = P2(function() {
+  var z = b.ariaSelection, e = b.focusedOption, p = b.focusedValue, o = b.focusableOptions, A = b.isFocused, i = b.selectValue, n = b.selectProps, a = b.id, d = b.isAppleDevice, u = n.ariaLiveMessages, q = n.getOptionLabel, h = n.inputValue, f = n.isMulti, L = n.isOptionDisabled, l = n.isSearchable, v = n.menuIsOpen, E = n.options, y = n.screenReaderStatus, B = n.tabSelectsValue, R = n.isLoading, C = n["aria-label"], T = n["aria-live"], G = P2(function() {
     return M0(M0({}, m6), u || {});
   }, [u]), b0 = P2(function() {
     var d0 = "";
@@ -10915,7 +10915,7 @@ var W6 = process.env.NODE_ENV === "production" ? {
   }, [e, p, q, L, G, o, i, d]), l0 = P2(function() {
     var d0 = "";
     if (v && E.length && !R && G.onFilter) {
-      var J = I({
+      var J = y({
         count: o.length
       });
       d0 = G.onFilter({
@@ -10924,7 +10924,7 @@ var W6 = process.env.NODE_ENV === "production" ? {
       });
     }
     return d0;
-  }, [o, h, v, G, E, I, R]), Y = z?.action === "initial-input-focus", O0 = P2(function() {
+  }, [o, h, v, G, E, y, R]), Y = z?.action === "initial-input-focus", O0 = P2(function() {
     var d0 = "";
     if (G.guidance) {
       var J = p ? "value" : v ? "menu" : "input";
@@ -11269,8 +11269,8 @@ var I6 = function(b) {
 function T6(M) {
   var b = M.isEnabled, z = M.onBottomArrive, e = M.onBottomLeave, p = M.onTopArrive, o = M.onTopLeave, A = J1(!1), i = J1(!1), n = J1(0), a = J1(null), d = t1(function(l, v) {
     if (a.current !== null) {
-      var E = a.current, I = E.scrollTop, B = E.scrollHeight, R = E.clientHeight, C = a.current, T = v > 0, G = B - R - I, b0 = !1;
-      G > v && A.current && (e && e(l), A.current = !1), T && i.current && (o && o(l), i.current = !1), T && v > G ? (z && !A.current && z(l), C.scrollTop = B, b0 = !0, A.current = !0) : !T && -v > I && (p && !i.current && p(l), C.scrollTop = 0, b0 = !0, i.current = !0), b0 && I6(l);
+      var E = a.current, y = E.scrollTop, B = E.scrollHeight, R = E.clientHeight, C = a.current, T = v > 0, G = B - R - y, b0 = !1;
+      G > v && A.current && (e && e(l), A.current = !1), T && i.current && (o && o(l), i.current = !1), T && v > G ? (z && !A.current && z(l), C.scrollTop = B, b0 = !0, A.current = !0) : !T && -v > y && (p && !i.current && p(l), C.scrollTop = 0, b0 = !0, i.current = !0), b0 && I6(l);
     }
   }, [z, e, p, o]), u = t1(function(l) {
     d(l, l.deltaY);
@@ -11851,7 +11851,7 @@ var Ao = function(b) {
     }, p.onValueInputFocus = function(n) {
       n.preventDefault(), n.stopPropagation(), p.focus();
     }, p.onKeyDown = function(n) {
-      var a = p.props, d = a.isMulti, u = a.backspaceRemovesValue, q = a.escapeClearsValue, h = a.inputValue, f = a.isClearable, L = a.isDisabled, l = a.menuIsOpen, v = a.onKeyDown, E = a.tabSelectsValue, I = a.openMenuOnFocus, B = p.state, R = B.focusedOption, C = B.focusedValue, T = B.selectValue;
+      var a = p.props, d = a.isMulti, u = a.backspaceRemovesValue, q = a.escapeClearsValue, h = a.inputValue, f = a.isClearable, L = a.isDisabled, l = a.menuIsOpen, v = a.onKeyDown, E = a.tabSelectsValue, y = a.openMenuOnFocus, B = p.state, R = B.focusedOption, C = B.focusedValue, T = B.selectValue;
       if (!L && !(typeof v == "function" && (v(n), n.defaultPrevented))) {
         switch (p.blockOptionHover = !0, n.key) {
           case "ArrowLeft":
@@ -11875,7 +11875,7 @@ var Ao = function(b) {
           case "Tab":
             if (p.isComposing || n.shiftKey || !l || !E || !R || // don't capture the event if the menu opens on focus and the focused
             // option is already selected; it breaks the flow of navigation
-            I && p.isOptionSelected(R, T))
+            y && p.isOptionSelected(R, T))
               return;
             p.selectOption(R);
             break;
@@ -12175,7 +12175,7 @@ var Ao = function(b) {
       // Renderers
       // ==============================
       function() {
-        var p = this.props, o = p.isDisabled, A = p.isSearchable, i = p.inputId, n = p.inputValue, a = p.tabIndex, d = p.form, u = p.menuIsOpen, q = p.required, h = this.getComponents(), f = h.Input, L = this.state, l = L.inputIsHidden, v = L.ariaSelection, E = this.commonProps, I = i || this.getElementId("input"), B = M0(M0(M0({
+        var p = this.props, o = p.isDisabled, A = p.isSearchable, i = p.inputId, n = p.inputValue, a = p.tabIndex, d = p.form, u = p.menuIsOpen, q = p.required, h = this.getComponents(), f = h.Input, L = this.state, l = L.inputIsHidden, v = L.ariaSelection, E = this.commonProps, y = i || this.getElementId("input"), B = M0(M0(M0({
           "aria-autocomplete": "list",
           "aria-expanded": u,
           "aria-haspopup": !0,
@@ -12199,7 +12199,7 @@ var Ao = function(b) {
           autoCapitalize: "none",
           autoComplete: "off",
           autoCorrect: "off",
-          id: I,
+          id: y,
           innerRef: this.getInputRef,
           isDisabled: o,
           isHidden: l,
@@ -12212,7 +12212,7 @@ var Ao = function(b) {
           type: "text",
           value: n
         }, B)) : /* @__PURE__ */ n0.createElement(y6, z0({
-          id: I,
+          id: y,
           innerRef: this.getInputRef,
           onBlur: this.onInputBlur,
           onChange: Xb,
@@ -12228,7 +12228,7 @@ var Ao = function(b) {
   }, {
     key: "renderPlaceholderOrValue",
     value: function() {
-      var p = this, o = this.getComponents(), A = o.MultiValue, i = o.MultiValueContainer, n = o.MultiValueLabel, a = o.MultiValueRemove, d = o.SingleValue, u = o.Placeholder, q = this.commonProps, h = this.props, f = h.controlShouldRenderValue, L = h.isDisabled, l = h.isMulti, v = h.inputValue, E = h.placeholder, I = this.state, B = I.selectValue, R = I.focusedValue, C = I.isFocused;
+      var p = this, o = this.getComponents(), A = o.MultiValue, i = o.MultiValueContainer, n = o.MultiValueLabel, a = o.MultiValueRemove, d = o.SingleValue, u = o.Placeholder, q = this.commonProps, h = this.props, f = h.controlShouldRenderValue, L = h.isDisabled, l = h.isMulti, v = h.inputValue, E = h.placeholder, y = this.state, B = y.selectValue, R = y.focusedValue, C = y.isFocused;
       if (!this.hasValue() || !f)
         return v ? null : /* @__PURE__ */ n0.createElement(u, z0({}, q, {
           key: "placeholder",
@@ -12333,7 +12333,7 @@ var Ao = function(b) {
   }, {
     key: "renderMenu",
     value: function() {
-      var p = this, o = this.getComponents(), A = o.Group, i = o.GroupHeading, n = o.Menu, a = o.MenuList, d = o.MenuPortal, u = o.LoadingMessage, q = o.NoOptionsMessage, h = o.Option, f = this.commonProps, L = this.state.focusedOption, l = this.props, v = l.captureMenuScroll, E = l.inputValue, I = l.isLoading, B = l.loadingMessage, R = l.minMenuHeight, C = l.maxMenuHeight, T = l.menuIsOpen, G = l.menuPlacement, b0 = l.menuPosition, o0 = l.menuPortalTarget, l0 = l.menuShouldBlockScroll, Y = l.menuShouldScrollIntoView, O0 = l.noOptionsMessage, a0 = l.onMenuScrollToTop, d0 = l.onMenuScrollToBottom;
+      var p = this, o = this.getComponents(), A = o.Group, i = o.GroupHeading, n = o.Menu, a = o.MenuList, d = o.MenuPortal, u = o.LoadingMessage, q = o.NoOptionsMessage, h = o.Option, f = this.commonProps, L = this.state.focusedOption, l = this.props, v = l.captureMenuScroll, E = l.inputValue, y = l.isLoading, B = l.loadingMessage, R = l.minMenuHeight, C = l.maxMenuHeight, T = l.menuIsOpen, G = l.menuPlacement, b0 = l.menuPosition, o0 = l.menuPortalTarget, l0 = l.menuShouldBlockScroll, Y = l.menuShouldScrollIntoView, O0 = l.noOptionsMessage, a0 = l.onMenuScrollToTop, d0 = l.onMenuScrollToBottom;
       if (!T) return null;
       var J = function(h0, B0) {
         var k = h0.type, P0 = h0.data, U = h0.isDisabled, A0 = h0.isSelected, M1 = h0.label, m1 = h0.value, o2 = L === P0, Q = U ? void 0 : function() {
@@ -12383,7 +12383,7 @@ var Ao = function(b) {
           } else if ($.type === "option")
             return J($, "".concat($.index));
         });
-      else if (I) {
+      else if (y) {
         var m0 = B({
           inputValue: E
         });
@@ -12410,7 +12410,7 @@ var Ao = function(b) {
             onMouseDown: p.onMenuMouseDown,
             onMouseMove: p.onMenuMouseMove
           },
-          isLoading: I,
+          isLoading: y,
           placement: k
         }), /* @__PURE__ */ n0.createElement(x6, {
           captureEnabled: v,
@@ -12427,7 +12427,7 @@ var Ao = function(b) {
               "aria-multiselectable": f.isMulti,
               id: p.getElementId("listbox")
             },
-            isLoading: I,
+            isLoading: y,
             maxHeight: P0,
             focusedOption: L
           }), T0);
@@ -12529,10 +12529,10 @@ var Ao = function(b) {
   }], [{
     key: "getDerivedStateFromProps",
     value: function(p, o) {
-      var A = o.prevProps, i = o.clearFocusValueOnUpdate, n = o.inputIsHiddenAfterUpdate, a = o.ariaSelection, d = o.isFocused, u = o.prevWasFocused, q = o.instancePrefix, h = p.options, f = p.value, L = p.menuIsOpen, l = p.inputValue, v = p.isMulti, E = T3(f), I = {};
+      var A = o.prevProps, i = o.clearFocusValueOnUpdate, n = o.inputIsHiddenAfterUpdate, a = o.ariaSelection, d = o.isFocused, u = o.prevWasFocused, q = o.instancePrefix, h = p.options, f = p.value, L = p.menuIsOpen, l = p.inputValue, v = p.isMulti, E = T3(f), y = {};
       if (A && (f !== A.value || h !== A.options || L !== A.menuIsOpen || l !== A.inputValue)) {
         var B = L ? ef(p, E) : [], R = L ? Z3(ub(p, E), "".concat(q, "-option")) : [], C = i ? pf(o, E) : null, T = cf(o, B), G = Sz(R, T);
-        I = {
+        y = {
           selectValue: E,
           focusedOption: T,
           focusedOptionId: G,
@@ -12549,7 +12549,7 @@ var Ao = function(b) {
         value: pb(v, E, E[0] || null),
         options: E,
         action: "initial-input-focus"
-      }, l0 = !u), a?.action === "initial-input-focus" && (o0 = null), M0(M0(M0({}, I), b0), {}, {
+      }, l0 = !u), a?.action === "initial-input-focus" && (o0 = null), M0(M0(M0({}, y), b0), {}, {
         prevProps: p,
         ariaSelection: o0,
         prevWasFocused: l0
@@ -12620,11 +12620,11 @@ const Y2 = ({ size: M = 14 }) => /* @__PURE__ */ S(
   currentIndex: z,
   setCurrentIndex: e
 }) => /* @__PURE__ */ S("div", { children: [
-  /* @__PURE__ */ S("ul", { className: y.alt_tabs, children: [
+  /* @__PURE__ */ S("ul", { className: I.alt_tabs, children: [
     M.map((p, o) => /* @__PURE__ */ S(
       "li",
       {
-        className: `${y.alt_tabs_item} ${z === o && y.active}`,
+        className: `${I.alt_tabs_item} ${z === o && I.active}`,
         onClick: () => {
           e(o);
         },
@@ -12650,7 +12650,7 @@ const Y2 = ({ size: M = 14 }) => /* @__PURE__ */ S(
     /* @__PURE__ */ g(
       "li",
       {
-        className: y.tab_plus,
+        className: I.tab_plus,
         onClick: () => {
           b([...M, ""]), e(M.length);
         },
@@ -12661,7 +12661,7 @@ const Y2 = ({ size: M = 14 }) => /* @__PURE__ */ S(
   /* @__PURE__ */ g(
     "textarea",
     {
-      className: `${y.textContent} ${y.textarea} ${y.notop_radius}`,
+      className: `${I.textContent} ${I.textarea} ${I.notop_radius}`,
       rows: "10",
       value: M[z],
       onChange: (p) => {
@@ -12698,11 +12698,11 @@ const Y2 = ({ size: M = 14 }) => /* @__PURE__ */ S(
     }).finally(() => n(!1));
   };
   return /* @__PURE__ */ S("div", { children: [
-    /* @__PURE__ */ S("ul", { className: y.alt_tabs, children: [
+    /* @__PURE__ */ S("ul", { className: I.alt_tabs, children: [
       e.map((d, u) => /* @__PURE__ */ S(
         "li",
         {
-          className: `${y.alt_tabs_item} ${o === u && y.active}`,
+          className: `${I.alt_tabs_item} ${o === u && I.active}`,
           onClick: () => {
             A(u);
           },
@@ -12728,7 +12728,7 @@ const Y2 = ({ size: M = 14 }) => /* @__PURE__ */ S(
       /* @__PURE__ */ g(
         "li",
         {
-          className: y.tab_plus,
+          className: I.tab_plus,
           onClick: () => {
             p([...e, { link: "", content: "" }]), A(e.length);
           },
@@ -12736,12 +12736,12 @@ const Y2 = ({ size: M = 14 }) => /* @__PURE__ */ S(
         }
       )
     ] }),
-    /* @__PURE__ */ S("div", { className: y.tamtamIt, children: [
+    /* @__PURE__ */ S("div", { className: I.tamtamIt, children: [
       /* @__PURE__ */ g(
         "input",
         {
           type: "text",
-          className: y.textContent,
+          className: I.textContent,
           value: e[o].link,
           onChange: (d) => {
             const u = [...e];
@@ -12749,12 +12749,12 @@ const Y2 = ({ size: M = 14 }) => /* @__PURE__ */ S(
           }
         }
       ),
-      /* @__PURE__ */ g("button", { className: "defaultBtn", onClick: a, children: i ? /* @__PURE__ */ g("span", { className: y.spinner, children: /* @__PURE__ */ g(Ub, { size: "20" }) }) : /* @__PURE__ */ g(WO, {}) })
+      /* @__PURE__ */ g("button", { className: "defaultBtn", onClick: a, children: i ? /* @__PURE__ */ g("span", { className: I.spinner, children: /* @__PURE__ */ g(Ub, { size: "20" }) }) : /* @__PURE__ */ g(WO, {}) })
     ] }),
     /* @__PURE__ */ g(
       "textarea",
       {
-        className: `${y.textContent} ${y.textarea} `,
+        className: `${I.textContent} ${I.textarea} `,
         rows: "10",
         value: e[o].content,
         disabled: !0
@@ -12823,13 +12823,13 @@ function nf() {
   function E(R) {
     return !!R && typeof R == "object";
   }
-  function I(R) {
+  function y(R) {
     return typeof R == "symbol" || E(R) && q.call(R) == z;
   }
   function B(R) {
     if (typeof R == "number")
       return R;
-    if (I(R))
+    if (y(R))
       return b;
     if (v(R)) {
       var C = typeof R.valueOf == "function" ? R.valueOf() : R;
@@ -13450,16 +13450,16 @@ const no = /* @__PURE__ */ vc(rf), ro = ({ size: M = 14 }) => /* @__PURE__ */ g(
       const C = v(R, ["article", "tag"]);
       l(C), C.article?.length > 0, C.tag?.length > 0 && q(C.tag), d(!0), n(!1);
     }, 2e3);
-  }, 1e3), I = (B) => {
+  }, 1e3), y = (B) => {
     const R = [...e];
     R[o].search = B.target.value, p(R), B.target.value.length > 2 ? E(B.target.value) : (l({}), q([]), d(!1));
   };
   return /* @__PURE__ */ S("div", { children: [
-    /* @__PURE__ */ S("ul", { className: y.alt_tabs, children: [
+    /* @__PURE__ */ S("ul", { className: I.alt_tabs, children: [
       e.map((B, R) => /* @__PURE__ */ S(
         "li",
         {
-          className: `${y.alt_tabs_item} ${o === R && y.active}`,
+          className: `${I.alt_tabs_item} ${o === R && I.active}`,
           onClick: () => {
             A(R);
           },
@@ -13485,7 +13485,7 @@ const no = /* @__PURE__ */ vc(rf), ro = ({ size: M = 14 }) => /* @__PURE__ */ g(
       /* @__PURE__ */ g(
         "li",
         {
-          className: y.tab_plus,
+          className: I.tab_plus,
           onClick: () => {
             p([...e, { search: "", article: null }]), A(e.length);
           },
@@ -13493,42 +13493,42 @@ const no = /* @__PURE__ */ vc(rf), ro = ({ size: M = 14 }) => /* @__PURE__ */ g(
         }
       )
     ] }),
-    !e[o]?.article && /* @__PURE__ */ g("div", { className: y.tamtamIt, children: /* @__PURE__ */ g(
+    !e[o]?.article && /* @__PURE__ */ g("div", { className: I.tamtamIt, children: /* @__PURE__ */ g(
       "input",
       {
         type: "text",
         placeholder: "Rechecher par titre ou tag",
-        className: y.textContent,
+        className: I.textContent,
         value: e[o].search,
-        onChange: I
+        onChange: y
       }
     ) }),
-    /* @__PURE__ */ g("div", { className: y.resultContainer, children: i ? /* @__PURE__ */ g("div", { className: y.spinner, children: /* @__PURE__ */ g(Ub, { size: "20" }) }) : /* @__PURE__ */ S("div", { className: y.results, children: [
+    /* @__PURE__ */ g("div", { className: I.resultContainer, children: i ? /* @__PURE__ */ g("div", { className: I.spinner, children: /* @__PURE__ */ g(Ub, { size: "20" }) }) : /* @__PURE__ */ S("div", { className: I.results, children: [
       a && L?.article?.length === 0 && /* @__PURE__ */ g("div", { className: "results__not-found", children: "Votre recherche ne correspond à aucun document." }),
-      e[o]?.article ? /* @__PURE__ */ S("div", { className: `${y.itemResult} ${y.active}`, children: [
+      e[o]?.article ? /* @__PURE__ */ S("div", { className: `${I.itemResult} ${I.active}`, children: [
         /* @__PURE__ */ g("div", { children: e[o].article.title }),
         /* @__PURE__ */ S(
           "span",
           {
-            className: y.itemResult_check_icon,
+            className: I.itemResult_check_icon,
             onClick: (B) => {
               const R = [...e];
               R[o].article = null, p(R), d(!1);
             },
             children: [
-              /* @__PURE__ */ g("span", { className: y.itemResult_check_icon_1, children: /* @__PURE__ */ g(ro, { size: 20 }) }),
-              /* @__PURE__ */ g("span", { className: y.itemResult_check_icon_2, children: /* @__PURE__ */ g(ae, { size: 20 }) })
+              /* @__PURE__ */ g("span", { className: I.itemResult_check_icon_1, children: /* @__PURE__ */ g(ro, { size: 20 }) }),
+              /* @__PURE__ */ g("span", { className: I.itemResult_check_icon_2, children: /* @__PURE__ */ g(ae, { size: 20 }) })
             ]
           }
         )
       ] }) : a && /* @__PURE__ */ S(f1, { children: [
-        /* @__PURE__ */ g("h3", { className: y.subtitle, children: "Articles trouvés :" }),
-        /* @__PURE__ */ g("div", { children: L?.article?.map((B) => /* @__PURE__ */ S("div", { className: `${y.itemResult} `, children: [
+        /* @__PURE__ */ g("h3", { className: I.subtitle, children: "Articles trouvés :" }),
+        /* @__PURE__ */ g("div", { children: L?.article?.map((B) => /* @__PURE__ */ S("div", { className: `${I.itemResult} `, children: [
           /* @__PURE__ */ g("div", { children: B.title }),
           /* @__PURE__ */ g(
             "span",
             {
-              className: y.itemResult_add_icon,
+              className: I.itemResult_add_icon,
               onClick: (R) => {
                 const C = [...e];
                 C[o].article = B, C[o].search = "", p(C), l({});
@@ -13550,11 +13550,11 @@ const no = /* @__PURE__ */ vc(rf), ro = ({ size: M = 14 }) => /* @__PURE__ */ g(
   currentIndex: A,
   setCurrentIndex: i
 }) => {
-  const [n, a] = c0(!1), [d, u] = c0(!1), [q, h] = c0([]), [f, L] = c0(1), l = `name${e.charAt(0).toUpperCase() + e.slice(1)}`, v = no((I) => {
+  const [n, a] = c0(!1), [d, u] = c0(!1), [q, h] = c0([]), [f, L] = c0(1), l = `name${e.charAt(0).toUpperCase() + e.slice(1)}`, v = no((y) => {
     const B = {
       access_token: M,
       languages: e,
-      search: I,
+      search: y,
       tags: "",
       cities: "",
       communityIds: [z],
@@ -13566,16 +13566,16 @@ const no = /* @__PURE__ */ vc(rf), ro = ({ size: M = 14 }) => /* @__PURE__ */ g(
     }).catch(() => {
       a(!1), h([]);
     });
-  }, 1e3), E = (I) => {
+  }, 1e3), E = (y) => {
     const B = [...p];
-    B[A].search = I.target.value, o(B), I.target.value.length > 2 ? v(I.target.value) : (h([]), u(!1));
+    B[A].search = y.target.value, o(B), y.target.value.length > 2 ? v(y.target.value) : (h([]), u(!1));
   };
   return /* @__PURE__ */ S("div", { children: [
-    /* @__PURE__ */ S("ul", { className: y.alt_tabs, children: [
-      p.map((I, B) => /* @__PURE__ */ S(
+    /* @__PURE__ */ S("ul", { className: I.alt_tabs, children: [
+      p.map((y, B) => /* @__PURE__ */ S(
         "li",
         {
-          className: `${y.alt_tabs_item} ${A === B && y.active}`,
+          className: `${I.alt_tabs_item} ${A === B && I.active}`,
           onClick: () => {
             i(B);
           },
@@ -13601,7 +13601,7 @@ const no = /* @__PURE__ */ vc(rf), ro = ({ size: M = 14 }) => /* @__PURE__ */ g(
       /* @__PURE__ */ g(
         "li",
         {
-          className: y.tab_plus,
+          className: I.tab_plus,
           onClick: () => {
             o([...p, { search: "", event: null }]), i(p.length);
           },
@@ -13609,56 +13609,56 @@ const no = /* @__PURE__ */ vc(rf), ro = ({ size: M = 14 }) => /* @__PURE__ */ g(
         }
       )
     ] }),
-    !p[A]?.event && /* @__PURE__ */ g("div", { className: y.tamtamIt, children: /* @__PURE__ */ g(
+    !p[A]?.event && /* @__PURE__ */ g("div", { className: I.tamtamIt, children: /* @__PURE__ */ g(
       "input",
       {
         type: "text",
         placeholder: "Rechecher par titre",
-        className: y.textContent,
+        className: I.textContent,
         value: p[A].search,
         onChange: E
       }
     ) }),
-    /* @__PURE__ */ g("div", { className: y.resultContainer, children: n ? /* @__PURE__ */ g("div", { className: y.spinner, children: /* @__PURE__ */ g(Ub, { size: "20" }) }) : /* @__PURE__ */ S("div", { className: y.results, children: [
+    /* @__PURE__ */ g("div", { className: I.resultContainer, children: n ? /* @__PURE__ */ g("div", { className: I.spinner, children: /* @__PURE__ */ g(Ub, { size: "20" }) }) : /* @__PURE__ */ S("div", { className: I.results, children: [
       d && q?.length === 0 && /* @__PURE__ */ g("div", { className: "results__not-found", children: "Votre recherche ne correspond à aucun document." }),
-      p[A]?.event ? /* @__PURE__ */ S("div", { className: `${y.itemResult} ${y.active}`, children: [
+      p[A]?.event ? /* @__PURE__ */ S("div", { className: `${I.itemResult} ${I.active}`, children: [
         /* @__PURE__ */ g("div", { children: p[A].event[l] }),
         /* @__PURE__ */ S(
           "span",
           {
-            className: y.itemResult_check_icon,
-            onClick: (I) => {
+            className: I.itemResult_check_icon,
+            onClick: (y) => {
               const B = [...p];
               B[A].event = null, o(B), u(!1);
             },
             children: [
-              /* @__PURE__ */ g("span", { className: y.itemResult_check_icon_1, children: /* @__PURE__ */ g(ro, { size: 20 }) }),
-              /* @__PURE__ */ g("span", { className: y.itemResult_check_icon_2, children: /* @__PURE__ */ g(ae, { size: 20 }) })
+              /* @__PURE__ */ g("span", { className: I.itemResult_check_icon_1, children: /* @__PURE__ */ g(ro, { size: 20 }) }),
+              /* @__PURE__ */ g("span", { className: I.itemResult_check_icon_2, children: /* @__PURE__ */ g(ae, { size: 20 }) })
             ]
           }
         )
       ] }) : d && /* @__PURE__ */ S(f1, { children: [
-        /* @__PURE__ */ g("h3", { className: y.subtitle, children: "Events trouvés :" }),
-        /* @__PURE__ */ g("div", { children: q?.map((I) => /* @__PURE__ */ S(
+        /* @__PURE__ */ g("h3", { className: I.subtitle, children: "Events trouvés :" }),
+        /* @__PURE__ */ g("div", { children: q?.map((y) => /* @__PURE__ */ S(
           "div",
           {
-            className: `${y.itemResult} `,
+            className: `${I.itemResult} `,
             children: [
-              /* @__PURE__ */ g("div", { children: I[l] }),
+              /* @__PURE__ */ g("div", { children: y[l] }),
               /* @__PURE__ */ g(
                 "span",
                 {
-                  className: y.itemResult_add_icon,
+                  className: I.itemResult_add_icon,
                   onClick: (B) => {
                     const R = [...p];
-                    R[A].event = I, R[A].search = "", o(R), h([]);
+                    R[A].event = y, R[A].search = "", o(R), h([]);
                   },
                   children: /* @__PURE__ */ g(Y2, { size: 20 })
                 }
               )
             ]
           },
-          `event${I.id}`
+          `event${y.id}`
         )) })
       ] })
     ] }) })
@@ -13725,15 +13725,15 @@ const no = /* @__PURE__ */ vc(rf), ro = ({ size: M = 14 }) => /* @__PURE__ */ g(
 }) => {
   const [n, a] = c0("SOURCE"), [d, u] = c0("TEXT"), [q, h] = c0([""]), [f, L] = c0([{ link: "", content: "" }]), [l, v] = c0([
     { search: "", article: null }
-  ]), [E, I] = c0([
+  ]), [E, y] = c0([
     { search: "", event: null }
   ]), [B, R] = c0(0), [C, T] = c0(null), [G, b0] = c0(""), [o0, l0] = c0(""), [Y, O0] = c0(!1), [a0, d0] = c0([]), [J, T0] = c0(!1), [m0, U0] = c0(null), [X0, D0] = c0([]), [$, h0] = c0(null), B0 = async () => {
     let A0 = [
-      { value: "version1", label: "version 1", content: `🌿 À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.
+      { value: "version1", label: "version 1", content: `<p>🌿 À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.</p>
 
-🏙️ Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.
+<p>🏙️ Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.</p>
 
-⚖️ Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.`, isUsed: !1 }
+<p>⚖️ Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.</p>`, isUsed: !1 }
     ];
     D0(A0), h0(A0[0]), a("RESULT");
   }, k = () => {
@@ -13748,30 +13748,30 @@ const no = /* @__PURE__ */ vc(rf), ro = ({ size: M = 14 }) => /* @__PURE__ */ g(
       return null;
     let A0 = [
       ...X0,
-      { value: "version2", label: "version 2", content: `À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.
+      { value: "version2", label: "version 2", content: `<p>À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.</p>
 
-Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.
+<p>Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.</p>
 
-Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.`, isUsed: !1 }
+<p>Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.</p>`, isUsed: !1 }
     ];
     D0(A0), h0(A0[1]), b0("");
   };
   return /* @__PURE__ */ S(f1, { children: [
-    /* @__PURE__ */ S("h2", { className: y.title, children: [
+    /* @__PURE__ */ S("h2", { className: I.title, children: [
       /* @__PURE__ */ g("img", { src: Ib, alt: "NACN AI", width: 30 }),
       "Générer un article complet"
     ] }),
-    /* @__PURE__ */ S("div", { className: y.container, children: [
+    /* @__PURE__ */ S("div", { className: I.container, children: [
       n === "SOURCE" && /* @__PURE__ */ S(f1, { children: [
         /* @__PURE__ */ g("h3", { children: "Sources de l’article :" }),
-        /* @__PURE__ */ S("ul", { className: y.tabs, children: [
+        /* @__PURE__ */ S("ul", { className: I.tabs, children: [
           /* @__PURE__ */ g(
             "li",
             {
               onClick: () => {
                 R(0), u("TEXT");
               },
-              className: `${y.tabs_item} ${d === "TEXT" && y.active}`,
+              className: `${I.tabs_item} ${d === "TEXT" && I.active}`,
               children: "Texte manuel"
             }
           ),
@@ -13781,7 +13781,7 @@ Tout manquement aux obligations fixées par le présent article pourra entraîne
               onClick: () => {
                 R(0), u("LINK");
               },
-              className: `${y.tabs_item} ${d === "LINK" && y.active}`,
+              className: `${I.tabs_item} ${d === "LINK" && I.active}`,
               children: "Lien web"
             }
           ),
@@ -13791,7 +13791,7 @@ Tout manquement aux obligations fixées par le présent article pourra entraîne
               onClick: () => {
                 R(0), u("BLOG");
               },
-              className: `${y.tabs_item} ${d === "BLOG" && y.active}`,
+              className: `${I.tabs_item} ${d === "BLOG" && I.active}`,
               children: "Blog"
             }
           ),
@@ -13801,7 +13801,7 @@ Tout manquement aux obligations fixées par le présent article pourra entraîne
               onClick: () => {
                 R(0), u("EVENT");
               },
-              className: `${y.tabs_item} ${d === "EVENT" && y.active}`,
+              className: `${I.tabs_item} ${d === "EVENT" && I.active}`,
               children: "Event"
             }
           )
@@ -13845,17 +13845,17 @@ Tout manquement aux obligations fixées par le présent article pourra entraîne
             token: z,
             apiUrl: e,
             eventSources: E,
-            setEventSources: I,
+            setEventSources: y,
             currentIndex: B,
             setCurrentIndex: R,
             lng: A,
             organizationId: o
           }
         ),
-        /* @__PURE__ */ S("div", { className: y.article_actions, children: [
-          /* @__PURE__ */ S("div", { className: y.article_actions_left, children: [
+        /* @__PURE__ */ S("div", { className: I.article_actions, children: [
+          /* @__PURE__ */ S("div", { className: I.article_actions_left, children: [
             /* @__PURE__ */ g("label", { children: "Contexte:" }),
-            /* @__PURE__ */ g("div", { className: y.article_actions_left_select, children: /* @__PURE__ */ g(
+            /* @__PURE__ */ g("div", { className: I.article_actions_left_select, children: /* @__PURE__ */ g(
               Q3,
               {
                 menuPlacement: "top",
@@ -13870,7 +13870,7 @@ Tout manquement aux obligations fixées par le présent article pourra entraîne
               }
             ) })
           ] }),
-          /* @__PURE__ */ g("div", { className: y.article_actions_right, children: Y ? /* @__PURE__ */ g(
+          /* @__PURE__ */ g("div", { className: I.article_actions_right, children: Y ? /* @__PURE__ */ g(
             "button",
             {
               className: "gradientBtn",
@@ -13923,8 +13923,8 @@ Tout manquement aux obligations fixées par le présent article pourra entraîne
         ] })
       ] }),
       n === "RESULT" && /* @__PURE__ */ S("div", { children: [
-        /* @__PURE__ */ S("div", { className: y.result_top, children: [
-          /* @__PURE__ */ S("div", { className: y.result_top_left, children: [
+        /* @__PURE__ */ S("div", { className: I.result_top, children: [
+          /* @__PURE__ */ S("div", { className: I.result_top_left, children: [
             /* @__PURE__ */ g("span", { children: "Article:" }),
             /* @__PURE__ */ g(
               Q3,
@@ -13935,28 +13935,28 @@ Tout manquement aux obligations fixées par le présent article pourra entraîne
               }
             )
           ] }),
-          /* @__PURE__ */ S("div", { className: y.result_top_right, children: [
+          /* @__PURE__ */ S("div", { className: I.result_top_right, children: [
             "Sources: ",
             /* @__PURE__ */ g(RO, {})
           ] })
         ] }),
         /* @__PURE__ */ g(
-          "textarea",
+          "div",
           {
-            className: `${y.textContent} ${y.textarea} `,
-            rows: "10",
-            value: $ ? $.content : "",
-            disabled: !0
+            className: I.resultContainer,
+            dangerouslySetInnerHTML: {
+              __html: $ ? $.content : ""
+            }
           }
         ),
-        $ && ($.isUsed ? /* @__PURE__ */ S("div", { className: y.result_used, children: [
+        $ && ($.isUsed ? /* @__PURE__ */ S("div", { className: I.result_used, children: [
           /* @__PURE__ */ g(uf, {}),
           " ",
           $ ? $.label : "version 1",
           " a été utilisée pour l’article"
-        ] }) : /* @__PURE__ */ g("div", { className: y.result_actions, children: /* @__PURE__ */ g("button", { className: "primaryBtn", onClick: k, children: "Utiliser cette version" }) })),
-        /* @__PURE__ */ S("div", { className: y.update_instruction, children: [
-          /* @__PURE__ */ S("h3", { className: y.subtitle, children: [
+        ] }) : /* @__PURE__ */ g("div", { className: I.result_actions, children: /* @__PURE__ */ g("button", { className: "primaryBtn", onClick: k, children: "Utiliser cette version" }) })),
+        /* @__PURE__ */ S("div", { className: I.update_instruction, children: [
+          /* @__PURE__ */ S("h3", { className: I.subtitle, children: [
             "Instruction pour modifier la",
             " ",
             $ ? $.label : "version 1"
@@ -13964,7 +13964,7 @@ Tout manquement aux obligations fixées par le présent article pourra entraîne
           /* @__PURE__ */ g(
             "textarea",
             {
-              className: `${y.textContent} `,
+              className: `${I.textContent} `,
               rows: "4",
               placeholder: "Donnez vos instructions...",
               value: G,
@@ -13974,7 +13974,7 @@ Tout manquement aux obligations fixées par le présent article pourra entraîne
           /* @__PURE__ */ g(
             "span",
             {
-              className: `${y.update_arrow} ${G.length > 0 && y.active}`,
+              className: `${I.update_arrow} ${G.length > 0 && I.active}`,
               onClick: P0,
               children: /* @__PURE__ */ g(df, { size: 20 })
             }
@@ -13994,7 +13994,7 @@ Tout manquement aux obligations fixées par le présent article pourra entraîne
   organizationId: i
 }) => {
   const [n, a] = c0("CHOICE");
-  return /* @__PURE__ */ g(f1, { children: /* @__PURE__ */ S("div", { className: ` ${y.popover}`, children: [
+  return /* @__PURE__ */ g(f1, { children: /* @__PURE__ */ S("div", { className: ` ${I.popover}`, children: [
     n === "CHOICE" && /* @__PURE__ */ g(ba, { setStep: a }),
     n === "ARTICLE_SOURCE" && /* @__PURE__ */ g(
       qf,
@@ -14019,7 +14019,7 @@ Tout manquement aux obligations fixées par le présent article pourra entraîne
         setIsOpen: b
       }
     ),
-    /* @__PURE__ */ g("div", { className: y.popover_arrow })
+    /* @__PURE__ */ g("div", { className: I.popover_arrow })
   ] }) });
 }, ff = "_triggerContainer_1c36p_1", Wf = "_triggerBtn_1c36p_11", _3 = {
   triggerContainer: ff,
