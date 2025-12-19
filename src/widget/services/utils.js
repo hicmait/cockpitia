@@ -19,3 +19,9 @@ export const getDateByLang = (date, lng, shortMonth = false) => {
 
   return dateStr;
 };
+
+export const isServer = !(
+  typeof window !== "undefined" &&
+  window.document &&
+  window.document.createElement
+);

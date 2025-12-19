@@ -21,6 +21,9 @@ function App() {
           token="b03f904a45843d832720e1ead56705c45ac9463a"
           apiUrl="http://local.api.tamtam.pro"
           aiUrl="https://service.ai.api.tamtam.pro"
+          blogSearchUrl="https://seo.tamtam.pro/blog/_msearch"
+          lng="fr"
+          organizationId={9}
         />
       </div>
     </>
