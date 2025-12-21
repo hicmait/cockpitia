@@ -119,7 +119,7 @@ const SourceStep = ({
 
   const handleShowSource = () => {
     let tab = [];
-    if (textSources.length > 0) {
+    if (textSources.length > 0 && textSources[0].length > 0) {
       tab.push({ tab: "TEXT", label: "Texte manuel", items: textSources });
     }
     if (linkSources[0]?.content.length > 0) {

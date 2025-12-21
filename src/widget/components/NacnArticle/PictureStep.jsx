@@ -50,7 +50,6 @@ const PictureStep = ({
           allowedMediaTypes: ["IMAGE"],
           lng,
         });
-        console.log("aaaaa", response);
 
         setIsFetching(false);
         setIsFetched(true);
@@ -117,7 +116,6 @@ const PictureStep = ({
                     path = fullMediaUrl ? fullMediaUrl : apiUrl + "/" + webPath;
                   }
                   path = path ? addLandaSize(path, 280) : "";
-                  console.log("eeeee", path);
 
                   if (!path) {
                     return null;

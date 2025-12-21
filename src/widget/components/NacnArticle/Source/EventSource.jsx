@@ -1,14 +1,45 @@
 import { useState } from "react";
 import debounce from "lodash.debounce";
+import moment from "moment-timezone";
 
 import { getEvents } from "../../../api";
+import { formatDateFromTo, isEmpty } from "../../../services/utils";
 import styles from "../NacnArticle.module.scss";
-import IconLink from "../../../icons/IconLink";
+import IconCalendar from "../../../icons/IconCalendar";
 import IconSpinner from "../../../icons/IconSpinner";
 import IconPlus from "../../../icons/IconPlus";
 import IconTrash from "../../../icons/IconTrash";
 import IconCheck from "../../../icons/IconCheck";
 import IconClose from "../../../icons/IconClose";
+
+let I18N = {
+  nl: {
+    inReplay: "In Replay",
+    liveNow: "live now",
+    inProgress: "In progress now",
+    seen: "Already Seen",
+    presential: "On the spot",
+    hybrid: "Hybrid",
+    inLive: "In live",
+    dateFrom: "from",
+    dateFrom2: "from",
+    timeTo: "to",
+    dateTo: "to",
+  },
+  fr: {
+    inReplay: "En Replay",
+    liveNow: "en live maintenant",
+    inProgress: "En cours maintenant",
+    seen: "Déja Vu",
+    presential: "En Présentiel",
+    hybrid: "Hybride",
+    inLive: "En live",
+    dateFrom: "de",
+    dateFrom2: "du",
+    timeTo: "à",
+    dateTo: "au",
+  },
+};
 
 const PAGE_SIZE = 8;
 
@@ -67,6 +98,69 @@ const EventSource = ({
       setResults([]);
       setIsFetched(false);
     }
+  };
+
+  const getInfos = (event, language) => {
+    const modeLabel = {
+      VIRTUAL: I18N[language]["inLive"],
+      PRESENTIAL: I18N[language]["presential"],
+      HYBRID: I18N[language]["hybrid"],
+    };
+
+    const { isReplayable, isVirtual, startDateTime, endDateTime } = event;
+
+    const name = getByLanguage(event, "name", language);
+    const label = getByLanguage(event, "label", language, true);
+    const city = getByLanguage(event.eventPlace?.city, "city", language);
+    const mode = getEventMode(event);
+
+    const isPast = isEventPast(event);
+    const isLive = isEventLive(event);
+
+    const dateHelper = formatDateFromTo(
+      startDateTime ?? "",
+      endDateTime ?? "",
+      I18N,
+      language
+    );
+
+    const endOfReplay = dateEndOfReplay
+      ? moment(dateEndOfReplay)
+      : moment.max(moment(endDateTime), moment()).add(REPLAY_UPTIME, "months");
+    const endOfReplayYear = endOfReplay.format("YYYY");
+
+    const isReplayExpired = moment().isAfter(endOfReplay);
+
+    return (
+      <ul>
+        {!isPast && (
+          <li>
+            <IconCalendar />
+            <span>
+              <strong>{modeLabel[mode]} :&nbsp;</strong>
+              {dateHelper}
+            </span>
+          </li>
+        )}
+        {/* {!isEmpty(city) && !isVirtual && !isPast && (
+              <li>
+                <Presential2Icon />
+                <span>{city}</span>
+              </li>
+            )} */}
+        {/* {
+              isPast && isReplayable && isVirtual && !isReplayExpired
+            && (
+              <li>
+                <Replay2Icon />
+                <span>
+                  <strong>{I18N[language]["inReplay"]}</strong>
+                  <div className={styles.year}>{endOfReplayYear}</div>
+                </span>
+              </li>
+            )} */}
+      </ul>
+    );
   };
 
   return (
@@ -173,7 +267,10 @@ const EventSource = ({
                         key={`event${i.id}`}
                         className={`${styles.itemResult} `}
                       >
-                        <div>{i[nameAttr]}</div>
+                        <div>
+                          <p>{i[nameAttr]}</p>
+                          {/* {getInfos(i, lng)} */}
+                        </div>
                         <span
                           className={styles.itemResult_add_icon}
                           onClick={(e) => {
