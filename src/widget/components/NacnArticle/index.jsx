@@ -4,6 +4,7 @@ import styles from "./NacnArticle.module.scss";
 import Step1 from "./Step1";
 import ArticleStep from "./ArticleStep";
 import SourceStep from "./SourceStep";
+import PictureStep from "./PictureStep";
 
 const NacnArticle = ({
   onPost,
@@ -31,8 +32,21 @@ const NacnArticle = ({
             blogSearchUrl={blogSearchUrl}
             lng={lng}
             organizationId={organizationId}
+            showPictureStep={() => setStep("PICTURE")}
           />
         )}
+
+        {step === "PICTURE" && (
+          <PictureStep
+            token={token}
+            apiUrl={apiUrl}
+            onPost={onPost}
+            setIsOpen={setIsOpen}
+            lng={lng}
+            organizationId={organizationId}
+          />
+        )}
+
         {step === "ARTICLE" && (
           <ArticleStep
             onPost={onPost}

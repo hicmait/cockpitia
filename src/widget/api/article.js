@@ -127,3 +127,214 @@ export const getEvents = async (apiUrl, params) => {
     throwCatchedError(thrown);
   });
 };
+
+export const getMedias = ({
+  apiUrl,
+  token,
+  limit,
+  offset = 0,
+  type,
+  communityId,
+  filterBy,
+  allowedMediaTypes,
+  lng,
+  isFavorite = 0,
+  languages = ["FR", "EN", "NL"].sort(),
+}) => {
+  let fields = [
+    "*",
+    "meta",
+    "webPath",
+    "title",
+    "description",
+    "preview",
+    "tags",
+    "creator",
+    "taggedUsers",
+    "social",
+    "organization",
+  ];
+
+  let filter = [];
+
+  if (communityId) {
+    filter.push({
+      property: "organization",
+      operator: "eq",
+      value: communityId,
+    });
+  } else {
+    fields.push("organization");
+  }
+
+  filter.push({
+    property: "languages",
+    operator: "flike",
+    value: lng,
+  });
+
+  if (!allowedMediaTypes || allowedMediaTypes.length === 0) {
+    allowedMediaTypes = ["IMAGE", "VIDEO", "PPT", "PDF"];
+  }
+
+  if (type) {
+    if (type === "MASK" || type === "LOGO") {
+      filter.push({
+        property: "objectType",
+        operator: "eq",
+        value: type,
+      });
+    } else {
+      filter.push({
+        property: "objectType",
+        operator: "nin",
+        value: ["LOGO", "MASK"],
+      });
+
+      if (type.toUpperCase() !== "ALL") {
+        if (type === "DOC") {
+          const docType = [];
+          if (allowedMediaTypes.includes("PDF")) docType.push("PDF");
+          if (allowedMediaTypes.includes("PPT")) docType.push("PPT");
+          filter.push({
+            property: "docType",
+            operator: "in",
+            value: docType.length > 0 ? docType : ["NOT_ALLOWED_TYPE"],
+          });
+        } else {
+          filter.push({
+            property: "docType",
+            operator: "in",
+            value: allowedMediaTypes.includes(type)
+              ? [type]
+              : ["NOT_ALLOWED_TYPE"],
+          });
+        }
+      } else {
+        filter.push({
+          property: "docType",
+          operator: "in",
+          value:
+            allowedMediaTypes.length > 0
+              ? allowedMediaTypes
+              : ["NOT_ALLOWED_TYPE"],
+        });
+      }
+    }
+  }
+
+  if (filterBy && filterBy.type) {
+    if (filterBy.type.toUpperCase() !== "ALL") {
+      if (filterBy.type === "DOC") {
+        filter.push({
+          property: "docType",
+          operator: "in",
+          value:
+            allowedMediaTypes.includes("PDF") &&
+            allowedMediaTypes.includes("PPT")
+              ? ["PDF", "PPT"]
+              : ["NOT_ALLOWED_TYPE"],
+        });
+      } else {
+        filter.push({
+          property: "docType",
+          operator: "in",
+          value: allowedMediaTypes.includes(filterBy.type)
+            ? [filterBy.type]
+            : ["NOT_ALLOWED_TYPE"],
+        });
+      }
+    } else if (filterBy.type.toUpperCase() === "ALL") {
+      filter.push({
+        property: "docType",
+        operator: "in",
+        value:
+          allowedMediaTypes.length > 0
+            ? allowedMediaTypes
+            : ["NOT_ALLOWED_TYPE"],
+      });
+    }
+    filter.push({
+      property: "objectType",
+      operator: "nin",
+      value: ["LOGO", "MASK"],
+    });
+  }
+
+  if (filterBy && filterBy.search) {
+    //TODO search in other fields
+    filter.push({
+      property: `title${lng.charAt(0).toUpperCase() + lng.slice(1)}`,
+      operator: "like",
+      value: filterBy.search,
+    });
+  }
+
+  if (filterBy && filterBy.tags && filterBy.tags.length > 0) {
+    filter.push({
+      property: "tag.id",
+      operator: "in",
+      value: filterBy.tags.map((tag) => tag.id),
+    });
+  }
+
+  if (filterBy && filterBy.creator) {
+    filter.push({
+      property: "creator",
+      operator: "eq",
+      value: filterBy.creator.id,
+    });
+  }
+  if (filterBy && filterBy.category) {
+    filter.push({
+      property: "category.id",
+      operator: "eq",
+      value: filterBy.category.id,
+    });
+  }
+
+  if (filterBy && filterBy.isPrivate) {
+    filter.push({
+      property: "isPrivate",
+      operator: Array.isArray(filterBy.isPrivate) ? "in" : "eq",
+      value: filterBy.isPrivate,
+    });
+  } else {
+    filter.push({
+      property: "isPrivate",
+      operator: "eq",
+      value: "0",
+    });
+  }
+
+  if (filterBy && filterBy.inTheNews) {
+    filter.push({
+      property: "inTheNews",
+      operator: "eq",
+      value: filterBy.inTheNews,
+    });
+  }
+
+  const sort = [
+    {
+      property: "createdAt",
+      dir: "desc",
+    },
+  ];
+
+  const requestUrl = `${apiUrl}/media/media${
+    isFavorite === 1 ? "/favorite" : ""
+  }`;
+
+  return axios.get(requestUrl, {
+    params: {
+      access_token: token,
+      filter: JSON.stringify(filter),
+      sort: JSON.stringify(sort),
+      fields: fields.join(","),
+      limit,
+      start: offset,
+      workspace: "ua",
+    },
+  });
+};

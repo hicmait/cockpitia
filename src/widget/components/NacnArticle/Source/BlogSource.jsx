@@ -68,8 +68,10 @@ const BlogSource = ({
     //     setIsFetching(false);
     //   })
     //   .catch(() => {
-    //     setIsFetching(false);
-    //     setResults({});
+    //     if (!e?.response?.status === 700) {
+    //       setIsFetching(false);
+    //       setResults({});
+    //     }
     //   });
 
     let data = [

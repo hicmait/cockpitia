@@ -48,9 +48,11 @@ const EventSource = ({
         setIsFetching(false);
         setIsFetched(true);
       })
-      .catch(() => {
-        setIsFetching(false);
-        setResults([]);
+      .catch((e) => {
+        if (!e?.response?.status === 700) {
+          setIsFetching(false);
+          setResults([]);
+        }
       });
   }, 1000);
 

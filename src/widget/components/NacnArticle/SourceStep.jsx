@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Select from "react-select";
+import { Modal } from "antd";
 
 import cockpitLogo from "../../../assets/cockpit.svg";
 import { tamtamIt, getPrompts, genetateArticle } from "../../api";
 import styles from "./NacnArticle.module.scss";
+import modalStyles from "./Modal.module.scss";
 
 import Loader from "../common/Loader";
 import IconEye from "../../icons/IconEye";
@@ -13,6 +15,9 @@ import BlogSource from "./Source/BlogSource";
 import EventSource from "./Source/EventSource";
 import IconArrowTop from "../../icons/IconArrowTop";
 import IconDoubleCheck from "../../icons/IconDoubleCheck";
+import IconClose from "../../icons/IconClose";
+import IconEyeSource from "../../icons/IconEyeSource";
+import IconPencil from "../../icons/IconPencil";
 
 const SourceStep = ({
   onPost,
@@ -23,6 +28,7 @@ const SourceStep = ({
   organizationId,
   lng,
   blogSearchUrl,
+  showPictureStep,
 }) => {
   const [step, setStep] = useState("SOURCE"); // SOURCE | RESULT
   const [currentType, setCurrentType] = useState("TEXT"); // TEXT | LINK | BLOG | EVENT
@@ -45,6 +51,10 @@ const SourceStep = ({
   const [selectedPrompt, setSelectedPrompt] = useState(null);
   const [resultVersions, setResultVersions] = useState([]);
   const [selectedVersion, setSelectedVersion] = useState(null);
+  const [isOpenSourceModal, setIsOpenSourceModal] = useState(false);
+  const [isOpenConfirmSourceModal, setIsOpenConfirmSourceModal] =
+    useState(false);
+  const [sourcesData, setSourcesData] = useState([]);
 
   const handleGenerateText = async () => {
     // if (inputValue.length > 0 && selectedPrompt) {
@@ -105,6 +115,69 @@ const SourceStep = ({
     setResultVersions(tab);
     setSelectedVersion(tab[1]);
     setInstruction("");
+  };
+
+  const handleShowSource = () => {
+    let tab = [];
+    if (textSources.length > 0) {
+      tab.push({ tab: "TEXT", label: "Texte manuel", items: textSources });
+    }
+    if (linkSources[0]?.content.length > 0) {
+      tab.push({ tab: "LINK", label: "Lien web", items: linkSources });
+    }
+    if (blogSources[0]?.article) {
+      tab.push({ tab: "BLOG", label: "Blog", items: blogSources });
+    }
+    if (eventSources[0]?.event) {
+      tab.push({ tab: "EVENT", label: "Event", items: eventSources });
+    }
+    if (tab.length > 0) {
+      setCurrentType(tab[0].tab);
+      setCurrentIndex(0);
+    }
+    setSourcesData(tab);
+    setIsOpenSourceModal(true);
+  };
+
+  const getSourceContent = (i) => {
+    if (i.tab === "TEXT") {
+      return (
+        <div
+          className={styles.resultContainer}
+          dangerouslySetInnerHTML={{
+            __html: i.items[currentIndex] ?? "",
+          }}
+        ></div>
+      );
+    } else if (i.tab === "LINK") {
+      return (
+        <>
+          <p className={styles.resultLink}>
+            {i.items[currentIndex]?.link ?? ""}
+          </p>
+          <div
+            className={styles.resultContainer}
+            dangerouslySetInnerHTML={{
+              __html: i.items[currentIndex]?.content ?? "",
+            }}
+          ></div>
+        </>
+      );
+    } else if (i.tab === "BLOG") {
+      return (
+        <div className={`${styles.itemResult} `}>
+          <div>{i.items[currentIndex].article.title}</div>
+        </div>
+      );
+    } else if (i.tab === "EVENT") {
+      const nameAttr = `name${lng.charAt(0).toUpperCase() + lng.slice(1)}`;
+      return (
+        <div className={`${styles.itemResult} `}>
+          <div>{i.items[currentIndex].event[nameAttr]}</div>
+        </div>
+      );
+    }
+    return null;
   };
 
   return (
@@ -284,11 +357,26 @@ const SourceStep = ({
                   value={selectedVersion}
                   onChange={(e) => setSelectedVersion(e)}
                   options={resultVersions}
+                  styles={{
+                    control: (base) => ({
+                      ...base,
+                      border: 0,
+                      boxShadow: "none",
+                    }),
+                    indicatorSeparator: (provided) => ({ display: "none" }),
+                    dropdownIndicator: (provided) => ({
+                      ...provided,
+                      padding: "4px 0",
+                    }),
+                  }}
                 />
               </div>
 
               <div className={styles.result_top_right}>
-                Sources: <IconEye />
+                Sources:{" "}
+                <span onClick={handleShowSource} className={styles.pointer}>
+                  <IconEye />
+                </span>
               </div>
             </div>
 
@@ -298,13 +386,6 @@ const SourceStep = ({
                 __html: selectedVersion ? selectedVersion.content : "",
               }}
             ></div>
-
-            {/* <textarea
-              className={`${styles.textContent} ${styles.textarea} `}
-              rows="10"
-              value={selectedVersion ? selectedVersion.content : ""}
-              disabled
-            ></textarea> */}
 
             {selectedVersion &&
               (!selectedVersion.isUsed ? (
@@ -344,6 +425,145 @@ const SourceStep = ({
                 <IconArrowTop size={20} />
               </span>
             </div>
+
+            {selectedVersion?.isUsed && (
+              <div className={styles.update_instruction_alt}>
+                <h3 className={styles.subtitle}>Désirez-vous autre chose ?</h3>
+                <div className={styles.update_instruction_alt_actions}>
+                  <button>Générer un titre</button>
+                  <button onClick={showPictureStep}>Générer une image</button>
+                  <button>Générer un post LinkedIn</button>
+                </div>
+              </div>
+            )}
+
+            <Modal
+              closable={false}
+              open={isOpenSourceModal}
+              mask={{ blur: false }}
+              maskClosable={false}
+              width="50vw"
+              height="50vh"
+              footer={null}
+              onCancel={() => setIsOpenSourceModal(false)}
+              destroyOnHidden={true}
+              zIndex="999999"
+              styles={{ body: { padding: "0" } }}
+            >
+              <div className={modalStyles.modal_header}>
+                <div className={modalStyles.modal_header_left}>
+                  <IconEyeSource />
+                  <h3 className={styles.modal_title}>Sources :</h3>
+                  <ul className={styles.tabs}>
+                    {sourcesData.map((i, index) => {
+                      return (
+                        <li
+                          key={i.tab}
+                          onClick={() => {
+                            setCurrentIndex(0);
+                            setCurrentType(i.tab);
+                          }}
+                          className={`${styles.tabs_item} ${
+                            currentType === i.tab && styles.active
+                          }`}
+                        >
+                          {i.label}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+
+                <div className={modalStyles.modal_header_right}>
+                  <span
+                    className={modalStyles.modal_header_edit}
+                    onClick={() => setIsOpenConfirmSourceModal(true)}
+                  >
+                    <IconPencil />
+                  </span>
+                  <span className={modalStyles.modal_header_sep}></span>
+                  <span
+                    className={modalStyles.modal_close}
+                    onClick={() => setIsOpenSourceModal(false)}
+                  >
+                    <IconClose size={20} />
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                {sourcesData.map((i) => {
+                  if (i.tab !== currentType) {
+                    return null;
+                  }
+                  return (
+                    <>
+                      <ul className={styles.alt_tabs}>
+                        {i.items.map((item, index) => (
+                          <li
+                            className={`${styles.alt_tabs_item} ${
+                              currentIndex === index && styles.active
+                            }`}
+                            key={index}
+                            onClick={() => {
+                              setCurrentIndex(index);
+                            }}
+                          >
+                            {i.label} {index + 1}{" "}
+                          </li>
+                        ))}
+                      </ul>
+
+                      {getSourceContent(i)}
+                    </>
+                  );
+                })}
+              </div>
+            </Modal>
+
+            <Modal
+              closable={false}
+              open={isOpenConfirmSourceModal}
+              mask={{ blur: false }}
+              maskClosable={false}
+              width="600px"
+              // height="50vh"
+              footer={null}
+              onCancel={() => setIsOpenConfirmSourceModal(false)}
+              destroyOnHidden={true}
+              zIndex="9999990"
+              styles={{ body: { padding: "0" } }}
+            >
+              <div className={modalStyles.modal_confirm_icon}>
+                <IconPencil size={30} />
+              </div>
+              <p className={modalStyles.modal_confirm_title}>
+                Voulez-vous vraiment modifier les sources ?
+              </p>
+              <p className={modalStyles.modal_confirm_txt}>
+                Toutes les versions générées à partir de ces sources seront
+                supprimées.
+              </p>
+
+              <div className={modalStyles.modal_confirm_actions}>
+                <button
+                  className={`${modalStyles.btn} ${modalStyles.btn_alt}`}
+                  onClick={() => setIsOpenConfirmSourceModal(false)}
+                >
+                  Annuler
+                </button>
+                <button
+                  className={`${modalStyles.btn} ${modalStyles.btn_black}`}
+                  onClick={() => {
+                    setStep("SOURCE");
+                    setIsOpenConfirmSourceModal(false);
+                    setIsOpenSourceModal(false);
+                  }}
+                >
+                  Oui, modifier
+                </button>
+              </div>
+            </Modal>
           </div>
         )}
       </div>
