@@ -1,6 +1,7 @@
-.triggerContainer {
-  position: relative;
-
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
@@ -9,14 +10,79 @@
   color: #29394d;
 }
 
-.triggerBtn {
+/* Bouton rond */
+.chatTrigger {
   width: 56px;
   height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 9999px;
-  color: #ffffff;
-  background-color: #3b82f6;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #6d7f92;
+  border: 1px solid #d8dde2;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.chatTrigger:hover {
+  transform: scale(1.1);
+}
+
+/* La Popover (Fenêtre de chat) */
+.chatPopover {
+  // width: 320px;
+  max-width: 590px;
+  min-height: 400px;
+  max-height: 80vh;
+  padding: 10px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Animation d'entrée */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Styles internes (Header, Body, Footer) */
+.chatHeader {
+  background: #007bff;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatBody {
+  flex: 1;
+  padding: 15px;
+  background: #f9f9f9;
+}
+
+.chatFooter {
+  padding: 10px;
+  border-top: 1px solid #eee;
+}
+
+.chatFooter input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }

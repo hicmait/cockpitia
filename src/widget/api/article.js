@@ -262,7 +262,6 @@ export const getMedias = ({
   }
 
   if (filterBy && filterBy.search) {
-    //TODO search in other fields
     filter.push({
       property: `title${lng.charAt(0).toUpperCase() + lng.slice(1)}`,
       operator: "like",

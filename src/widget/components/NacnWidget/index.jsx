@@ -14,7 +14,7 @@ export const NacnWidget = (props) => {
 
   return (
     <>
-      <div className={styles.triggerContainer}>
+      {/* <div className={styles.triggerContainer}>
         <div onClick={() => setIsOpen(!isOpen)} className={styles.triggerBtn}>
           {isOpen ? (
             <IconClose size="20" />
@@ -26,6 +26,28 @@ export const NacnWidget = (props) => {
         {isOpen && props?.appTarget === "ARTICLE" ? (
           <NacnArticle {...props} setIsOpen={setIsOpen} />
         ) : null}
+      </div> */}
+
+      <div className={styles.chatContainer}>
+        {isOpen && (
+          <div className={styles.chatPopover}>
+            {props?.appTarget === "ARTICLE" ? (
+              <NacnArticle {...props} setIsOpen={setIsOpen} />
+            ) : null}
+          </div>
+        )}
+
+        <button
+          className={`${styles.chatTrigger} ${isOpen ? styles.active : ""}`}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Ouvrir le chat"
+        >
+          {isOpen ? (
+            <IconClose size="20" />
+          ) : (
+            <img src={cockpitLogo} alt="NACN AI" width={40} />
+          )}
+        </button>
       </div>
     </>
   );

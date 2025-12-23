@@ -20,7 +20,7 @@ const NacnArticle = ({
 
   return (
     <>
-      <div className={` ${styles.popover}`}>
+      <div className={styles.popover_content}>
         {step === "CHOICE" && <Step1 setStep={setStep} />}
         {step === "ARTICLE_SOURCE" && (
           <SourceStep
@@ -47,17 +47,15 @@ const NacnArticle = ({
           />
         )}
 
-        {step === "ARTICLE" && (
-          <ArticleStep
-            onPost={onPost}
-            token={token}
-            apiUrl={apiUrl}
-            aiUrl={aiUrl}
-            setIsOpen={setIsOpen}
-          />
-        )}
-
-        <div className={styles.popover_arrow}></div>
+        {/* {step === "ARTICLE" && (
+            <ArticleStep
+              onPost={onPost}
+              token={token}
+              apiUrl={apiUrl}
+              aiUrl={aiUrl}
+              setIsOpen={setIsOpen}
+            />
+          )} */}
       </div>
     </>
   );

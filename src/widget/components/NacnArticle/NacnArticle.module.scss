@@ -1,27 +1,3 @@
-.popover {
-  position: absolute;
-  bottom: 100%;
-  right: 50%;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 0.5rem;
-  border-width: 1px;
-  border-color: #e5e7eb;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-  &_arrow {
-    position: absolute;
-    right: 5%;
-    width: 0;
-    height: 0;
-    bottom: -8px;
-    border-top: 8px solid #ffffff;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-  }
-}
-
 .title {
   display: flex;
   align-items: center;
@@ -84,7 +60,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-width: 340px;
+  width: 340px;
 
   &_item {
     border-radius: 8px;
@@ -576,4 +552,10 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.pictureCover {
+  height: 278px;
+  border: 0.5px solid var(--gris-1, #b2bcc6);
+  background: lightgray 50% / cover no-repeat;
 }

@@ -7,6 +7,7 @@ import { getMedias } from "../../api";
 import { addLandaSize } from "../../services/utils";
 import styles from "./NacnArticle.module.scss";
 import IconSpinner from "../../icons/IconSpinner";
+import IconArrowTop from "../../icons/IconArrowTop";
 
 const PictureStep = ({
   onPost,
@@ -23,6 +24,8 @@ const PictureStep = ({
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [selectedVersion, setSelectedVersion] = useState(null);
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [instruction, setInstruction] = useState("");
 
   const handleClick = () => {
     if (onPost && selectedMedia) {
@@ -65,6 +68,16 @@ const PictureStep = ({
     }
   }, [page]);
 
+  const handleInstructionClick = () => {
+    if (instruction.length == 0) {
+      return null;
+    }
+
+    // setResultVersions(tab);
+    // setSelectedVersion(tab[1]);
+    setInstruction("");
+  };
+
   return (
     <>
       <h2 className={styles.title}>
@@ -96,59 +109,113 @@ const PictureStep = ({
           </li>
         </ul>
 
-        <div className={styles.resultContainer}>
-          {isFetching ? (
-            <div className={styles.spinner}>
-              <IconSpinner size="20" />
-            </div>
-          ) : (
-            <div className={styles.results}>
+        {step === "SELECT" && (
+          <>
+            <div className={""}>
               <p className={styles.subtitle}>
                 Voici quelques propositions d’images :
               </p>
-
-              <div className={styles.medias_list}>
-                {medias.map((media) => {
-                  let path = "";
-                  const { preview, fullMediaUrl, webPath, createdAt, docType } =
-                    media;
-                  if (docType === "IMAGE") {
-                    path = fullMediaUrl ? fullMediaUrl : apiUrl + "/" + webPath;
-                  }
-                  path = path ? addLandaSize(path, 280) : "";
-
-                  if (!path) {
-                    return null;
-                  }
-
-                  return (
-                    <div
-                      key={`media-${media.id}`}
-                      className={styles.medias_list_item}
-                      onClick={() => setSelectedMedia(media)}
-                    >
-                      <Radio checked={selectedMedia?.id === media.id}></Radio>
-                      <div
-                        className={styles.mediaContent}
-                        style={{ backgroundImage: `url(${path})` }}
-                      ></div>
-                    </div>
-                  );
-                })}
-              </div>
             </div>
-          )}
-        </div>
+            <div className={styles.resultContainer}>
+              {isFetching ? (
+                <div className={styles.spinner}>
+                  <IconSpinner size="20" />
+                </div>
+              ) : (
+                <>
+                  <div className={styles.results}>
+                    <div className={styles.medias_list}>
+                      {medias.map((media) => {
+                        let path = "";
+                        const {
+                          preview,
+                          fullMediaUrl,
+                          webPath,
+                          createdAt,
+                          docType,
+                        } = media;
+                        if (docType === "IMAGE") {
+                          path = fullMediaUrl
+                            ? fullMediaUrl
+                            : apiUrl + "/" + webPath;
+                        }
+                        path = path ? addLandaSize(path, 280) : "";
 
-        <div className={styles.result_actions}>
-          <button
-            className="primaryBtn"
-            onClick={handleClick}
-            disabled={!selectedMedia}
-          >
-            Utiliser cette version
-          </button>
-        </div>
+                        if (!path) {
+                          return null;
+                        }
+
+                        return (
+                          <div
+                            key={`media-${media.id}`}
+                            className={styles.medias_list_item}
+                            onClick={() => setSelectedMedia(media)}
+                          >
+                            <Radio
+                              checked={selectedMedia?.id === media.id}
+                            ></Radio>
+                            <div
+                              className={styles.mediaContent}
+                              style={{ backgroundImage: `url(${path})` }}
+                            ></div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+
+            <div className={styles.result_actions}>
+              <button
+                className="primaryBtn"
+                onClick={handleClick}
+                disabled={!selectedMedia}
+              >
+                Utiliser cette version
+              </button>
+            </div>
+          </>
+        )}
+
+        {step === "GENERATE" && (
+          <div>
+            <div className={styles.pictureCover}></div>
+            <div className={styles.result_actions}>
+              <button
+                className="primaryBtn"
+                onClick={handleClick}
+                disabled={!selectedMedia}
+              >
+                Utiliser cette version
+              </button>
+            </div>
+            <div className={styles.update_instruction}>
+              <h3 className={styles.subtitle}>
+                Instruction pour modifier la{" "}
+                {selectedVersion ? selectedVersion.label : "version 1"}
+              </h3>
+
+              <textarea
+                className={`${styles.textContent} `}
+                rows="4"
+                placeholder="Donnez vos instructions..."
+                value={instruction}
+                onChange={(e) => setInstruction(e.target.value)}
+              ></textarea>
+
+              <span
+                className={`${styles.update_arrow} ${
+                  instruction.length > 0 && styles.active
+                }`}
+                onClick={handleInstructionClick}
+              >
+                <IconArrowTop size={20} />
+              </span>
+            </div>
+          </div>
+        )}
 
         <div className={styles.update_instruction_alt}>
           <h3 className={styles.subtitle}>Désirez-vous autre chose ?</h3>
