@@ -3,7 +3,7 @@ import debounce from "lodash.debounce";
 import moment from "moment-timezone";
 
 import { getEvents } from "../../../api";
-import { formatDateFromTo, isEmpty } from "../../../services/utils";
+import { formatDateFromTo } from "../../../services/utils";
 import styles from "../NacnArticle.module.scss";
 import IconCalendar from "../../../icons/IconCalendar";
 import IconSpinner from "../../../icons/IconSpinner";

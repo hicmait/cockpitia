@@ -76,15 +76,15 @@ export const formatDateFromTo = (
   } ${endDate.format(dateFormat)}`;
 };
 
-export const isEmpty = (value) => {
-  if (Array.isArray(value) || typeof value === "string") {
-    return value.length === 0;
-  }
-  if (typeof value === "object" && value !== null) {
-    return Object.keys(value).length === 0;
-  }
-  return !value;
-};
+// export const isEmpty = (value) => {
+//   if (Array.isArray(value) || typeof value === "string") {
+//     return value.length === 0;
+//   }
+//   if (typeof value === "object" && value !== null) {
+//     return Object.keys(value).length === 0;
+//   }
+//   return !value;
+// };
 
 export function addLandaSize(img, width = 0, height = 0) {
   let result = img;
