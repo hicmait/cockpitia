@@ -12,7 +12,7 @@ import IconEye from "../../icons/IconEye";
 import TextSource from "./Source/TextSource";
 import LinkSource from "./Source/LinkSource";
 import BlogSource from "./Source/BlogSource";
-import EventSource from "./Source/EventSource";
+// import EventSource from "./Source/EventSource";
 import IconArrowTop from "../../icons/IconArrowTop";
 import IconDoubleCheck from "../../icons/IconDoubleCheck";
 import IconClose from "../../icons/IconClose";
@@ -272,7 +272,7 @@ const SourceStep = ({
               />
             )}
 
-            {currentType === "EVENT" && (
+            {/* {currentType === "EVENT" && (
               <EventSource
                 token={token}
                 apiUrl={apiUrl}
@@ -283,7 +283,7 @@ const SourceStep = ({
                 lng={lng}
                 organizationId={organizationId}
               />
-            )}
+            )} */}
 
             <div className={styles.article_actions}>
               <div className={styles.article_actions_left}>
