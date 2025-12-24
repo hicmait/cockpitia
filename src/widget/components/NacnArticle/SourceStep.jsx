@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Select from "react-select";
-import { Modal } from "antd";
+// import { Modal } from "antd";
 
 import cockpitLogo from "../../../assets/cockpit.svg";
 import { tamtamIt, getPrompts, genetateArticle } from "../../api";
@@ -437,7 +437,7 @@ const SourceStep = ({
               </div>
             )}
 
-            <Modal
+            {/* <Modal
               closable={false}
               open={isOpenSourceModal}
               mask={{ blur: false }}
@@ -563,7 +563,7 @@ const SourceStep = ({
                   Oui, modifier
                 </button>
               </div>
-            </Modal>
+            </Modal> */}
           </div>
         )}
       </div>

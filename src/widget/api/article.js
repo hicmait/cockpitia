@@ -136,10 +136,9 @@ export const getMedias = ({
   type,
   communityId,
   filterBy,
-  allowedMediaTypes,
+  allowedMediaTypes = ["IMAGE", "VIDEO", "PPT", "PDF"],
   lng,
   isFavorite = 0,
-  languages = ["FR", "EN", "NL"].sort(),
 }) => {
   let fields = [
     "*",
@@ -172,10 +171,6 @@ export const getMedias = ({
     operator: "flike",
     value: lng,
   });
-
-  if (!allowedMediaTypes || allowedMediaTypes.length === 0) {
-    allowedMediaTypes = ["IMAGE", "VIDEO", "PPT", "PDF"];
-  }
 
   if (type) {
     if (type === "MASK" || type === "LOGO") {

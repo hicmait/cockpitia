@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Radio } from "antd";
+// import { Radio } from "antd";
 
 import cockpitLogo from "../../../assets/cockpit.svg";
 import { getMedias } from "../../api";
@@ -151,9 +151,9 @@ const PictureStep = ({
                             className={styles.medias_list_item}
                             onClick={() => setSelectedMedia(media)}
                           >
-                            <Radio
+                            {/* <Radio
                               checked={selectedMedia?.id === media.id}
-                            ></Radio>
+                            ></Radio> */}
                             <div
                               className={styles.mediaContent}
                               style={{ backgroundImage: `url(${path})` }}
