@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Select from "react-select";
+import Modal from "react-modal";
 // import { Modal } from "antd";
 
 import cockpitLogo from "../../../assets/cockpit.svg";
@@ -436,6 +437,130 @@ const SourceStep = ({
                 </div>
               </div>
             )}
+
+            <Modal
+              isOpen={isOpenSourceModal}
+              className={{
+                base: modalStyles.modalContent,
+                afterOpen: modalStyles.modalContentAfterOpen,
+                beforeClose: modalStyles.modalContentBeforeClose,
+              }}
+              overlayClassName={modalStyles.modalOverlay}
+            >
+              <div className={modalStyles.modal}>
+                <div className={modalStyles.modal_header}>
+                  <div className={modalStyles.modal_header_left}>
+                    <IconEyeSource />
+                    <h3 className={styles.modal_title}>Sources :</h3>
+                    <ul className={styles.tabs}>
+                      {sourcesData.map((i, index) => {
+                        return (
+                          <li
+                            key={i.tab}
+                            onClick={() => {
+                              setCurrentIndex(0);
+                              setCurrentType(i.tab);
+                            }}
+                            className={`${styles.tabs_item} ${
+                              currentType === i.tab && styles.active
+                            }`}
+                          >
+                            {i.label}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+
+                  <div className={modalStyles.modal_header_right}>
+                    <span
+                      className={modalStyles.modal_header_edit}
+                      onClick={() => setIsOpenConfirmSourceModal(true)}
+                    >
+                      <IconPencil />
+                    </span>
+                    <span className={modalStyles.modal_header_sep}></span>
+                    <span
+                      className={modalStyles.modal_close}
+                      onClick={() => setIsOpenSourceModal(false)}
+                    >
+                      <IconClose size={20} />
+                    </span>
+                  </div>
+                </div>
+
+                <div>
+                  {sourcesData.map((i) => {
+                    if (i.tab !== currentType) {
+                      return null;
+                    }
+                    return (
+                      <>
+                        <ul className={styles.alt_tabs}>
+                          {i.items.map((item, index) => (
+                            <li
+                              className={`${styles.alt_tabs_item} ${
+                                currentIndex === index && styles.active
+                              }`}
+                              key={index}
+                              onClick={() => {
+                                setCurrentIndex(index);
+                              }}
+                            >
+                              {i.label} {index + 1}{" "}
+                            </li>
+                          ))}
+                        </ul>
+
+                        {getSourceContent(i)}
+                      </>
+                    );
+                  })}
+                </div>
+              </div>
+            </Modal>
+
+            <Modal
+              isOpen={isOpenConfirmSourceModal}
+              className={{
+                base: modalStyles.modalContent,
+                afterOpen: modalStyles.modalContentAfterOpen,
+                beforeClose: modalStyles.modalContentBeforeClose,
+              }}
+              overlayClassName={modalStyles.modalOverlay}
+            >
+              <div className={`${modalStyles.modal} ${modalStyles.smModal}`}>
+                <div className={modalStyles.modal_confirm_icon}>
+                  <IconPencil size={30} />
+                </div>
+                <p className={modalStyles.modal_confirm_title}>
+                  Voulez-vous vraiment modifier les sources ?
+                </p>
+                <p className={modalStyles.modal_confirm_txt}>
+                  Toutes les versions générées à partir de ces sources seront
+                  supprimées.
+                </p>
+
+                <div className={modalStyles.modal_confirm_actions}>
+                  <button
+                    className={`${modalStyles.btn} ${modalStyles.btn_alt}`}
+                    onClick={() => setIsOpenConfirmSourceModal(false)}
+                  >
+                    Annuler
+                  </button>
+                  <button
+                    className={`${modalStyles.btn} ${modalStyles.btn_black}`}
+                    onClick={() => {
+                      setStep("SOURCE");
+                      setIsOpenConfirmSourceModal(false);
+                      setIsOpenSourceModal(false);
+                    }}
+                  >
+                    Oui, modifier
+                  </button>
+                </div>
+              </div>
+            </Modal>
 
             {/* <Modal
               closable={false}

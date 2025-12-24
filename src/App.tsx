@@ -12,7 +12,7 @@ function App() {
           position: "absolute",
           bottom: "70px",
           right: "20px",
-          zIndex: "99999",
+          zIndex: "999",
         }}
       >
         <NacnWidget
