@@ -4,7 +4,7 @@ import { Radio } from "antd";
 
 import cockpitLogo from "../../../assets/cockpit.svg";
 import { getMedias } from "../../api";
-import { addLandaSize } from "../../services/utils";
+// import { addLandaSize } from "../../services/utils";
 import styles from "./NacnArticle.module.scss";
 import IconSpinner from "../../icons/IconSpinner";
 import IconArrowTop from "../../icons/IconArrowTop";
@@ -139,7 +139,7 @@ const PictureStep = ({
                             ? fullMediaUrl
                             : apiUrl + "/" + webPath;
                         }
-                        path = path ? addLandaSize(path, 280) : "";
+                        // path = path ? addLandaSize(path, 280) : "";
 
                         if (!path) {
                           return null;

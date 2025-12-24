@@ -5642,7 +5642,7 @@ const gq = "ant", $q = "anticon", FD = (n, c) => c || (n ? `${gq}-${n}` : gq), p
   getPrefixCls: FD,
   iconPrefixCls: $q
 }), {
-  Consumer: pK
+  Consumer: MK
 } = pn, dR = {};
 function MA(n) {
   const c = w.useContext(pn), {
@@ -47818,22 +47818,22 @@ Gt.getAdapter = lS.getAdapter;
 Gt.HttpStatusCode = eW;
 Gt.default = Gt;
 const {
-  Axios: uK,
-  AxiosError: OK,
-  CanceledError: fK,
-  isCancel: dK,
-  CancelToken: AK,
-  VERSION: qK,
-  all: hK,
-  Cancel: mK,
-  isAxiosError: gK,
-  spread: WK,
-  toFormData: vK,
-  AxiosHeaders: yK,
-  HttpStatusCode: RK,
-  formToJSON: LK,
-  getAdapter: NK,
-  mergeConfig: CK
+  Axios: sK,
+  AxiosError: uK,
+  CanceledError: OK,
+  isCancel: fK,
+  CancelToken: dK,
+  VERSION: AK,
+  all: qK,
+  Cancel: hK,
+  isAxiosError: mK,
+  spread: gK,
+  toFormData: WK,
+  AxiosHeaders: vK,
+  HttpStatusCode: yK,
+  formToJSON: RK,
+  getAdapter: LK,
+  mergeConfig: NK
 } = Gt;
 var Sm = { exports: {} }, bq = { exports: {} };
 //! moment.js
@@ -53183,18 +53183,6 @@ function LJ() {
   })()), bW.exports;
 }
 LJ();
-function NJ(n, c = 0, i = 0) {
-  let r = n, M = !1;
-  const s = n.split("."), f = s[s.length - 1];
-  if (c > 0 && (r += `/w${c}`, M = !0), i > 0) {
-    const q = c > 0 ? "-" : "/";
-    r += `${q}h${i}`, M = !0;
-  }
-  return r += M ? "-noEnlarge" : "/noEnlarge", `${r}.${f}`.replace(
-    "https://s3.eu-west-1.amazonaws.com/tamtam",
-    "https://s3.tamtam.pro"
-  );
-}
 function cB() {
   return Gt.CancelToken.source();
 }
@@ -53209,11 +53197,11 @@ function rB(n) {
   throw Gt.isCancel(n) ? { response: { status: 700 } } : n;
 }
 let h9, m9;
-const CJ = (n, c, i) => {
+const NJ = (n, c, i) => {
   const r = `${n}/blog/parser/parse`;
   var M = new FormData();
   return M.append("access_token", c), M.append("url", i), Gt.post(r, M);
-}, SJ = (n, c, i, r) => {
+}, CJ = (n, c, i, r) => {
   let M = cB(), s = aB(
     h9,
     M
@@ -53229,7 +53217,7 @@ const CJ = (n, c, i) => {
   return Gt.get(f, m).catch(function(g) {
     rB(g);
   });
-}, BJ = async (n, c) => {
+}, SJ = async (n, c) => {
   const i = `${n}/event/event/get-events`;
   let r = cB(), M = aB(
     m9,
@@ -53300,7 +53288,7 @@ const CJ = (n, c, i) => {
   return Gt.get(i, q).catch(function(m) {
     rB(m);
   });
-}, TJ = ({
+}, BJ = ({
   apiUrl: n,
   token: c,
   limit: i,
@@ -53408,21 +53396,21 @@ const CJ = (n, c, i) => {
       workspace: "ua"
     }
   });
-}, XJ = "_modal_header_g5b07_1", EJ = "_modal_header_left_g5b07_6", xJ = "_modal_header_right_g5b07_11", wJ = "_modal_header_sep_g5b07_17", DJ = "_modal_close_g5b07_30", IJ = "_modal_header_edit_g5b07_35", HJ = "_modal_confirm_icon_g5b07_47", PJ = "_modal_confirm_title_g5b07_57", GJ = "_modal_confirm_txt_g5b07_64", jJ = "_modal_confirm_actions_g5b07_73", VJ = "_btn_g5b07_80", YJ = "_btn_alt_g5b07_96", kJ = "_btn_black_g5b07_102", jc = {
-  modal_header: XJ,
-  modal_header_left: EJ,
-  modal_header_right: xJ,
-  modal_header_sep: wJ,
-  modal_close: DJ,
-  modal_header_edit: IJ,
-  modal_confirm_icon: HJ,
-  modal_confirm_title: PJ,
-  modal_confirm_txt: GJ,
-  modal_confirm_actions: jJ,
-  btn: VJ,
-  btn_alt: YJ,
-  btn_black: kJ
-}, UJ = (n) => {
+}, TJ = "_modal_header_g5b07_1", XJ = "_modal_header_left_g5b07_6", EJ = "_modal_header_right_g5b07_11", xJ = "_modal_header_sep_g5b07_17", wJ = "_modal_close_g5b07_30", DJ = "_modal_header_edit_g5b07_35", IJ = "_modal_confirm_icon_g5b07_47", HJ = "_modal_confirm_title_g5b07_57", PJ = "_modal_confirm_txt_g5b07_64", GJ = "_modal_confirm_actions_g5b07_73", jJ = "_btn_g5b07_80", VJ = "_btn_alt_g5b07_96", YJ = "_btn_black_g5b07_102", jc = {
+  modal_header: TJ,
+  modal_header_left: XJ,
+  modal_header_right: EJ,
+  modal_header_sep: xJ,
+  modal_close: wJ,
+  modal_header_edit: DJ,
+  modal_confirm_icon: IJ,
+  modal_confirm_title: HJ,
+  modal_confirm_txt: PJ,
+  modal_confirm_actions: GJ,
+  btn: jJ,
+  btn_alt: VJ,
+  btn_black: YJ
+}, kJ = (n) => {
   const { color: c } = n;
   return /* @__PURE__ */ Y0(
     "svg",
@@ -53521,7 +53509,7 @@ const CJ = (n, c, i) => {
       ]
     }
   );
-}, FJ = ({ size: n = 20 }) => /* @__PURE__ */ Y0(
+}, UJ = ({ size: n = 20 }) => /* @__PURE__ */ Y0(
   "svg",
   {
     xmlns: "http://www.w3.org/2000/svg",
@@ -53602,7 +53590,7 @@ const CJ = (n, c, i) => {
       }
     )
   }
-), ZJ = ({
+), FJ = ({
   textSources: n,
   setTextSources: c,
   currentIndex: i,
@@ -53658,7 +53646,7 @@ const CJ = (n, c, i) => {
       }
     }
   )
-] }), QJ = ({ size: n = 20 }) => /* @__PURE__ */ o0(
+] }), ZJ = ({ size: n = 20 }) => /* @__PURE__ */ o0(
   "svg",
   {
     xmlns: "http://www.w3.org/2000/svg",
@@ -53687,7 +53675,7 @@ const CJ = (n, c, i) => {
     viewBox: "0 0 384 448",
     children: /* @__PURE__ */ o0("path", { d: "M384 64v112c0 8.75-7.25 16-16 16h-112c-6.5 0-12.25-4-14.75-10-2.5-5.75-1.25-12.75 3.5-17.25l34.5-34.5c-23.5-21.75-54.5-34.25-87.25-34.25-70.5 0-128 57.5-128 128s57.5 128 128 128c39.75 0 76.5-18 101-49.75 1.25-1.75 3.5-2.75 5.75-3 2.25 0 4.5 0.75 6.25 2.25l34.25 34.5c3 2.75 3 7.5 0.5 10.75-36.5 44-90.5 69.25-147.75 69.25-105.75 0-192-86.25-192-192s86.25-192 192-192c49.25 0 97 19.75 132.25 53l32.5-32.25c4.5-4.75 11.5-6 17.5-3.5 5.75 2.5 9.75 8.25 9.75 14.75z" })
   }
-), JJ = ({
+), QJ = ({
   token: n,
   apiUrl: c,
   aiUrl: i,
@@ -53701,7 +53689,7 @@ const CJ = (n, c, i) => {
       return null;
     m(!0);
     let R = r[s].link;
-    R.toLowerCase().startsWith("http") || (R = "http://" + R), CJ(c, n, R).then((N) => {
+    R.toLowerCase().startsWith("http") || (R = "http://" + R), NJ(c, n, R).then((N) => {
       if (N.data.data) {
         let { provided_url: I, url_information: T } = N.data.data;
         if (T.description) {
@@ -53766,7 +53754,7 @@ const CJ = (n, c, i) => {
           }
         }
       ),
-      /* @__PURE__ */ o0("button", { className: "defaultBtn", onClick: g, children: q ? /* @__PURE__ */ o0("span", { className: C0.spinner, children: /* @__PURE__ */ o0(N6, { size: "20" }) }) : /* @__PURE__ */ o0(QJ, {}) })
+      /* @__PURE__ */ o0("button", { className: "defaultBtn", onClick: g, children: q ? /* @__PURE__ */ o0("span", { className: C0.spinner, children: /* @__PURE__ */ o0(N6, { size: "20" }) }) : /* @__PURE__ */ o0(ZJ, {}) })
     ] }),
     /* @__PURE__ */ o0(
       "textarea",
@@ -53780,7 +53768,7 @@ const CJ = (n, c, i) => {
   ] });
 };
 var xm, g9;
-function KJ() {
+function JJ() {
   if (g9) return xm;
   g9 = 1;
   var n = "Expected a function", c = NaN, i = "[object Symbol]", r = /^\s+|\s+$/g, M = /^[-+]0x[0-9a-f]+$/i, s = /^0b[01]+$/i, f = /^0o[0-7]+$/i, q = parseInt, m = typeof R5 == "object" && R5 && R5.Object === Object && R5, g = typeof self == "object" && self && self.Object === Object && self, R = m || g || Function("return this")(), L = Object.prototype, N = L.toString, I = Math.max, T = Math.min, x = function() {
@@ -53860,8 +53848,8 @@ function KJ() {
   }
   return xm = B, xm;
 }
-var _J = KJ();
-const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0(
+var KJ = JJ();
+const lB = /* @__PURE__ */ fE(KJ), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0(
   "svg",
   {
     xmlns: "http://www.w3.org/2000/svg",
@@ -53880,7 +53868,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
       }
     )
   }
-), $J = ({
+), _J = ({
   blogSearchUrl: n,
   organizationId: c,
   lng: i,
@@ -53898,7 +53886,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
     }
     return Q;
   }, j = lB((U) => {
-    m(!0), SJ(n, U, i, [c]).then((P) => {
+    m(!0), CJ(n, U, i, [c]).then((P) => {
       if (P.data.data.length > 0) {
         const Q = H(P.data.data, [
           "article",
@@ -54000,7 +53988,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
       ] })
     ] }) })
   ] });
-}, W9 = 8, eK = ({
+}, W9 = 8, $J = ({
   token: n,
   apiUrl: c,
   organizationId: i,
@@ -54021,7 +54009,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
       start: (T - 1) * W9,
       limit: W9
     };
-    g(!0), BJ(c, U).then((P) => {
+    g(!0), SJ(c, U).then((P) => {
       I(P.data.data), g(!1), L(!0);
     }).catch((P) => {
       !P?.response?.status === 700 && (g(!1), I([]));
@@ -54154,7 +54142,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
       )
     ]
   }
-), tK = ({ size: n = 16 }) => /* @__PURE__ */ o0(
+), eK = ({ size: n = 16 }) => /* @__PURE__ */ o0(
   "svg",
   {
     xmlns: "http://www.w3.org/2000/svg",
@@ -54173,7 +54161,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
       }
     )
   }
-), nK = ({ size: n = 24 }) => /* @__PURE__ */ o0(
+), tK = ({ size: n = 24 }) => /* @__PURE__ */ o0(
   "svg",
   {
     xmlns: "http://www.w3.org/2000/svg",
@@ -54214,7 +54202,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
       /* @__PURE__ */ o0("defs", { children: /* @__PURE__ */ o0("clipPath", { id: "clip0_7798_1604", children: /* @__PURE__ */ o0("rect", { width: "16", height: "16", fill: "white" }) }) })
     ]
   }
-), oK = ({
+), nK = ({
   onPost: n,
   setIsOpen: c,
   token: i,
@@ -54343,7 +54331,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
           )
         ] }),
         L === "TEXT" && /* @__PURE__ */ o0(
-          ZJ,
+          FJ,
           {
             textSources: I,
             setTextSources: T,
@@ -54352,7 +54340,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
           }
         ),
         L === "LINK" && /* @__PURE__ */ o0(
-          JJ,
+          QJ,
           {
             linkSources: x,
             setLinkSources: B,
@@ -54364,7 +54352,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
           }
         ),
         L === "BLOG" && /* @__PURE__ */ o0(
-          $J,
+          _J,
           {
             blogSources: H,
             setBlogSources: j,
@@ -54376,7 +54364,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
           }
         ),
         L === "EVENT" && /* @__PURE__ */ o0(
-          eK,
+          $J,
           {
             token: i,
             apiUrl: r,
@@ -54416,7 +54404,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
               },
               disabled: !0,
               children: /* @__PURE__ */ o0(
-                UJ,
+                kJ,
                 {
                   style: {
                     height: "10px"
@@ -54486,7 +54474,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
           /* @__PURE__ */ Y0("div", { className: C0.result_top_right, children: [
             "Sources:",
             " ",
-            /* @__PURE__ */ o0("span", { onClick: b0, className: C0.pointer, children: /* @__PURE__ */ o0(FJ, {}) })
+            /* @__PURE__ */ o0("span", { onClick: b0, className: C0.pointer, children: /* @__PURE__ */ o0(UJ, {}) })
           ] })
         ] }),
         /* @__PURE__ */ o0(
@@ -54499,7 +54487,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
           }
         ),
         V0 && (V0.isUsed ? /* @__PURE__ */ Y0("div", { className: C0.result_used, children: [
-          /* @__PURE__ */ o0(tK, {}),
+          /* @__PURE__ */ o0(eK, {}),
           " ",
           V0 ? V0.label : "version 1",
           " a été utilisée pour l’article"
@@ -54554,7 +54542,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
             children: [
               /* @__PURE__ */ Y0("div", { className: jc.modal_header, children: [
                 /* @__PURE__ */ Y0("div", { className: jc.modal_header_left, children: [
-                  /* @__PURE__ */ o0(nK, {}),
+                  /* @__PURE__ */ o0(tK, {}),
                   /* @__PURE__ */ o0("h3", { className: C0.modal_title, children: "Sources :" }),
                   /* @__PURE__ */ o0("ul", { className: C0.tabs, children: o1.map((f0, Q0) => /* @__PURE__ */ o0(
                     "li",
@@ -54653,7 +54641,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
       ] })
     ] })
   ] });
-}, cK = ({
+}, oK = ({
   onPost: n,
   setIsOpen: c,
   token: i,
@@ -54673,7 +54661,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
     m || (async () => {
       g(!0);
       try {
-        const d0 = await TJ({
+        const d0 = await BJ({
           apiUrl: r,
           token: i,
           limit: 24,
@@ -54733,7 +54721,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
             createdAt: F0,
             docType: Z
           } = c0;
-          return Z === "IMAGE" && (d0 = s0 || r + "/" + T0), d0 = d0 ? NJ(d0, 280) : "", d0 ? /* @__PURE__ */ Y0(
+          return Z === "IMAGE" && (d0 = s0 || r + "/" + T0), d0 ? /* @__PURE__ */ Y0(
             "div",
             {
               className: C0.medias_list_item,
@@ -54814,7 +54802,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
       ] })
     ] })
   ] });
-}, aK = ({
+}, cK = ({
   onPost: n,
   setIsOpen: c,
   token: i,
@@ -54828,7 +54816,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
   return /* @__PURE__ */ o0(vi, { children: /* @__PURE__ */ Y0("div", { className: C0.popover_content, children: [
     m === "CHOICE" && /* @__PURE__ */ o0(NX, { setStep: g }),
     m === "ARTICLE_SOURCE" && /* @__PURE__ */ o0(
-      oK,
+      nK,
       {
         token: i,
         apiUrl: r,
@@ -54842,7 +54830,7 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
       }
     ),
     m === "PICTURE" && /* @__PURE__ */ o0(
-      cK,
+      oK,
       {
         token: i,
         apiUrl: r,
@@ -54853,14 +54841,14 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
       }
     )
   ] }) });
-}, iK = "_chatContainer_1yvph_2", rK = "_chatTrigger_1yvph_15", lK = "_chatPopover_1yvph_35", Z5 = {
-  chatContainer: iK,
-  chatTrigger: rK,
-  chatPopover: lK
-}, SK = (n) => {
+}, aK = "_chatContainer_1yvph_2", iK = "_chatTrigger_1yvph_15", rK = "_chatPopover_1yvph_35", Z5 = {
+  chatContainer: aK,
+  chatTrigger: iK,
+  chatPopover: rK
+}, CK = (n) => {
   const [c, i] = C1(!1);
   return n.isHidden ? null : /* @__PURE__ */ o0(vi, { children: /* @__PURE__ */ Y0("div", { className: Z5.chatContainer, children: [
-    c && /* @__PURE__ */ o0("div", { className: Z5.chatPopover, children: n?.appTarget === "ARTICLE" ? /* @__PURE__ */ o0(aK, { ...n, setIsOpen: i }) : null }),
+    c && /* @__PURE__ */ o0("div", { className: Z5.chatPopover, children: n?.appTarget === "ARTICLE" ? /* @__PURE__ */ o0(cK, { ...n, setIsOpen: i }) : null }),
     /* @__PURE__ */ o0(
       "button",
       {
@@ -54873,5 +54861,5 @@ const lB = /* @__PURE__ */ fE(_J), bB = ({ size: n = 14 }) => /* @__PURE__ */ o0
   ] }) });
 };
 export {
-  SK as NacnWidget
+  CK as NacnWidget
 };
