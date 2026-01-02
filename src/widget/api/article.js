@@ -9,7 +9,7 @@ import {
 
 let getSearchResultsCTS;
 let getEventSearchCTS;
-let getTagSearchResultsCTS;
+let getMediaSearchCTS;
 
 export const tamtamIt = (apiUrl, token, url) => {
   const requestUrl = `${apiUrl}/blog/parser/parse`;
@@ -140,6 +140,14 @@ export const getMedias = ({
   lng,
   isFavorite = 0,
 }) => {
+  let cancellationTokenSource = generateCancellationTokenSource();
+
+  let requestCancellationToken = getRequestCancellationToken(
+    getMediaSearchCTS,
+    cancellationTokenSource
+  );
+  getMediaSearchCTS = cancellationTokenSource;
+
   let fields = [
     "*",
     "meta",
@@ -320,8 +328,8 @@ export const getMedias = ({
     isFavorite === 1 ? "/favorite" : ""
   }`;
 
-  return axios.get(requestUrl, {
-    params: {
+  let requestConfig = getRequestConfig(
+    {
       access_token: token,
       filter: JSON.stringify(filter),
       sort: JSON.stringify(sort),
@@ -330,5 +338,10 @@ export const getMedias = ({
       start: offset,
       workspace: "ua",
     },
+    requestCancellationToken
+  );
+
+  return axios.get(requestUrl, requestConfig).catch(function (thrown) {
+    throwCatchedError(thrown);
   });
 };

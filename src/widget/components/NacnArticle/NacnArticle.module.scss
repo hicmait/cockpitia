@@ -24,6 +24,7 @@
 .textContent {
   display: block;
   width: 100%;
+  height: auto;
   padding: 8px 10px;
   border-radius: 12px;
   border: 0.5px solid #b2bcc6;
@@ -558,4 +559,15 @@
   height: 278px;
   border: 0.5px solid var(--gris-1, #b2bcc6);
   background: lightgray 50% / cover no-repeat;
+}
+
+.picture_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+.picture_search {
+  width: 300px;
 }

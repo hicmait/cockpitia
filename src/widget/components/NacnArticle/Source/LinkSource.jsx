@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { tamtamIt, getPrompts, genetateArticle } from "../../../api";
+import { tamtamIt } from "../../../api";
 import styles from "../NacnArticle.module.scss";
 import IconLink from "../../../icons/IconLink";
 import IconSpinner from "../../../icons/IconSpinner";

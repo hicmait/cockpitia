@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-
-// import { Radio } from "antd";
+import debounce from "lodash.debounce";
 
 import cockpitLogo from "../../../assets/cockpit.svg";
 import { getMedias } from "../../api";
@@ -8,6 +7,7 @@ import { addLandaSize } from "../../services/utils";
 import styles from "./NacnArticle.module.scss";
 import IconSpinner from "../../icons/IconSpinner";
 import IconArrowTop from "../../icons/IconArrowTop";
+import Checkbox from "../common/Checkbox";
 
 const PictureStep = ({
   onPost,
@@ -39,11 +39,45 @@ const PictureStep = ({
     setSelectedVersion(selectedMedia);
   };
 
+  const handleSearchChange = (value) => {
+    setSearch(value);
+    debouncedSearch(value);
+  };
+
+  const debouncedSearch = debounce(async (value) => {
+    setIsFetching(true);
+    try {
+      let params = {
+        apiUrl,
+        token,
+        limit: 24,
+        offset: page - 1,
+        communityId: organizationId,
+        type: "IMAGE",
+        allowedMediaTypes: ["IMAGE"],
+        lng,
+        filterBy: {
+          search,
+        },
+      };
+      const response = await getMedias(params);
+
+      setIsFetching(false);
+      setIsFetched(true);
+      setMedias(response.data.data);
+    } catch (e) {
+      if (!e?.response?.status === 700) {
+        setIsFetching(false);
+        setMedias([]);
+      }
+    }
+  }, 1000);
+
   useEffect(() => {
     const fetchData = async () => {
       setIsFetching(true);
       try {
-        const response = await getMedias({
+        let params = {
           apiUrl,
           token,
           limit: 24,
@@ -52,14 +86,20 @@ const PictureStep = ({
           type: "IMAGE",
           allowedMediaTypes: ["IMAGE"],
           lng,
-        });
+          filterBy: {
+            search,
+          },
+        };
+        const response = await getMedias(params);
 
         setIsFetching(false);
         setIsFetched(true);
         setMedias(response.data.data);
       } catch (e) {
-        setIsFetching(false);
-        setMedias([]);
+        if (!e?.response?.status === 700) {
+          setIsFetching(false);
+          setMedias([]);
+        }
       }
     };
 
@@ -111,10 +151,22 @@ const PictureStep = ({
 
         {step === "SELECT" && (
           <>
-            <div className={""}>
+            <div className={styles.picture_top}>
               <p className={styles.subtitle}>
                 Voici quelques propositions d’images :
               </p>
+
+              <div className={styles.picture_search}>
+                <input
+                  type="text"
+                  className={styles.textContent}
+                  value={search}
+                  placeholder="Recherche..."
+                  onChange={(e) => {
+                    handleSearchChange(e.target.value);
+                  }}
+                />
+              </div>
             </div>
             <div className={styles.resultContainer}>
               {isFetching ? (
@@ -151,9 +203,10 @@ const PictureStep = ({
                             className={styles.medias_list_item}
                             onClick={() => setSelectedMedia(media)}
                           >
-                            {/* <Radio
+                            <Checkbox
                               checked={selectedMedia?.id === media.id}
-                            ></Radio> */}
+                              radio={true}
+                            />
                             <div
                               className={styles.mediaContent}
                               style={{ backgroundImage: `url(${path})` }}

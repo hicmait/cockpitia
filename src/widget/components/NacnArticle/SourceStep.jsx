@@ -4,7 +4,7 @@ import Modal from "react-modal";
 // import { Modal } from "antd";
 
 import cockpitLogo from "../../../assets/cockpit.svg";
-import { tamtamIt, getPrompts, genetateArticle } from "../../api";
+import { tamtamIt, getPrompts, genetateSingleArticle } from "../../api";
 import styles from "./NacnArticle.module.scss";
 import modalStyles from "./Modal.module.scss";
 
@@ -58,21 +58,21 @@ const SourceStep = ({
   const [sourcesData, setSourcesData] = useState([]);
 
   const handleGenerateText = async () => {
-    // if (inputValue.length > 0 && selectedPrompt) {
+    // if (textSources[0].length > 0) {
     //   setIsFetching(true);
-    //   const articleContent = await genetateArticle({
+    //   const articleContent = await genetateSingleArticle({
     //     aiUrl,
     //     token,
-    //     content: inputValue,
-    //     promptId: selectedPrompt.id,
+    //     content: textSources[0],
     //   });
     //   console.log(articleContent);
-    //   if (articleContent?.data?.answer) {
-    //     setContent(articleContent.data.answer);
-    //   }
-    //   setStep(2);
+    //   // if (articleContent?.data?.answer) {
+    //   //   setContent(articleContent.data.answer);
+    //   // }
+    //   // setStep("RESULT");
     //   setIsFetching(false);
     // }
+
     let txt = `<p>🌿 À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.</p>
 
 <p>🏙️ Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.</p>
@@ -300,6 +300,13 @@ const SourceStep = ({
                       { value: "prompt3", label: "Titre prompt 3" },
                       { value: "prompt4", label: "Titre prompt 4" },
                     ]}
+                    styles={{
+                      input: (provided) => ({
+                        ...provided,
+                        height: "auto",
+                        margin: "0",
+                      }),
+                    }}
                   />
                 </div>
               </div>
@@ -359,6 +366,11 @@ const SourceStep = ({
                   onChange={(e) => setSelectedVersion(e)}
                   options={resultVersions}
                   styles={{
+                    input: (provided) => ({
+                      ...provided,
+                      height: "auto",
+                      margin: "0",
+                    }),
                     control: (base) => ({
                       ...base,
                       border: 0,
