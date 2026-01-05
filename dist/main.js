@@ -14294,7 +14294,11 @@ const pW = (M, b, z, p) => {
         className: `${B.textContent} ${B.textarea} `,
         rows: "10",
         value: p[O].content,
-        disabled: !0
+        onChange: (d) => {
+          const u = [...p];
+          u[O].content = d.target.value, o(u);
+        },
+        disabled: !p[O].content
       }
     )
   ] });

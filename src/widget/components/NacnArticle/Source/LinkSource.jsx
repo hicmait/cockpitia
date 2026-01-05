@@ -120,7 +120,12 @@ const LinkSource = ({
         className={`${styles.textContent} ${styles.textarea} `}
         rows="10"
         value={linkSources[currentIndex].content}
-        disabled
+        onChange={(e) => {
+          const tab = [...linkSources];
+          tab[currentIndex].content = e.target.value;
+          setLinkSources(tab);
+        }}
+        disabled={!linkSources[currentIndex].content}
       ></textarea>
     </div>
   );
