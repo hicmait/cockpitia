@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { tamtamIt } from "../../../api";
+import { parseLinkContent } from "../../../api";
 import styles from "../NacnArticle.module.scss";
 import IconLink from "../../../icons/IconLink";
 import IconSpinner from "../../../icons/IconSpinner";
@@ -18,34 +18,40 @@ const LinkSource = ({
 }) => {
   const [isParsing, setIsParsing] = useState(false);
 
-  const handleTamtamIt = () => {
+  const handleTamtamIt = async () => {
     if (linkSources[currentIndex].link.length === 0) {
       return null;
     }
     setIsParsing(true);
-    let url = linkSources[currentIndex].link;
-    let urlHasProtocolHttp = url.toLowerCase().startsWith("http");
-    if (!urlHasProtocolHttp) {
-      url = "http://" + url;
-    }
-    tamtamIt(apiUrl, token, url)
-      .then((resp) => {
-        if (resp.data.data) {
-          let { provided_url, url_information } = resp.data.data;
-          if (url_information.description) {
-            let txt = "";
-            if (url_information.title) {
-              txt += url_information.title + "\n";
-            }
-            txt += url_information.description;
+    try {
+      let url = linkSources[currentIndex].link;
+      let urlHasProtocolHttp = url.toLowerCase().startsWith("http");
+      if (!urlHasProtocolHttp) {
+        url = "http://" + url;
+      }
 
-            const tab = [...linkSources];
-            tab[currentIndex].content = txt;
-            setLinkSources(tab);
-          }
+      const response = await parseLinkContent({
+        aiUrl,
+        token,
+        url,
+      });
+
+      if (response.content) {
+        let txt = "";
+        if (response.title) {
+          txt += response.title + "\n";
         }
-      })
-      .finally(() => setIsParsing(false));
+        txt += response.content;
+
+        const tab = [...linkSources];
+        tab[currentIndex].content = txt;
+        setLinkSources(tab);
+      }
+
+      setIsParsing(false);
+    } catch (err) {
+      setIsParsing(false);
+    }
   };
 
   return (

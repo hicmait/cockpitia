@@ -74,6 +74,40 @@ export const genetateArticle = async ({ aiUrl, token, content, promptId }) => {
   }
 };
 
+export const parseLinkContent = async ({ aiUrl, token, url }) => {
+  const requestUrl = `${aiUrl}/scraper/scrape`;
+
+  const options = {
+    method: "POST",
+    // mode: "no-cors",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      url,
+    }),
+  };
+
+  const response = await fetch(requestUrl, options);
+
+  if (!response.ok) {
+    throw new Error(
+      `HTTP GET error, status: ${response.status}, url: ${requestUrl}`
+    );
+  }
+
+  try {
+    const jsonData = await response.json();
+    return jsonData;
+  } catch (e) {
+    throw new Error(
+      `HTTP GET error, status: ${response.status}, url: ${requestUrl}`
+    );
+  }
+};
+
 ///////
 export const genetateSingleArticle = async ({ aiUrl, token, content }) => {
   const requestUrl = `${aiUrl}/article/generate-article`;
