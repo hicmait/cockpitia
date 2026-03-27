@@ -67,7 +67,7 @@ const BlogSource = ({
         }
         setIsFetching(false);
       })
-      .catch(() => {
+      .catch((e) => {
         if (!e?.response?.status === 700) {
           setIsFetching(false);
           setResults({});

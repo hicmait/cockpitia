@@ -45,6 +45,7 @@ const LinkSource = ({
 
         const tab = [...linkSources];
         tab[currentIndex].content = txt;
+        tab[currentIndex].title = response.title ?? "";
         setLinkSources(tab);
       }
 
@@ -86,7 +87,10 @@ const LinkSource = ({
         <li
           className={styles.tab_plus}
           onClick={() => {
-            setLinkSources([...linkSources, { link: "", content: "" }]);
+            setLinkSources([
+              ...linkSources,
+              { link: "", content: "", title: "" },
+            ]);
             setCurrentIndex(linkSources.length);
           }}
         >

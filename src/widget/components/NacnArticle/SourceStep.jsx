@@ -4,7 +4,14 @@ import Modal from "react-modal";
 // import { Modal } from "antd";
 
 import cockpitLogo from "../../../assets/cockpit.svg";
-import { tamtamIt, getPrompts, genetateSingleArticle } from "../../api";
+import {
+  tamtamIt,
+  getPrompts,
+  genetateSingleArticle,
+  getArticlesByIds,
+  genetateEditArticle,
+  genetateTitle,
+} from "../../api";
 import styles from "./NacnArticle.module.scss";
 import modalStyles from "./Modal.module.scss";
 
@@ -19,6 +26,7 @@ import IconDoubleCheck from "../../icons/IconDoubleCheck";
 import IconClose from "../../icons/IconClose";
 import IconEyeSource from "../../icons/IconEyeSource";
 import IconPencil from "../../icons/IconPencil";
+import IconSpinner from "../../icons/IconSpinner";
 
 const SourceStep = ({
   onPost,
@@ -30,11 +38,14 @@ const SourceStep = ({
   lng,
   blogSearchUrl,
   showPictureStep,
+  showTitleStep,
 }) => {
   const [step, setStep] = useState("SOURCE"); // SOURCE | RESULT
   const [currentType, setCurrentType] = useState("TEXT"); // TEXT | LINK | BLOG | EVENT
   const [textSources, setTextSources] = useState([""]);
-  const [linkSources, setLinkSources] = useState([{ link: "", content: "" }]);
+  const [linkSources, setLinkSources] = useState([
+    { link: "", content: "", title: "" },
+  ]);
   const [blogSources, setBlogSources] = useState([
     { search: "", article: null },
   ]);
@@ -47,6 +58,8 @@ const SourceStep = ({
   const [instruction, setInstruction] = useState("");
   const [content, setContent] = useState("");
   const [isFetching, setIsFetching] = useState(false);
+  const [isFetchingTitle, setIsFetchingTitle] = useState(false);
+  const [isFetchingImage, setIsFetchingImage] = useState(false);
   const [prompts, setPrompts] = useState([]);
   const [isFetchingPrompt, setIsFetchingPrompt] = useState(false);
   const [selectedPrompt, setSelectedPrompt] = useState(null);
@@ -58,32 +71,102 @@ const SourceStep = ({
   const [sourcesData, setSourcesData] = useState([]);
 
   const handleGenerateText = async () => {
-    // if (textSources[0].length > 0) {
-    //   setIsFetching(true);
-    //   const articleContent = await genetateSingleArticle({
-    //     aiUrl,
-    //     token,
-    //     content: textSources[0],
-    //   });
-    //   console.log(articleContent);
-    //   // if (articleContent?.data?.answer) {
-    //   //   setContent(articleContent.data.answer);
-    //   // }
-    //   // setStep("RESULT");
-    //   setIsFetching(false);
-    // }
+    setIsFetching(true);
+    let sources = [];
+    if (textSources[0].length > 0) {
+      textSources.forEach((i) => {
+        if (i.length > 0) {
+          sources.push({
+            type: "text",
+            content: i,
+          });
+        }
+      });
+    }
+    if (blogSources[0].article) {
+      let ids = [];
+      blogSources.forEach((i) => {
+        if (i.article) {
+          ids.push(i.article.id);
+        }
+      });
+      if (ids.length > 0) {
+        try {
+          const response = await getArticlesByIds(apiUrl, token, ids);
+          if (response?.data?.data) {
+            response.data.data.forEach((article) => {
+              sources.push({
+                type: "blog",
+                content: article.content,
+                title: article.title,
+              });
+            });
+          }
+        } catch (e) {
+          console.log("error", e);
+        }
+      }
+    }
+    if (linkSources[0].content.length > 0) {
+      linkSources.forEach((i) => {
+        if (i.link && i.content.length > 0) {
+          sources.push({
+            type: "scraped_content",
+            content: i.content,
+            title: i.title,
+            url: i.link,
+          });
+        }
+      });
+    }
+    if (eventSources[0].event) {
+      eventSources.forEach((i) => {
+        if (i.event) {
+          sources.push({
+            type: "event",
+            event_id: i.event.id,
+          });
+        }
+      });
+    }
+    console.log(sources);
 
-    let txt = `<p>🌿 À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.</p>
+    if (sources.length > 0) {
+      setIsFetching(true);
+      const response = await genetateSingleArticle({
+        aiUrl,
+        token,
+        sources,
+        language: lng,
+      });
+      if (response && response.content) {
+        let tab = [
+          {
+            value: "version1",
+            label: "version 1",
+            content: response.content,
+            isUsed: false,
+          },
+        ];
+        setResultVersions(tab);
+        setSelectedVersion(tab[0]);
+        setStep("RESULT");
+      }
+      setIsFetching(false);
+    }
 
-<p>🏙️ Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.</p>
+    // let txt = `<p>🌿 À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.</p>
 
-<p>⚖️ Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.</p>`;
-    let tab = [
-      { value: "version1", label: "version 1", content: txt, isUsed: false },
-    ];
-    setResultVersions(tab);
-    setSelectedVersion(tab[0]);
-    setStep("RESULT");
+    // <p>🏙️ Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.</p>
+
+    // <p>⚖️ Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.</p>`;
+    // let tab = [
+    //   { value: "version1", label: "version 1", content: txt, isUsed: false },
+    // ];
+    // setResultVersions(tab);
+    // setSelectedVersion(tab[0]);
+    // setStep("RESULT");
+    // setIsFetching(false);
   };
 
   const handleClick = () => {
@@ -99,23 +182,77 @@ const SourceStep = ({
     // setIsOpen(false);
   };
 
-  const handleInstructionClick = () => {
-    if (instruction.length == 0) {
+  const handleInstructionClick = async () => {
+    if (instruction.length == 0 || !selectedVersion) {
       return null;
     }
 
-    const txt = `<p>À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.</p>
+    setIsFetching(true);
+    const response = await genetateEditArticle({
+      aiUrl,
+      token,
+      content: selectedVersion.content,
+      prompt: instruction,
+      language: lng,
+    });
+    if (response && response.content) {
+      const countVersions = resultVersions.length + 1;
+      let tab = [
+        ...resultVersions,
+        {
+          value: "version" + countVersions,
+          label: "version " + countVersions,
+          content: response.content,
+          isUsed: false,
+        },
+      ];
+      setResultVersions(tab);
+      setSelectedVersion(tab[countVersions - 1]);
+      setInstruction("");
+    }
+    setIsFetching(false);
 
-<p>Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.</p>
+    // const txt = `<p>À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.</p>
 
-<p>Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.</p>`;
-    let tab = [
-      ...resultVersions,
-      { value: "version2", label: "version 2", content: txt, isUsed: false },
-    ];
-    setResultVersions(tab);
-    setSelectedVersion(tab[1]);
-    setInstruction("");
+    // <p>Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.</p>
+
+    // <p>Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.</p>`;
+    // const countVersions = resultVersions.length + 1;
+    // let tab = [
+    //   ...resultVersions,
+    //   {
+    //     value: "version" + countVersions,
+    //     label: "version " + countVersions,
+    //     content: txt,
+    //     isUsed: false,
+    //   },
+    // ];
+    // setResultVersions(tab);
+    // setSelectedVersion(tab[countVersions - 1]);
+    // setInstruction("");
+  };
+
+  const handleGenerateTitle = async () => {
+    if (!selectedVersion) {
+      return null;
+    }
+
+    setIsFetchingTitle(true);
+    const response = await genetateTitle({
+      aiUrl,
+      token,
+      content: selectedVersion.content,
+      language: lng,
+    });
+    if (response && response.title) {
+      alert(response.title);
+    }
+    setIsFetching(false);
+
+    // setTimeout(() => {
+    //   alert("ok");
+    //   setIsFetchingTitle(false);
+    // }, 1500);
   };
 
   const handleShowSource = () => {
@@ -429,21 +566,45 @@ const SourceStep = ({
                 onChange={(e) => setInstruction(e.target.value)}
               ></textarea>
 
-              <span
-                className={`${styles.update_arrow} ${
-                  instruction.length > 0 && styles.active
-                }`}
-                onClick={handleInstructionClick}
-              >
-                <IconArrowTop size={20} />
-              </span>
+              {isFetching ? (
+                <span className={`${styles.update_arrow} ${styles.active}`}>
+                  <span className={styles.spinner}>
+                    <IconSpinner size="20" />
+                  </span>
+                </span>
+              ) : (
+                <span
+                  className={`${styles.update_arrow} ${
+                    instruction.length > 0 && styles.active
+                  }`}
+                  onClick={handleInstructionClick}
+                >
+                  <IconArrowTop size={20} />
+                </span>
+              )}
             </div>
 
             {selectedVersion?.isUsed && (
               <div className={styles.update_instruction_alt}>
                 <h3 className={styles.subtitle}>Désirez-vous autre chose ?</h3>
                 <div className={styles.update_instruction_alt_actions}>
-                  <button>Générer un titre</button>
+                  {/* {isFetchingTitle ? (
+                    <button disabled>
+                      <Loader
+                        style={{
+                          height: "10px",
+                        }}
+                        color={"#18a0fb"}
+                      />
+                    </button>
+                  ) : (
+                    <button onClick={handleGenerateTitle}>
+                      Générer un titre
+                    </button>
+                  )} */}
+                  <button onClick={() => showTitleStep(selectedVersion)}>
+                    Générer un titre
+                  </button>
                   <button onClick={showPictureStep}>Générer une image</button>
                   <button>Générer un post LinkedIn</button>
                 </div>

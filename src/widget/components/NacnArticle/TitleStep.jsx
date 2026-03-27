@@ -9,24 +9,26 @@ import IconSpinner from "../../icons/IconSpinner";
 import IconArrowTop from "../../icons/IconArrowTop";
 import Checkbox from "../common/Checkbox";
 
-const PictureStep = ({
+const TitleStep = ({
   onPost,
   setIsOpen,
   token,
   apiUrl,
   aiUrl,
-  organizationId,
   lng,
+  selectedText,
 }) => {
   const [step, setStep] = useState("SELECT"); // SELECT | GENERATE
   const [isFetching, setIsFetching] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
   const [medias, setMedias] = useState([]);
   const [selectedMedia, setSelectedMedia] = useState(null);
-  const [selectedVersion, setSelectedVersion] = useState(null);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [instruction, setInstruction] = useState("");
+
+  const [resultVersions, setResultVersions] = useState([]);
+  const [selectedVersion, setSelectedVersion] = useState(null);
 
   const handleClick = () => {
     if (onPost && selectedMedia) {
@@ -40,71 +42,33 @@ const PictureStep = ({
     setSelectedVersion(selectedMedia);
   };
 
-  const handleSearchChange = (value) => {
-    setSearch(value);
-    debouncedSearch(value);
-  };
-
-  const debouncedSearch = debounce(async (value) => {
-    setIsFetching(true);
-    try {
-      let params = {
-        apiUrl,
-        token,
-        limit: 24,
-        offset: page - 1,
-        communityId: organizationId,
-        type: "IMAGE",
-        allowedMediaTypes: ["IMAGE"],
-        lng,
-        filterBy: {
-          search,
-        },
-      };
-      const response = await getMedias(params);
-
-      setIsFetching(false);
-      setIsFetched(true);
-      setMedias(response.data.data);
-    } catch (e) {
-      if (!e?.response?.status === 700) {
-        setIsFetching(false);
-        setMedias([]);
-      }
-    }
-  }, 1000);
-
   useEffect(() => {
     const fetchData = async () => {
       setIsFetching(true);
-      try {
-        let params = {
-          apiUrl,
-          token,
-          limit: 24,
-          offset: page - 1,
-          communityId: organizationId,
-          type: "IMAGE",
-          allowedMediaTypes: ["IMAGE"],
-          lng,
-          filterBy: {
-            search,
-          },
-        };
-        const response = await getMedias(params);
 
-        setIsFetching(false);
-        setIsFetched(true);
-        setMedias(response.data.data);
-      } catch (e) {
-        if (!e?.response?.status === 700) {
-          setIsFetching(false);
-          setMedias([]);
-        }
+      const response = await genetateTitle({
+        aiUrl,
+        token,
+        content: selectedVersion.content,
+        language: lng,
+      });
+      if (response && response.title) {
+        let tab = [
+          {
+            value: "version1",
+            label: "version 1",
+            content: response.title,
+            isUsed: false,
+          },
+        ];
+        setResultVersions(tab);
+        setSelectedVersion(tab[0]);
       }
+      setIsFetching(false);
+      setIsFetched(true);
     };
 
-    if (!isFetching) {
+    if (!isFetching && selectedText) {
       fetchData();
     }
   }, [page]);
@@ -123,52 +87,12 @@ const PictureStep = ({
     <>
       <h2 className={styles.title}>
         <img src={cockpitLogo} alt="NACN AI" width={30} />
-        Choisir / Générer image
+        Générer un titre
       </h2>
 
       <div className={styles.container}>
-        <ul className={styles.tabs}>
-          <li
-            onClick={() => {
-              setStep("SELECT");
-            }}
-            className={`${styles.tabs_item} ${
-              step === "SELECT" && styles.active
-            }`}
-          >
-            Choisir une image
-          </li>
-          <li
-            onClick={() => {
-              setStep("GENERATE");
-            }}
-            className={`${styles.tabs_item} ${
-              step === "GENERATE" && styles.active
-            }`}
-          >
-            Générer une image
-          </li>
-        </ul>
-
         {step === "SELECT" && (
           <>
-            <div className={styles.picture_top}>
-              <p className={styles.subtitle}>
-                Voici quelques propositions d’images :
-              </p>
-
-              <div className={styles.picture_search}>
-                <input
-                  type="text"
-                  className={styles.textContent}
-                  value={search}
-                  placeholder="Recherche..."
-                  onChange={(e) => {
-                    handleSearchChange(e.target.value);
-                  }}
-                />
-              </div>
-            </div>
             <div className={styles.resultContainer}>
               {isFetching ? (
                 <div className={styles.spinner}>
@@ -284,4 +208,4 @@ const PictureStep = ({
   );
 };
 
-export default PictureStep;
+export default TitleStep;

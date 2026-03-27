@@ -5,6 +5,7 @@ import Step1 from "./Step1";
 // import ArticleStep from "./ArticleStep";
 import SourceStep from "./SourceStep";
 import PictureStep from "./PictureStep";
+import TitleStep from "./TitleStep";
 
 const NacnArticle = ({
   onPost,
@@ -16,7 +17,8 @@ const NacnArticle = ({
   lng,
   organizationId,
 }) => {
-  const [step, setStep] = useState("CHOICE"); // CHOICE | ARTICLE_SOURCE | ARTICLE | PICTURE
+  const [step, setStep] = useState("CHOICE"); // CHOICE | ARTICLE_SOURCE | ARTICLE | PICTURE | TITLE
+  const [selectedText, setSelectedText] = useState(null);
 
   return (
     <>
@@ -33,6 +35,10 @@ const NacnArticle = ({
             lng={lng}
             organizationId={organizationId}
             showPictureStep={() => setStep("PICTURE")}
+            showTitleStep={(selectedVersion) => {
+              setSelectedText(selectedVersion);
+              setStep("TITLE");
+            }}
           />
         )}
 
@@ -40,10 +46,23 @@ const NacnArticle = ({
           <PictureStep
             token={token}
             apiUrl={apiUrl}
+            aiUrl={aiUrl}
             onPost={onPost}
             setIsOpen={setIsOpen}
             lng={lng}
             organizationId={organizationId}
+          />
+        )}
+
+        {step === "TITLE" && (
+          <TitleStep
+            token={token}
+            apiUrl={apiUrl}
+            aiUrl={aiUrl}
+            onPost={onPost}
+            setIsOpen={setIsOpen}
+            lng={lng}
+            selectedText={selectedText}
           />
         )}
 

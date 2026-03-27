@@ -10,6 +10,7 @@ import {
 let getSearchResultsCTS;
 let getEventSearchCTS;
 let getMediaSearchCTS;
+let getArticleCTS;
 
 export const tamtamIt = (apiUrl, token, url) => {
   const requestUrl = `${apiUrl}/blog/parser/parse`;
@@ -26,7 +27,7 @@ export const fetchSearch = (blogSearchUrl, word, language, orgs) => {
 
   let requestCancellationToken = getRequestCancellationToken(
     getSearchResultsCTS,
-    cancellationTokenSource
+    cancellationTokenSource,
   );
   getSearchResultsCTS = cancellationTokenSource;
 
@@ -54,7 +55,7 @@ export const getEvents = async (apiUrl, params) => {
 
   let requestCancellationToken = getRequestCancellationToken(
     getEventSearchCTS,
-    cancellationTokenSource
+    cancellationTokenSource,
   );
   getEventSearchCTS = cancellationTokenSource;
 
@@ -144,7 +145,7 @@ export const getMedias = ({
 
   let requestCancellationToken = getRequestCancellationToken(
     getMediaSearchCTS,
-    cancellationTokenSource
+    cancellationTokenSource,
   );
   getMediaSearchCTS = cancellationTokenSource;
 
@@ -338,8 +339,45 @@ export const getMedias = ({
       start: offset,
       workspace: "ua",
     },
-    requestCancellationToken
+    requestCancellationToken,
   );
+
+  return axios.get(requestUrl, requestConfig).catch(function (thrown) {
+    throwCatchedError(thrown);
+  });
+};
+
+export const getArticlesByIds = (
+  apiUrl,
+  token,
+  articleIds,
+  cancellationTokenSource = null,
+) => {
+  let requestCancellationToken = getRequestCancellationToken(
+    getArticleCTS,
+    cancellationTokenSource,
+  );
+
+  const filter = [{ property: "id", value: articleIds, operator: "in" }];
+
+  const requestUrl = `${apiUrl}/blog/article`;
+
+  let fields = [
+    {
+      entity: "article",
+      fields: ["id", "content", "language", "title", "url"],
+    },
+  ];
+
+  let params = {
+    access_token: token,
+    fields: JSON.stringify(fields),
+    isCustomFields: 1,
+    filter: JSON.stringify(filter),
+    workspace: "rss",
+  };
+
+  let requestConfig = getRequestConfig(params, requestCancellationToken);
 
   return axios.get(requestUrl, requestConfig).catch(function (thrown) {
     throwCatchedError(thrown);
