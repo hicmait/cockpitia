@@ -132,11 +132,12 @@ export const genetateSingleArticle = async ({
 
   const response = await fetch(requestUrl, options);
 
-  if (!response.ok) {
-    throw new Error(
-      `HTTP GET error, status: ${response.status}, url: ${requestUrl}`,
-    );
-  }
+  // if (!response.ok) {
+  //   console.log("=====", response.json());
+  //   throw new Error(
+  //     `HTTP GET error, status: ${response.status}, url: ${requestUrl}`,
+  //   );
+  // }
 
   try {
     const jsonData = await response.json();

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import debounce from "lodash.debounce";
 
 import cockpitLogo from "../../../assets/cockpit.svg";
-import { getMedias } from "../../api";
+import { getMedias, genetateImage } from "../../api";
 import { addLandaSize } from "../../services/utils";
 import styles from "./NacnArticle.module.scss";
 import IconSpinner from "../../icons/IconSpinner";
@@ -17,6 +17,10 @@ const PictureStep = ({
   aiUrl,
   organizationId,
   lng,
+  sourcesData,
+  resultVersions,
+  setResultVersions,
+  historyData,
 }) => {
   const [step, setStep] = useState("SELECT"); // SELECT | GENERATE
   const [isFetching, setIsFetching] = useState(false);
@@ -235,6 +239,43 @@ const PictureStep = ({
 
         {step === "GENERATE" && (
           <div>
+            {selectedVersion && (
+              <div className={styles.result_top}>
+                <div className={styles.result_top_left}>
+                  <span>Image:</span>
+                  <Select
+                    value={selectedVersion}
+                    onChange={(e) => setSelectedVersion(e)}
+                    options={resultVersions.picture}
+                    styles={{
+                      input: (provided) => ({
+                        ...provided,
+                        height: "auto",
+                        margin: "0",
+                      }),
+                      control: (base) => ({
+                        ...base,
+                        border: 0,
+                        boxShadow: "none",
+                      }),
+                      indicatorSeparator: (provided) => ({ display: "none" }),
+                      dropdownIndicator: (provided) => ({
+                        ...provided,
+                        padding: "4px 0",
+                      }),
+                    }}
+                  />
+                </div>
+
+                {/* <div className={styles.result_top_right}>
+            Sources:{" "}
+            <span onClick={handleShowSource} className={styles.pointer}>
+              <IconEye />
+            </span>
+          </div> */}
+              </div>
+            )}
+
             <div className={styles.pictureCover}></div>
             <div className={styles.result_actions}>
               <button

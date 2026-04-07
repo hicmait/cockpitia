@@ -70,7 +70,7 @@ const Step1 = ({ onPost, setStep }) => {
           </p>
         </li>
 
-        <li className={styles.actionList_item}>
+        <li className={styles.actionList_item} onClick={() => setStep("TITLE")}>
           <h3 className={styles.actionList_title}>
             <svg
               width="16"

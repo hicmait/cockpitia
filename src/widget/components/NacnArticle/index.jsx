@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "./NacnArticle.module.scss";
 import Step1 from "./Step1";
@@ -9,6 +9,7 @@ import TitleStep from "./TitleStep";
 
 const NacnArticle = ({
   onPost,
+  onPostHistory,
   setIsOpen,
   token,
   apiUrl,
@@ -16,9 +17,30 @@ const NacnArticle = ({
   blogSearchUrl,
   lng,
   organizationId,
+  initialHistory,
 }) => {
   const [step, setStep] = useState("CHOICE"); // CHOICE | ARTICLE_SOURCE | ARTICLE | PICTURE | TITLE
-  const [selectedText, setSelectedText] = useState(null);
+  const [sourcesData, setSourcesData] = useState([]);
+  const [resultVersions, setResultVersions] = useState({
+    article: [],
+    title: [],
+    picture: [],
+  });
+  const [historyData, setHistoryData] = useState(null);
+
+  useEffect(() => {
+    if (initialHistory) {
+      setHistoryData(initialHistory);
+      setSourcesData(initialHistory.sources);
+      setResultVersions(initialHistory.result);
+      // let isUsedVersion = initialHistory.result.article.filter((i) => i.isUsed);
+      // setSelectedVersion(
+      //   isUsedVersion?.length === 1
+      //     ? isUsedVersion[0]
+      //     : initialHistory.result.article[0],
+      // );
+    }
+  }, []);
 
   return (
     <>
@@ -30,15 +52,22 @@ const NacnArticle = ({
             apiUrl={apiUrl}
             aiUrl={aiUrl}
             onPost={onPost}
+            onPostHistory={(e) => {
+              setHistoryData(e);
+              onPostHistory(e);
+            }}
             setIsOpen={setIsOpen}
             blogSearchUrl={blogSearchUrl}
             lng={lng}
             organizationId={organizationId}
             showPictureStep={() => setStep("PICTURE")}
-            showTitleStep={(selectedVersion) => {
-              setSelectedText(selectedVersion);
+            showTitleStep={() => {
               setStep("TITLE");
             }}
+            sourcesData={sourcesData}
+            setSourcesData={setSourcesData}
+            resultVersions={resultVersions}
+            setResultVersions={setResultVersions}
           />
         )}
 
@@ -48,9 +77,14 @@ const NacnArticle = ({
             apiUrl={apiUrl}
             aiUrl={aiUrl}
             onPost={onPost}
+            onPostHistory={onPostHistory}
             setIsOpen={setIsOpen}
             lng={lng}
             organizationId={organizationId}
+            sourcesData={sourcesData}
+            resultVersions={resultVersions}
+            setResultVersions={setResultVersions}
+            historyData={historyData}
           />
         )}
 
@@ -60,21 +94,15 @@ const NacnArticle = ({
             apiUrl={apiUrl}
             aiUrl={aiUrl}
             onPost={onPost}
+            onPostHistory={onPostHistory}
             setIsOpen={setIsOpen}
             lng={lng}
-            selectedText={selectedText}
+            sourcesData={sourcesData}
+            resultVersions={resultVersions}
+            setResultVersions={setResultVersions}
+            historyData={historyData}
           />
         )}
-
-        {/* {step === "ARTICLE" && (
-            <ArticleStep
-              onPost={onPost}
-              token={token}
-              apiUrl={apiUrl}
-              aiUrl={aiUrl}
-              setIsOpen={setIsOpen}
-            />
-          )} */}
       </div>
     </>
   );

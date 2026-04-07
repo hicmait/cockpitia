@@ -30,6 +30,7 @@ import IconSpinner from "../../icons/IconSpinner";
 
 const SourceStep = ({
   onPost,
+  onPostHistory,
   setIsOpen,
   token,
   apiUrl,
@@ -39,6 +40,12 @@ const SourceStep = ({
   blogSearchUrl,
   showPictureStep,
   showTitleStep,
+  sourcesData,
+  setSourcesData,
+  resultVersions,
+  setResultVersions,
+  // selectedVersion,
+  // setSelectedVersion,
 }) => {
   const [step, setStep] = useState("SOURCE"); // SOURCE | RESULT
   const [currentType, setCurrentType] = useState("TEXT"); // TEXT | LINK | BLOG | EVENT
@@ -56,19 +63,44 @@ const SourceStep = ({
   const [selectedOption, setSelectedOption] = useState(null);
 
   const [instruction, setInstruction] = useState("");
-  const [content, setContent] = useState("");
   const [isFetching, setIsFetching] = useState(false);
   const [isFetchingTitle, setIsFetchingTitle] = useState(false);
   const [isFetchingImage, setIsFetchingImage] = useState(false);
   const [prompts, setPrompts] = useState([]);
   const [isFetchingPrompt, setIsFetchingPrompt] = useState(false);
   const [selectedPrompt, setSelectedPrompt] = useState(null);
-  const [resultVersions, setResultVersions] = useState([]);
-  const [selectedVersion, setSelectedVersion] = useState(null);
+
   const [isOpenSourceModal, setIsOpenSourceModal] = useState(false);
   const [isOpenConfirmSourceModal, setIsOpenConfirmSourceModal] =
     useState(false);
-  const [sourcesData, setSourcesData] = useState([]);
+
+  const [errorMsg, setErrorMsg] = useState("");
+  const [selectedVersion, setSelectedVersion] = useState(null);
+
+  useEffect(() => {
+    if (sourcesData.length > 0) {
+      sourcesData.forEach((row) => {
+        if (row.tab === "TEXT") {
+          setTextSources(row.items);
+        } else if (row.tab === "LINK") {
+          setLinkSources(row.items);
+        } else if (row.tab === "BLOG") {
+          setBlogSources(row.items);
+        } else if (row.tab === "EVENT") {
+          setEventSources(row.items);
+        }
+      });
+      setStep("RESULT");
+    }
+    if (resultVersions.article.length > 0) {
+      let isUsedVersion = resultVersions.article.filter((i) => i.isUsed);
+      setSelectedVersion(
+        isUsedVersion?.length === 1
+          ? isUsedVersion[0]
+          : resultVersions.article[0],
+      );
+    }
+  }, []);
 
   const handleGenerateText = async () => {
     setIsFetching(true);
@@ -102,9 +134,7 @@ const SourceStep = ({
               });
             });
           }
-        } catch (e) {
-          console.log("error", e);
-        }
+        } catch (e) {}
       }
     }
     if (linkSources[0].content.length > 0) {
@@ -131,42 +161,48 @@ const SourceStep = ({
     }
     console.log(sources);
 
-    if (sources.length > 0) {
-      setIsFetching(true);
-      const response = await genetateSingleArticle({
-        aiUrl,
-        token,
-        sources,
-        language: lng,
-      });
-      if (response && response.content) {
-        let tab = [
-          {
-            value: "version1",
-            label: "version 1",
-            content: response.content,
-            isUsed: false,
-          },
-        ];
-        setResultVersions(tab);
-        setSelectedVersion(tab[0]);
-        setStep("RESULT");
-      }
-      setIsFetching(false);
-    }
+    // if (sources.length > 0) {
+    //   setIsFetching(true);
+    //   try {
+    //     const response = await genetateSingleArticle({
+    //       aiUrl,
+    //       token,
+    //       sources,
+    //       language: lng,
+    //     });
+    //     if (response && response.content) {
+    //       let tab = [
+    //         {
+    //           value: "version1",
+    //           label: "version 1",
+    //           content: response.content,
+    //           isUsed: false,
+    //         },
+    //       ];
+    //       setErrorMsg("");
+    //       //setResultVersions(tab);
+    //        setResultVersions({...resultVersions, article: tab});
+    //       setSelectedVersion(tab[0]);
+    //       setStep("RESULT");
+    //     } else if (response?.error?.message) {
+    //       setErrorMsg("Error: " + response.error.message);
+    //     }
+    //   } catch (e) {}
+    //   setIsFetching(false);
+    // }
 
-    // let txt = `<p>🌿 À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.</p>
+    let txt = `<p>🌿 À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.</p>
 
-    // <p>🏙️ Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.</p>
+    <p>🏙️ Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.</p>
 
-    // <p>⚖️ Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.</p>`;
-    // let tab = [
-    //   { value: "version1", label: "version 1", content: txt, isUsed: false },
-    // ];
-    // setResultVersions(tab);
-    // setSelectedVersion(tab[0]);
-    // setStep("RESULT");
-    // setIsFetching(false);
+    <p>⚖️ Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.</p>`;
+    let tab = [
+      { value: "version1", label: "version 1", content: txt, isUsed: false },
+    ];
+    setResultVersions({ ...resultVersions, article: tab });
+    setSelectedVersion(tab[0]);
+    setStep("RESULT");
+    setIsFetching(false);
   };
 
   const handleClick = () => {
@@ -177,6 +213,26 @@ const SourceStep = ({
           content: selectedVersion.content,
         },
       });
+      if (onPostHistory) {
+        let tabVersions = resultVersions.article.map((i) => {
+          if (i.value == selectedVersion.value) {
+            return { ...i, isUsed: true };
+          }
+          return i;
+        });
+        onPostHistory({
+          sources: getSourceTab(),
+          result: { ...resultVersions, article: tabVersions },
+          // selectedVersion: { ...selectedVersion, isUsed: true },
+        });
+        console.log(
+          JSON.stringify({
+            sources: getSourceTab(),
+            result: { ...resultVersions, article: tabVersions },
+            // selectedVersion: { ...selectedVersion, isUsed: true },
+          }),
+        );
+      }
     }
     setSelectedVersion({ ...selectedVersion, isUsed: true });
     // setIsOpen(false);
@@ -187,49 +243,52 @@ const SourceStep = ({
       return null;
     }
 
-    setIsFetching(true);
-    const response = await genetateEditArticle({
-      aiUrl,
-      token,
-      content: selectedVersion.content,
-      prompt: instruction,
-      language: lng,
-    });
-    if (response && response.content) {
-      const countVersions = resultVersions.length + 1;
-      let tab = [
-        ...resultVersions,
-        {
-          value: "version" + countVersions,
-          label: "version " + countVersions,
-          content: response.content,
-          isUsed: false,
-        },
-      ];
-      setResultVersions(tab);
-      setSelectedVersion(tab[countVersions - 1]);
-      setInstruction("");
-    }
-    setIsFetching(false);
+    // setIsFetching(true);
+    // try {
+    //   const response = await genetateEditArticle({
+    //     aiUrl,
+    //     token,
+    //     content: selectedVersion.content,
+    //     prompt: instruction,
+    //     language: lng,
+    //   });
+    //   if (response && response.content) {
+    //     const countVersions = resultVersions.article.length + 1;
+    //     let tab = [
+    //       ...resultVersions.article,
+    //       {
+    //         value: "version" + countVersions,
+    //         label: "version " + countVersions,
+    //         content: response.content,
+    //         isUsed: false,
+    //       },
+    //     ];
+    //     //setResultVersions(tab);
+    //    setResultVersions({...resultVersions, article: tab});
+    //     setSelectedVersion(tab[countVersions - 1]);
+    //     setInstruction("");
+    //   }
+    // } catch (e) {}
+    // setIsFetching(false);
 
-    // const txt = `<p>À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.</p>
+    const txt = `<p>À compter du 1er janvier 2026, toutes les entreprises proposant des services de livraison à domicile en milieu urbain doivent adopter des pratiques respectueuses de l’environnement et de la tranquillité publique. Les véhicules utilisés pour les livraisons dans les centres-villes devront être exclusivement électriques ou hybrides rechargeables, afin de limiter les émissions polluantes et le bruit. Les entreprises de livraison sont également tenues de regrouper les colis et d’optimiser leurs tournées pour réduire la circulation inutile et les embouteillages.</p>
 
-    // <p>Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.</p>
+    <p>Les communes ont la responsabilité de mettre en place des zones de livraison réglementées et des horaires précis afin de limiter les nuisances sonores, particulièrement en soirée et la nuit. Les plateformes de livraison sont encouragées à collaborer avec les commerces locaux pour mutualiser les trajets et favoriser l’implantation de points de retrait accessibles à pied ou à vélo.</p>
 
-    // <p>Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.</p>`;
-    // const countVersions = resultVersions.length + 1;
-    // let tab = [
-    //   ...resultVersions,
-    //   {
-    //     value: "version" + countVersions,
-    //     label: "version " + countVersions,
-    //     content: txt,
-    //     isUsed: false,
-    //   },
-    // ];
-    // setResultVersions(tab);
-    // setSelectedVersion(tab[countVersions - 1]);
-    // setInstruction("");
+    <p>Tout manquement aux obligations fixées par le présent article pourra entraîner des sanctions administratives, incluant des amendes et, en cas de récidive, la suspension temporaire de l’autorisation d’exploiter le service dans la commune concernée. Les modalités précises d’application seront définies par arrêté royal après concertation avec les Régions et les représentants du secteur.</p>`;
+    const countVersions = resultVersions.article.length + 1;
+    let tab = [
+      ...resultVersions.article,
+      {
+        value: "version" + countVersions,
+        label: "version " + countVersions,
+        content: txt,
+        isUsed: false,
+      },
+    ];
+    setResultVersions({ ...resultVersions, article: tab });
+    setSelectedVersion(tab[countVersions - 1]);
+    setInstruction("");
   };
 
   const handleGenerateTitle = async () => {
@@ -238,15 +297,17 @@ const SourceStep = ({
     }
 
     setIsFetchingTitle(true);
-    const response = await genetateTitle({
-      aiUrl,
-      token,
-      content: selectedVersion.content,
-      language: lng,
-    });
-    if (response && response.title) {
-      alert(response.title);
-    }
+    try {
+      const response = await genetateTitle({
+        aiUrl,
+        token,
+        content: selectedVersion.content,
+        language: lng,
+      });
+      if (response && response.title) {
+        alert(response.title);
+      }
+    } catch (e) {}
     setIsFetching(false);
 
     // setTimeout(() => {
@@ -255,7 +316,7 @@ const SourceStep = ({
     // }, 1500);
   };
 
-  const handleShowSource = () => {
+  const getSourceTab = () => {
     let tab = [];
     if (textSources.length > 0 && textSources[0].length > 0) {
       tab.push({ tab: "TEXT", label: "Texte manuel", items: textSources });
@@ -269,6 +330,11 @@ const SourceStep = ({
     if (eventSources[0]?.event) {
       tab.push({ tab: "EVENT", label: "Event", items: eventSources });
     }
+    return tab;
+  };
+
+  const handleShowSource = () => {
+    let tab = getSourceTab();
     if (tab.length > 0) {
       setCurrentType(tab[0].tab);
       setCurrentIndex(0);
@@ -423,6 +489,7 @@ const SourceStep = ({
               />
             )}
 
+            {errorMsg && <div className={styles.errorMsg}>{errorMsg}</div>}
             <div className={styles.article_actions}>
               <div className={styles.article_actions_left}>
                 <label>Contexte:</label>
@@ -501,7 +568,7 @@ const SourceStep = ({
                 <Select
                   value={selectedVersion}
                   onChange={(e) => setSelectedVersion(e)}
-                  options={resultVersions}
+                  options={resultVersions.article}
                   styles={{
                     input: (provided) => ({
                       ...provided,
@@ -602,9 +669,7 @@ const SourceStep = ({
                       Générer un titre
                     </button>
                   )} */}
-                  <button onClick={() => showTitleStep(selectedVersion)}>
-                    Générer un titre
-                  </button>
+                  <button onClick={showTitleStep}>Générer un titre</button>
                   <button onClick={showPictureStep}>Générer une image</button>
                   <button>Générer un post LinkedIn</button>
                 </div>

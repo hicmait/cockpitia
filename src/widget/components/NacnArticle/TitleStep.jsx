@@ -1,77 +1,144 @@
 import { useEffect, useState } from "react";
-import debounce from "lodash.debounce";
+import Select from "react-select";
 
 import cockpitLogo from "../../../assets/cockpit.svg";
-import { getMedias } from "../../api";
+import { genetateTitle } from "../../api";
 import { addLandaSize } from "../../services/utils";
 import styles from "./NacnArticle.module.scss";
 import IconSpinner from "../../icons/IconSpinner";
 import IconArrowTop from "../../icons/IconArrowTop";
+import IconDoubleCheck from "../../icons/IconDoubleCheck";
+import IconEye from "../../icons/IconEye";
 import Checkbox from "../common/Checkbox";
 
 const TitleStep = ({
   onPost,
+  onPostHistory,
   setIsOpen,
   token,
   apiUrl,
   aiUrl,
   lng,
-  selectedText,
+  resultVersions,
+  setResultVersions,
+  historyData,
 }) => {
   const [step, setStep] = useState("SELECT"); // SELECT | GENERATE
   const [isFetching, setIsFetching] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
-  const [medias, setMedias] = useState([]);
-  const [selectedMedia, setSelectedMedia] = useState(null);
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
   const [instruction, setInstruction] = useState("");
+  const [isFetchingInstruction, setIsFetchingInstruction] = useState(false);
 
-  const [resultVersions, setResultVersions] = useState([]);
   const [selectedVersion, setSelectedVersion] = useState(null);
 
   const handleClick = () => {
-    if (onPost && selectedMedia) {
+    if (onPost && selectedVersion) {
       onPost({
-        type: "PICTURE_MEDIA",
+        type: "ARTICLE_TITLE",
         data: {
-          content: selectedMedia,
+          content: selectedVersion.content,
         },
       });
+      setSelectedVersion({ ...selectedVersion, isUsed: true });
     }
-    setSelectedVersion(selectedMedia);
+
+    if (onPost) {
+      onPost({
+        type: "ARTICLE_TITLE",
+        data: {
+          content: selectedVersion.content,
+        },
+      });
+      if (onPostHistory) {
+        let tabVersions = resultVersions.title.map((i) => {
+          if (i.value == selectedVersion.value) {
+            return { ...i, isUsed: true };
+          }
+          return i;
+        });
+        onPostHistory({
+          ...historyData,
+          result: { ...resultVersions, title: tabVersions },
+        });
+        console.log(
+          JSON.stringify({
+            ...historyData,
+            result: { ...resultVersions, title: tabVersions },
+          }),
+        );
+      }
+    }
+    setSelectedVersion({ ...selectedVersion, isUsed: true });
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (content) => {
       setIsFetching(true);
 
-      const response = await genetateTitle({
-        aiUrl,
-        token,
-        content: selectedVersion.content,
-        language: lng,
-      });
-      if (response && response.title) {
+      // try {
+      //   const response = await genetateTitle({
+      //     aiUrl,
+      //     token,
+      //     content,
+      //     language: lng,
+      //   });
+      //   if (response && response.title) {
+      //     let tab = [
+      //       {
+      //         value: "version1",
+      //         label: "version 1",
+      //         content: response.title,
+      //         isUsed: false,
+      //       },
+      //     ];
+      //     setResultVersions({ ...resultVersions, title: tab });
+      //     setSelectedVersion(tab[0]);
+      // setIsFetching(false);
+      // setIsFetched(true);
+      //   }
+      // } catch (e) {
+      //   setIsFetching(false);
+      // setIsFetched(true);
+      // }
+
+      setTimeout(() => {
         let tab = [
           {
             value: "version1",
             label: "version 1",
-            content: response.title,
+            content: "Mon titre proposé",
             isUsed: false,
           },
         ];
-        setResultVersions(tab);
+        setResultVersions({ ...resultVersions, title: tab });
         setSelectedVersion(tab[0]);
-      }
-      setIsFetching(false);
-      setIsFetched(true);
+
+        setIsFetching(false);
+        setIsFetched(true);
+      }, 2000);
     };
 
-    if (!isFetching && selectedText) {
-      fetchData();
+    if (!isFetching && !isFetched && resultVersions.article.length > 0) {
+      if (resultVersions.article.length > 0) {
+        if (resultVersions.title.length === 0) {
+          let isUsedVersion = resultVersions.article.filter((i) => i.isUsed);
+          const content =
+            isUsedVersion?.length === 1
+              ? isUsedVersion[0].content
+              : resultVersions.article[0].content;
+
+          fetchData(content);
+        } else {
+          let isUsedVersion = resultVersions.title.filter((i) => i.isUsed);
+          setSelectedVersion(
+            isUsedVersion?.length === 1
+              ? isUsedVersion[0]
+              : resultVersions.title[0],
+          );
+        }
+      }
     }
-  }, [page]);
+  }, []);
 
   const handleInstructionClick = () => {
     if (instruction.length == 0) {
@@ -83,6 +150,28 @@ const TitleStep = ({
     setInstruction("");
   };
 
+  const handleShowSource = () => {
+    // let tab = [];
+    // if (textSources.length > 0 && textSources[0].length > 0) {
+    //   tab.push({ tab: "TEXT", label: "Texte manuel", items: textSources });
+    // }
+    // if (linkSources[0]?.content.length > 0) {
+    //   tab.push({ tab: "LINK", label: "Lien web", items: linkSources });
+    // }
+    // if (blogSources[0]?.article) {
+    //   tab.push({ tab: "BLOG", label: "Blog", items: blogSources });
+    // }
+    // if (eventSources[0]?.event) {
+    //   tab.push({ tab: "EVENT", label: "Event", items: eventSources });
+    // }
+    // if (tab.length > 0) {
+    //   setCurrentType(tab[0].tab);
+    //   setCurrentIndex(0);
+    // }
+    // setSourcesData(tab);
+    // setIsOpenSourceModal(true);
+  };
+
   return (
     <>
       <h2 className={styles.title}>
@@ -90,118 +179,126 @@ const TitleStep = ({
         Générer un titre
       </h2>
 
-      <div className={styles.container}>
-        {step === "SELECT" && (
-          <>
-            <div className={styles.resultContainer}>
-              {isFetching ? (
-                <div className={styles.spinner}>
-                  <IconSpinner size="20" />
-                </div>
-              ) : (
-                <>
-                  <div className={styles.results}>
-                    <div className={styles.medias_list}>
-                      {medias.map((media) => {
-                        let path = "";
-                        const {
-                          preview,
-                          fullMediaUrl,
-                          webPath,
-                          createdAt,
-                          docType,
-                        } = media;
-                        if (docType === "IMAGE") {
-                          path = fullMediaUrl
-                            ? fullMediaUrl
-                            : apiUrl + "/" + webPath;
-                        }
-                        path = path ? addLandaSize(path, 280) : "";
-
-                        if (!path) {
-                          return null;
-                        }
-
-                        return (
-                          <div
-                            key={`media-${media.id}`}
-                            className={styles.medias_list_item}
-                            onClick={() => setSelectedMedia(media)}
-                          >
-                            <Checkbox
-                              checked={selectedMedia?.id === media.id}
-                              radio={true}
-                            />
-                            <div
-                              className={styles.mediaContent}
-                              style={{ backgroundImage: `url(${path})` }}
-                            ></div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-
-            <div className={styles.result_actions}>
-              <button
-                className="primaryBtn"
-                onClick={handleClick}
-                disabled={!selectedMedia}
-              >
-                Utiliser cette version
-              </button>
-            </div>
-          </>
-        )}
-
-        {step === "GENERATE" && (
-          <div>
-            <div className={styles.pictureCover}></div>
-            <div className={styles.result_actions}>
-              <button
-                className="primaryBtn"
-                onClick={handleClick}
-                disabled={!selectedMedia}
-              >
-                Utiliser cette version
-              </button>
-            </div>
-            <div className={styles.update_instruction}>
-              <h3 className={styles.subtitle}>
-                Instruction pour modifier la{" "}
-                {selectedVersion ? selectedVersion.label : "version 1"}
-              </h3>
-
-              <textarea
-                className={`${styles.textContent} `}
-                rows="4"
-                placeholder="Donnez vos instructions..."
-                value={instruction}
-                onChange={(e) => setInstruction(e.target.value)}
-              ></textarea>
-
-              <span
-                className={`${styles.update_arrow} ${
-                  instruction.length > 0 && styles.active
-                }`}
-                onClick={handleInstructionClick}
-              >
-                <IconArrowTop size={20} />
-              </span>
-            </div>
+      {selectedVersion && (
+        <div className={styles.result_top}>
+          <div className={styles.result_top_left}>
+            <span>Titre:</span>
+            <Select
+              value={selectedVersion}
+              onChange={(e) => setSelectedVersion(e)}
+              options={resultVersions.title}
+              styles={{
+                input: (provided) => ({
+                  ...provided,
+                  height: "auto",
+                  margin: "0",
+                }),
+                control: (base) => ({
+                  ...base,
+                  border: 0,
+                  boxShadow: "none",
+                }),
+                indicatorSeparator: (provided) => ({ display: "none" }),
+                dropdownIndicator: (provided) => ({
+                  ...provided,
+                  padding: "4px 0",
+                }),
+              }}
+            />
           </div>
-        )}
 
-        <div className={styles.update_instruction_alt}>
+          {/* <div className={styles.result_top_right}>
+            Sources:{" "}
+            <span onClick={handleShowSource} className={styles.pointer}>
+              <IconEye />
+            </span>
+          </div> */}
+        </div>
+      )}
+
+      <div className={styles.container}>
+        <div className={styles.resultContainer}>
+          {isFetching ? (
+            <div className={styles.spinner}>
+              <IconSpinner size="20" />
+            </div>
+          ) : (
+            <>
+              {selectedVersion && (
+                <div className={styles.results}>{selectedVersion.content}</div>
+              )}
+            </>
+          )}
+        </div>
+
+        {/* <div className={styles.result_actions}>
+          <button
+            className="primaryBtn"
+            onClick={handleClick}
+            disabled={!selectedVersion}
+          >
+            Utiliser cette version
+          </button>
+        </div> */}
+        {selectedVersion &&
+          (!selectedVersion.isUsed ? (
+            <div className={styles.result_actions}>
+              <button
+                className="primaryBtn"
+                disabled={!selectedVersion}
+                onClick={handleClick}
+              >
+                Utiliser cette version
+              </button>
+            </div>
+          ) : (
+            <div className={styles.result_used}>
+              <IconDoubleCheck />{" "}
+              {selectedVersion ? selectedVersion.label : "version 1"} a été
+              utilisée pour l’article
+            </div>
+          ))}
+
+        {/* <div className={styles.update_instruction_alt}>
           <h3 className={styles.subtitle}>Désirez-vous autre chose ?</h3>
           <div className={styles.update_instruction_alt_actions}>
             <button>Générer un titre</button>
             <button>Générer les mots clés</button>
             <button>Générer un post LinkedIn</button>
           </div>
+        </div> */}
+
+        <div className={styles.update_instruction}>
+          <h3 className={styles.subtitle}>
+            Instruction pour modifier la{" "}
+            {selectedVersion ? selectedVersion.label : "version 1"}
+          </h3>
+
+          <textarea
+            className={`${styles.textContent} `}
+            rows="4"
+            placeholder="Donnez vos instructions..."
+            value={instruction}
+            onChange={(e) => setInstruction(e.target.value)}
+            disabled={!selectedVersion}
+          ></textarea>
+
+          {isFetchingInstruction ? (
+            <span className={`${styles.update_arrow} ${styles.active}`}>
+              <span className={styles.spinner}>
+                <IconSpinner size="20" />
+              </span>
+            </span>
+          ) : (
+            <span
+              className={`${styles.update_arrow} ${
+                instruction.length > 0 && styles.active
+              }`}
+              onClick={handleInstructionClick}
+            >
+              <IconArrowTop size={20} />
+            </span>
+          )}
         </div>
       </div>
     </>
