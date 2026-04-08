@@ -4,18 +4,7 @@ import cockpitLogo from "../../../assets/cockpit.svg";
 
 import styles from "./NacnArticle.module.scss";
 
-const Step1 = ({ onPost, setStep }) => {
-  const [content, setContent] =
-    useState(`<h3>The standard Lorem Ipsum passage, used since the 1500s</h3>
-<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-<p>Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</p>`);
-  const handleClick = () => {
-    if (onPost) {
-      onPost(content);
-    }
-    setIsOpen(false);
-  };
-
+const Step1 = ({ setStep }) => {
   return (
     <>
       <h2 className={styles.title}>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import cockpitLogo from "../../../assets/cockpit.svg";
 import "../../styles/index.css";
 import IconClose from "../../icons/IconClose";

@@ -65,7 +65,7 @@ function App() {
           organizationId={9}
           onPost={(e: any) => console.log("onPost", e)}
           onPostHistory={(e: any) => console.log("History", e)}
-          // initialHistory={data}
+          initialHistory={data}
         />
       </div>
     </>

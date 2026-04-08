@@ -85,6 +85,9 @@ const NacnArticle = ({
             resultVersions={resultVersions}
             setResultVersions={setResultVersions}
             historyData={historyData}
+            showTitleStep={() => {
+              setStep("TITLE");
+            }}
           />
         )}
 

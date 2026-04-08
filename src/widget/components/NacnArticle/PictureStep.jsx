@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import debounce from "lodash.debounce";
+import Select from "react-select";
 
 import cockpitLogo from "../../../assets/cockpit.svg";
 import { getMedias, genetateImage } from "../../api";
@@ -7,10 +8,14 @@ import { addLandaSize } from "../../services/utils";
 import styles from "./NacnArticle.module.scss";
 import IconSpinner from "../../icons/IconSpinner";
 import IconArrowTop from "../../icons/IconArrowTop";
+import IconDoubleCheck from "../../icons/IconDoubleCheck";
 import Checkbox from "../common/Checkbox";
+
+import dataPicture from "./datapicture.json";
 
 const PictureStep = ({
   onPost,
+  onPostHistory,
   setIsOpen,
   token,
   apiUrl,
@@ -21,6 +26,7 @@ const PictureStep = ({
   resultVersions,
   setResultVersions,
   historyData,
+  showTitleStep,
 }) => {
   const [step, setStep] = useState("SELECT"); // SELECT | GENERATE
   const [isFetching, setIsFetching] = useState(false);
@@ -32,6 +38,117 @@ const PictureStep = ({
   const [search, setSearch] = useState("");
   const [instruction, setInstruction] = useState("");
 
+  useEffect(() => {
+    const fetchPicture = async (content) => {
+      setIsFetching(true);
+
+      // try {
+      //   const response = await genetateImage({
+      //     aiUrl,
+      //     token,
+      //     content,
+      //     language: lng,
+      //   });
+
+      //   if (response && response.image_base64) {
+      //     let tab = [
+      //       {
+      //         value: "version1",
+      //         label: "version 1",
+      //         content: response.image_base64,
+      //         isUsed: false,
+      //       },
+      //     ];
+      //     setResultVersions({ ...resultVersions, picture: tab });
+      //     setSelectedVersion(tab[0]);
+      //     setIsFetching(false);
+      //   }
+      // } catch (e) {
+      //   setIsFetching(false);
+      // }
+
+      setTimeout(() => {
+        let tab = [
+          {
+            value: "version1",
+            label: "version 1",
+            content: dataPicture.image_base64,
+            isUsed: false,
+          },
+        ];
+        setResultVersions({ ...resultVersions, picture: tab });
+        setSelectedVersion(tab[0]);
+
+        setIsFetching(false);
+      }, 2000);
+    };
+
+    if (
+      step === "GENERATE" &&
+      !isFetching &&
+      resultVersions.article.length > 0
+    ) {
+      if (resultVersions.article.length > 0) {
+        if (resultVersions.picture.length === 0) {
+          let isUsedVersion = resultVersions.article.filter((i) => i.isUsed);
+          const content =
+            isUsedVersion?.length === 1
+              ? isUsedVersion[0].content
+              : resultVersions.article[0].content;
+
+          fetchPicture(content);
+        } else {
+          let isUsedVersion = resultVersions.picture.filter((i) => i.isUsed);
+          setSelectedVersion(
+            isUsedVersion?.length === 1
+              ? isUsedVersion[0]
+              : resultVersions.picture[0],
+          );
+        }
+      }
+    }
+  }, [step]);
+
+  const handleGenerateUseClick = () => {
+    if (onPost && selectedVersion) {
+      onPost({
+        type: "ARTICLE_TITLE",
+        data: {
+          content: selectedVersion.content,
+        },
+      });
+      setSelectedVersion({ ...selectedVersion, isUsed: true });
+    }
+
+    if (onPost) {
+      onPost({
+        type: "PICTURE_NEW",
+        data: {
+          content: selectedVersion.content,
+        },
+      });
+      if (onPostHistory) {
+        let tabVersions = resultVersions.picture.map((i) => {
+          if (i.value == selectedVersion.value) {
+            return { ...i, isUsed: true };
+          }
+          return i;
+        });
+        onPostHistory({
+          ...historyData,
+          result: { ...resultVersions, picture: tabVersions },
+        });
+        console.log(
+          JSON.stringify({
+            ...historyData,
+            result: { ...resultVersions, picture: tabVersions },
+          }),
+        );
+      }
+    }
+    setSelectedVersion({ ...selectedVersion, isUsed: true });
+  };
+
   const handleClick = () => {
     if (onPost && selectedMedia) {
       onPost({
@@ -41,7 +158,7 @@ const PictureStep = ({
         },
       });
     }
-    setSelectedVersion(selectedMedia);
+    // setSelectedVersion(selectedMedia);
   };
 
   const handleSearchChange = (value) => {
@@ -276,38 +393,69 @@ const PictureStep = ({
               </div>
             )}
 
-            <div className={styles.pictureCover}></div>
-            <div className={styles.result_actions}>
-              <button
-                className="primaryBtn"
-                onClick={handleClick}
-                disabled={!selectedMedia}
-              >
-                Utiliser cette version
-              </button>
-            </div>
-            <div className={styles.update_instruction}>
-              <h3 className={styles.subtitle}>
-                Instruction pour modifier la{" "}
-                {selectedVersion ? selectedVersion.label : "version 1"}
-              </h3>
+            <div className={styles.container}>
+              <div className={styles.resultContainer}>
+                {isFetching ? (
+                  <div className={styles.spinner}>
+                    <IconSpinner size="20" />
+                  </div>
+                ) : (
+                  <>
+                    {selectedVersion && (
+                      <div className={styles.results}>
+                        <img
+                          src={`data:image/png;base64,${selectedVersion.content}`}
+                          alt="Uploaded content"
+                        />
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
 
-              <textarea
-                className={`${styles.textContent} `}
-                rows="4"
-                placeholder="Donnez vos instructions..."
-                value={instruction}
-                onChange={(e) => setInstruction(e.target.value)}
-              ></textarea>
+              {selectedVersion &&
+                (!selectedVersion.isUsed ? (
+                  <div className={styles.result_actions}>
+                    <button
+                      className="primaryBtn"
+                      disabled={!selectedVersion}
+                      onClick={handleGenerateUseClick}
+                    >
+                      Utiliser cette version
+                    </button>
+                  </div>
+                ) : (
+                  <div className={styles.result_used}>
+                    <IconDoubleCheck />{" "}
+                    {selectedVersion ? selectedVersion.label : "version 1"} a
+                    été utilisée pour l’article
+                  </div>
+                ))}
 
-              <span
-                className={`${styles.update_arrow} ${
-                  instruction.length > 0 && styles.active
-                }`}
-                onClick={handleInstructionClick}
-              >
-                <IconArrowTop size={20} />
-              </span>
+              <div className={styles.update_instruction}>
+                <h3 className={styles.subtitle}>
+                  Instruction pour modifier la{" "}
+                  {selectedVersion ? selectedVersion.label : "version 1"}
+                </h3>
+
+                <textarea
+                  className={`${styles.textContent} `}
+                  rows="4"
+                  placeholder="Donnez vos instructions..."
+                  value={instruction}
+                  onChange={(e) => setInstruction(e.target.value)}
+                  disabled={!selectedVersion}
+                ></textarea>
+
+                <span
+                  className={`${styles.update_arrow} ${
+                    instruction.length > 0 && styles.active
+                  }`}
+                  onClick={handleInstructionClick}
+                >
+                  <IconArrowTop size={20} />
+                </span>
+              </div>
             </div>
           </div>
         )}
@@ -315,7 +463,7 @@ const PictureStep = ({
         <div className={styles.update_instruction_alt}>
           <h3 className={styles.subtitle}>Désirez-vous autre chose ?</h3>
           <div className={styles.update_instruction_alt_actions}>
-            <button>Générer un titre</button>
+            <button onClick={showTitleStep}>Générer un titre</button>
             <button>Générer les mots clés</button>
             <button>Générer un post LinkedIn</button>
           </div>
