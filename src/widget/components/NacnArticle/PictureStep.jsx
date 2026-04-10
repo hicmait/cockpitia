@@ -42,45 +42,45 @@ const PictureStep = ({
     const fetchPicture = async (content) => {
       setIsFetching(true);
 
-      // try {
-      //   const response = await genetateImage({
-      //     aiUrl,
-      //     token,
-      //     content,
-      //     language: lng,
-      //   });
+      try {
+        const response = await genetateImage({
+          aiUrl,
+          token,
+          content,
+          language: lng,
+        });
 
-      //   if (response && response.image_base64) {
-      //     let tab = [
-      //       {
-      //         value: "version1",
-      //         label: "version 1",
-      //         content: response.image_base64,
-      //         isUsed: false,
-      //       },
-      //     ];
-      //     setResultVersions({ ...resultVersions, picture: tab });
-      //     setSelectedVersion(tab[0]);
-      //     setIsFetching(false);
-      //   }
-      // } catch (e) {
-      //   setIsFetching(false);
-      // }
-
-      setTimeout(() => {
-        let tab = [
-          {
-            value: "version1",
-            label: "version 1",
-            content: dataPicture.image_base64,
-            isUsed: false,
-          },
-        ];
-        setResultVersions({ ...resultVersions, picture: tab });
-        setSelectedVersion(tab[0]);
-
+        if (response && response.image_base64) {
+          let tab = [
+            {
+              value: "version1",
+              label: "version 1",
+              content: response.image_base64,
+              isUsed: false,
+            },
+          ];
+          setResultVersions({ ...resultVersions, picture: tab });
+          setSelectedVersion(tab[0]);
+          setIsFetching(false);
+        }
+      } catch (e) {
         setIsFetching(false);
-      }, 2000);
+      }
+
+      // setTimeout(() => {
+      //   let tab = [
+      //     {
+      //       value: "version1",
+      //       label: "version 1",
+      //       content: dataPicture.image_base64,
+      //       isUsed: false,
+      //     },
+      //   ];
+      //   setResultVersions({ ...resultVersions, picture: tab });
+      //   setSelectedVersion(tab[0]);
+
+      //   setIsFetching(false);
+      // }, 2000);
     };
 
     if (
@@ -119,15 +119,15 @@ const PictureStep = ({
       });
       if (onPostHistory) {
         let tabVersions = resultVersions.picture.map((i) => {
-          if (i.value == selectedVersion.value) {
-            return { ...i, isUsed: true };
-          }
-          return i;
+          return i.value == selectedVersion.value
+            ? { ...i, isUsed: true }
+            : { ...i, isUsed: false };
         });
         onPostHistory({
           ...historyData,
           result: { ...resultVersions, picture: tabVersions },
         });
+        setResultVersions({ ...resultVersions, picture: tabVersions });
         console.log(
           JSON.stringify({
             ...historyData,

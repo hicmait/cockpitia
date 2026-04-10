@@ -32,16 +32,6 @@ const TitleStep = ({
   const [selectedVersion, setSelectedVersion] = useState(null);
 
   const handleClick = () => {
-    if (onPost && selectedVersion) {
-      onPost({
-        type: "ARTICLE_TITLE",
-        data: {
-          content: selectedVersion.content,
-        },
-      });
-      setSelectedVersion({ ...selectedVersion, isUsed: true });
-    }
-
     if (onPost) {
       onPost({
         type: "ARTICLE_TITLE",
@@ -51,15 +41,15 @@ const TitleStep = ({
       });
       if (onPostHistory) {
         let tabVersions = resultVersions.title.map((i) => {
-          if (i.value == selectedVersion.value) {
-            return { ...i, isUsed: true };
-          }
-          return i;
+          return i.value == selectedVersion.value
+            ? { ...i, isUsed: true }
+            : { ...i, isUsed: false };
         });
         onPostHistory({
           ...historyData,
           result: { ...resultVersions, title: tabVersions },
         });
+        setResultVersions({ ...resultVersions, title: tabVersions });
         console.log(
           JSON.stringify({
             ...historyData,
@@ -75,47 +65,48 @@ const TitleStep = ({
     const fetchData = async (content) => {
       setIsFetching(true);
 
-      // try {
-      //   const response = await genetateTitle({
-      //     aiUrl,
-      //     token,
-      //     content,
-      //     language: lng,
-      //   });
-      //   if (response && response.title) {
-      //     let tab = [
-      //       {
-      //         value: "version1",
-      //         label: "version 1",
-      //         content: response.title,
-      //         isUsed: false,
-      //       },
-      //     ];
-      //     setResultVersions({ ...resultVersions, title: tab });
-      //     setSelectedVersion(tab[0]);
-      // setIsFetching(false);
-      // setIsFetched(true);
-      //   }
-      // } catch (e) {
-      //   setIsFetching(false);
-      // setIsFetched(true);
-      // }
-
-      setTimeout(() => {
-        let tab = [
-          {
-            value: "version1",
-            label: "version 1",
-            content: "Mon titre proposé",
-            isUsed: false,
-          },
-        ];
-        setResultVersions({ ...resultVersions, title: tab });
-        setSelectedVersion(tab[0]);
-
+      try {
+        const response = await genetateTitle({
+          aiUrl,
+          token,
+          content,
+          language: lng,
+        });
+        if (response && response.title) {
+          let tab = [
+            {
+              value: "version1",
+              label: "version 1",
+              content: response.title,
+              isUsed: false,
+            },
+          ];
+          setResultVersions({ ...resultVersions, title: tab });
+          setSelectedVersion(tab[0]);
+          setIsFetching(false);
+          setIsFetched(true);
+        }
+      } catch (e) {
         setIsFetching(false);
         setIsFetched(true);
-      }, 2000);
+      }
+
+      // setTimeout(() => {
+      //   let tab = [
+      //     {
+      //       value: "version1",
+      //       label: "version 1",
+      //       content: "Mon titre proposé",
+      //       isUsed: false,
+      //     },
+      //   ];
+
+      //   setResultVersions({ ...resultVersions, title: tab });
+      //   setSelectedVersion(tab[0]);
+
+      //   setIsFetching(false);
+      //   setIsFetched(true);
+      // }, 2000);
     };
 
     if (!isFetching && !isFetched && resultVersions.article.length > 0) {
