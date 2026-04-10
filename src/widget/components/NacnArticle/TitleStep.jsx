@@ -259,15 +259,6 @@ const TitleStep = ({
             </div>
           ))}
 
-        {/* <div className={styles.update_instruction_alt}>
-          <h3 className={styles.subtitle}>Désirez-vous autre chose ?</h3>
-          <div className={styles.update_instruction_alt_actions}>
-            <button>Générer un titre</button>
-            <button>Générer les mots clés</button>
-            <button>Générer un post LinkedIn</button>
-          </div>
-        </div> */}
-
         <div className={styles.update_instruction}>
           <h3 className={styles.subtitle}>
             Instruction pour modifier la{" "}
@@ -300,6 +291,17 @@ const TitleStep = ({
             </span>
           )}
         </div>
+
+        {selectedVersion?.isUsed && (
+          <div className={styles.update_instruction_alt}>
+            <h3 className={styles.subtitle}>Désirez-vous autre chose ?</h3>
+            <div className={styles.update_instruction_alt_actions}>
+              <button>Générer les mots clés</button>
+              <button>Générer un post Facebook</button>
+              <button>Générer un post LinkedIn</button>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

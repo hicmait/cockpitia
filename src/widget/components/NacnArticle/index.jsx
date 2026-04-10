@@ -33,12 +33,6 @@ const NacnArticle = ({
       setHistoryData(initialHistory);
       setSourcesData(initialHistory.sources);
       setResultVersions(initialHistory.result);
-      // let isUsedVersion = initialHistory.result.article.filter((i) => i.isUsed);
-      // setSelectedVersion(
-      //   isUsedVersion?.length === 1
-      //     ? isUsedVersion[0]
-      //     : initialHistory.result.article[0],
-      // );
     }
   }, []);
 

@@ -110,16 +110,6 @@ const PictureStep = ({
   }, [step]);
 
   const handleGenerateUseClick = () => {
-    if (onPost && selectedVersion) {
-      onPost({
-        type: "ARTICLE_TITLE",
-        data: {
-          content: selectedVersion.content,
-        },
-      });
-      setSelectedVersion({ ...selectedVersion, isUsed: true });
-    }
-
     if (onPost) {
       onPost({
         type: "PICTURE_NEW",
@@ -404,8 +394,12 @@ const PictureStep = ({
                     {selectedVersion && (
                       <div className={styles.results}>
                         <img
-                          src={`data:image/png;base64,${selectedVersion.content}`}
-                          alt="Uploaded content"
+                          src={
+                            selectedVersion?.media
+                              ? selectedVersion.media.url
+                              : `data:image/png;base64,${selectedVersion.content}`
+                          }
+                          alt=""
                         />
                       </div>
                     )}
