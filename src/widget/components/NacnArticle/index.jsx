@@ -39,7 +39,12 @@ const NacnArticle = ({
   return (
     <>
       <div className={styles.popover_content}>
-        {step === "CHOICE" && <Step1 setStep={setStep} />}
+        {step === "CHOICE" && (
+          <Step1
+            setStep={setStep}
+            isEmptyArticleContent={resultVersions.article.length === 0}
+          />
+        )}
         {step === "ARTICLE_SOURCE" && (
           <SourceStep
             token={token}
@@ -50,7 +55,6 @@ const NacnArticle = ({
               setHistoryData(e);
               onPostHistory(e);
             }}
-            setIsOpen={setIsOpen}
             blogSearchUrl={blogSearchUrl}
             lng={lng}
             organizationId={organizationId}
@@ -62,6 +66,7 @@ const NacnArticle = ({
             setSourcesData={setSourcesData}
             resultVersions={resultVersions}
             setResultVersions={setResultVersions}
+            closeStep={() => setStep("CHOICE")}
           />
         )}
 
@@ -72,7 +77,6 @@ const NacnArticle = ({
             aiUrl={aiUrl}
             onPost={onPost}
             onPostHistory={onPostHistory}
-            setIsOpen={setIsOpen}
             lng={lng}
             organizationId={organizationId}
             sourcesData={sourcesData}
@@ -82,6 +86,7 @@ const NacnArticle = ({
             showTitleStep={() => {
               setStep("TITLE");
             }}
+            closeStep={() => setStep("CHOICE")}
           />
         )}
 
@@ -92,12 +97,13 @@ const NacnArticle = ({
             aiUrl={aiUrl}
             onPost={onPost}
             onPostHistory={onPostHistory}
-            setIsOpen={setIsOpen}
             lng={lng}
             sourcesData={sourcesData}
             resultVersions={resultVersions}
             setResultVersions={setResultVersions}
             historyData={historyData}
+            closeStep={() => setStep("CHOICE")}
+            showPictureStep={() => setStep("PICTURE")}
           />
         )}
       </div>

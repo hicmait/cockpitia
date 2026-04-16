@@ -4,7 +4,7 @@ import cockpitLogo from "../../../assets/cockpit.svg";
 
 import styles from "./NacnArticle.module.scss";
 
-const Step1 = ({ setStep }) => {
+const Step1 = ({ setStep, isEmptyArticleContent }) => {
   return (
     <>
       <h2 className={styles.title}>
@@ -59,7 +59,14 @@ const Step1 = ({ setStep }) => {
           </p>
         </li>
 
-        <li className={styles.actionList_item} onClick={() => setStep("TITLE")}>
+        <li
+          className={`${styles.actionList_item} ${isEmptyArticleContent && styles.disabled}`}
+          onClick={() => {
+            if (!isEmptyArticleContent) {
+              setStep("TITLE");
+            }
+          }}
+        >
           <h3 className={styles.actionList_title}>
             <svg
               width="16"
@@ -138,49 +145,9 @@ const Step1 = ({ setStep }) => {
           </p>
         </li>
 
-        <li className={styles.actionList_item}>
-          <h3 className={styles.actionList_title}>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_7798_123)">
-                <path
-                  d="M1.33301 4.66634V8.78101C1.33308 9.1346 1.47361 9.47368 1.72367 9.72367L6.19701 14.197C6.47388 14.476 6.84378 14.6434 7.23613 14.6671C7.62849 14.6908 8.01586 14.5693 8.32434 14.3257M8.78101 1.33301C9.1346 1.33308 9.47368 1.47361 9.72367 1.72367L14.197 6.19701C14.347 6.34575 14.466 6.52271 14.5472 6.71768C14.6285 6.91266 14.6703 7.12179 14.6703 7.33301C14.6703 7.54423 14.6285 7.75336 14.5472 7.94833C14.466 8.1433 14.347 8.32027 14.197 8.46901L11.1357 11.5303C10.9869 11.6803 10.81 11.7993 10.615 11.8806C10.42 11.9618 10.2109 12.0036 9.99967 12.0036C9.78845 12.0036 9.57933 11.9618 9.38435 11.8806C9.18938 11.7993 9.01241 11.6803 8.86367 11.5303L4.39034 7.05701C4.14028 6.80702 3.99975 6.46793 3.99967 6.11434V1.99967C3.99967 1.82286 4.06991 1.65329 4.19494 1.52827C4.31996 1.40325 4.48953 1.33301 4.66634 1.33301H8.78101ZM7.33301 4.33301C7.33301 4.5171 7.18377 4.66634 6.99967 4.66634C6.81558 4.66634 6.66634 4.5171 6.66634 4.33301C6.66634 4.14891 6.81558 3.99967 6.99967 3.99967C7.18377 3.99967 7.33301 4.14891 7.33301 4.33301Z"
-                  stroke="url(#paint0_linear_7798_123)"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </g>
-              <defs>
-                <linearGradient
-                  id="paint0_linear_7798_123"
-                  x1="1.33301"
-                  y1="8.00151"
-                  x2="14.6703"
-                  y2="8.00151"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stop-color="#06D9B1" />
-                  <stop offset="1" stop-color="#18A0FB" />
-                </linearGradient>
-                <clipPath id="clip0_7798_123">
-                  <rect width="16" height="16" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-            Compléter les configurations vides
-          </h3>
-          <p className={styles.actionList_desc}>
-            Montius nos tumore inusitato quodam et novo ut rebellis et maiestati
-            recalcitrantes.
-          </p>
-        </li>
-        <li className={styles.actionList_item}>
+        <li
+          className={`${styles.actionList_item} ${isEmptyArticleContent && styles.disabled}`}
+        >
           <h3 className={styles.actionList_title}>
             <svg
               width="16"
@@ -218,7 +185,9 @@ const Step1 = ({ setStep }) => {
           </p>
         </li>
 
-        <li className={styles.actionList_item}>
+        <li
+          className={`${styles.actionList_item} ${isEmptyArticleContent && styles.disabled}`}
+        >
           <h3 className={styles.actionList_title}>
             <svg
               width="16"
@@ -292,7 +261,7 @@ const Step1 = ({ setStep }) => {
           </p>
         </li>
 
-        <li className={styles.actionList_item}>
+        <li className={`${styles.actionList_item} ${styles.disabled}`}>
           <h3 className={styles.actionList_title}>
             <svg
               width="16"
@@ -323,6 +292,49 @@ const Step1 = ({ setStep }) => {
               </defs>
             </svg>
             Générer un post Facebook
+          </h3>
+          <p className={styles.actionList_desc}>
+            Montius nos tumore inusitato quodam et novo ut rebellis et maiestati
+            recalcitrantes.
+          </p>
+        </li>
+
+        <li className={`${styles.actionList_item} ${styles.disabled}`}>
+          <h3 className={styles.actionList_title}>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_7798_123)">
+                <path
+                  d="M1.33301 4.66634V8.78101C1.33308 9.1346 1.47361 9.47368 1.72367 9.72367L6.19701 14.197C6.47388 14.476 6.84378 14.6434 7.23613 14.6671C7.62849 14.6908 8.01586 14.5693 8.32434 14.3257M8.78101 1.33301C9.1346 1.33308 9.47368 1.47361 9.72367 1.72367L14.197 6.19701C14.347 6.34575 14.466 6.52271 14.5472 6.71768C14.6285 6.91266 14.6703 7.12179 14.6703 7.33301C14.6703 7.54423 14.6285 7.75336 14.5472 7.94833C14.466 8.1433 14.347 8.32027 14.197 8.46901L11.1357 11.5303C10.9869 11.6803 10.81 11.7993 10.615 11.8806C10.42 11.9618 10.2109 12.0036 9.99967 12.0036C9.78845 12.0036 9.57933 11.9618 9.38435 11.8806C9.18938 11.7993 9.01241 11.6803 8.86367 11.5303L4.39034 7.05701C4.14028 6.80702 3.99975 6.46793 3.99967 6.11434V1.99967C3.99967 1.82286 4.06991 1.65329 4.19494 1.52827C4.31996 1.40325 4.48953 1.33301 4.66634 1.33301H8.78101ZM7.33301 4.33301C7.33301 4.5171 7.18377 4.66634 6.99967 4.66634C6.81558 4.66634 6.66634 4.5171 6.66634 4.33301C6.66634 4.14891 6.81558 3.99967 6.99967 3.99967C7.18377 3.99967 7.33301 4.14891 7.33301 4.33301Z"
+                  stroke="url(#paint0_linear_7798_123)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </g>
+              <defs>
+                <linearGradient
+                  id="paint0_linear_7798_123"
+                  x1="1.33301"
+                  y1="8.00151"
+                  x2="14.6703"
+                  y2="8.00151"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#06D9B1" />
+                  <stop offset="1" stop-color="#18A0FB" />
+                </linearGradient>
+                <clipPath id="clip0_7798_123">
+                  <rect width="16" height="16" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+            Compléter les configurations vides
           </h3>
           <p className={styles.actionList_desc}>
             Montius nos tumore inusitato quodam et novo ut rebellis et maiestati

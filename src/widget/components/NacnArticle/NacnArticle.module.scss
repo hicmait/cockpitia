@@ -1,3 +1,15 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  &_close {
+    color: #6d7f92;
+    cursor: pointer;
+    height: 20px;
+    padding-left: 10px;
+    border-left: 1px solid #d8dde2;
+  }
+}
 .title {
   display: flex;
   align-items: center;
@@ -72,6 +84,11 @@
 
     &:hover {
       border-color: #29394d;
+    }
+
+    &.disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
   }
 

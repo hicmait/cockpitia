@@ -8,22 +8,22 @@ import styles from "./NacnArticle.module.scss";
 import IconSpinner from "../../icons/IconSpinner";
 import IconArrowTop from "../../icons/IconArrowTop";
 import IconDoubleCheck from "../../icons/IconDoubleCheck";
+import IconClose from "../../icons/IconClose";
 import IconEye from "../../icons/IconEye";
 import Checkbox from "../common/Checkbox";
 
 const TitleStep = ({
   onPost,
   onPostHistory,
-  setIsOpen,
   token,
-  apiUrl,
   aiUrl,
   lng,
   resultVersions,
   setResultVersions,
   historyData,
+  closeStep,
+  showPictureStep,
 }) => {
-  const [step, setStep] = useState("SELECT"); // SELECT | GENERATE
   const [isFetching, setIsFetching] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
   const [instruction, setInstruction] = useState("");
@@ -131,13 +131,52 @@ const TitleStep = ({
     }
   }, []);
 
-  const handleInstructionClick = () => {
-    if (instruction.length == 0) {
+  const handleInstructionClick = async () => {
+    if (instruction.length == 0 || !selectedVersion) {
       return null;
     }
 
-    // setResultVersions(tab);
-    // setSelectedVersion(tab[1]);
+    // setIsFetching(true);
+    // try {
+    //   const response = await genetateEditArticle({
+    //     aiUrl,
+    //     token,
+    //     content: selectedVersion.content,
+    //     prompt: instruction,
+    //     language: lng,
+    //   });
+    //   if (response && response.content) {
+    //     const countVersions = resultVersions.title.length + 1;
+    //     let tab = [
+    //       ...resultVersions.title,
+    //       {
+    //         value: "version" + countVersions,
+    //         label: "version " + countVersions,
+    //         content: response.content,
+    //         isUsed: false,
+    //       },
+    //     ];
+    //     //setResultVersions(tab);
+    //     setResultVersions({ ...resultVersions, title: tab });
+    //     setSelectedVersion(tab[countVersions - 1]);
+    //     setInstruction("");
+    //   }
+    // } catch (e) {}
+    // setIsFetching(false);
+
+    const txt = `Titre edit`;
+    const countVersions = resultVersions.title.length + 1;
+    let tab = [
+      ...resultVersions.title,
+      {
+        value: "version" + countVersions,
+        label: "version " + countVersions,
+        content: txt,
+        isUsed: false,
+      },
+    ];
+    setResultVersions({ ...resultVersions, title: tab });
+    setSelectedVersion(tab[countVersions - 1]);
     setInstruction("");
   };
 
@@ -165,10 +204,16 @@ const TitleStep = ({
 
   return (
     <>
-      <h2 className={styles.title}>
-        <img src={cockpitLogo} alt="NACN AI" width={30} />
-        Générer un titre
-      </h2>
+      <div className={styles.header}>
+        <h2 className={styles.title}>
+          <img src={cockpitLogo} alt="NACN AI" width={30} />
+          Générer un titre
+        </h2>
+
+        <span className={styles.header_close} onClick={closeStep}>
+          <IconClose size={20} />
+        </span>
+      </div>
 
       {selectedVersion && (
         <div className={styles.result_top}>
@@ -287,8 +332,7 @@ const TitleStep = ({
           <div className={styles.update_instruction_alt}>
             <h3 className={styles.subtitle}>Désirez-vous autre chose ?</h3>
             <div className={styles.update_instruction_alt_actions}>
-              <button>Générer les mots clés</button>
-              <button>Générer un post Facebook</button>
+              <button onClick={showPictureStep}>Générer une image</button>
               <button>Générer un post LinkedIn</button>
             </div>
           </div>

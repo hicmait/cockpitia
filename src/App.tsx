@@ -83,6 +83,7 @@ function App() {
           organizationId={9}
           onPost={(e: any) => console.log("onPost", e)}
           onPostHistory={(e: any) => console.log("History", e)}
+          // onCockpitOpen={(e: any) => console.log("onCockpitOpen", e)}
           initialHistory={data}
         />
       </div>

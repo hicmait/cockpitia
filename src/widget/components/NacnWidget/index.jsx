@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import cockpitLogo from "../../../assets/cockpit.svg";
 import "../../styles/index.css";
 import IconClose from "../../icons/IconClose";
@@ -13,42 +13,31 @@ export const NacnWidget = (props) => {
   }
 
   return (
-    <>
-      {/* <div className={styles.triggerContainer}>
-        <div onClick={() => setIsOpen(!isOpen)} className={styles.triggerBtn}>
-          {isOpen ? (
-            <IconClose size="20" />
-          ) : (
-            <img src={cockpitLogo} alt="NACN AI" width={40} />
-          )}
+    <div className={styles.chatContainer}>
+      {isOpen && (
+        <div className={styles.chatPopover}>
+          {props?.appTarget === "ARTICLE" ? (
+            <NacnArticle {...props} setIsOpen={setIsOpen} />
+          ) : null}
         </div>
+      )}
 
-        {isOpen && props?.appTarget === "ARTICLE" ? (
-          <NacnArticle {...props} setIsOpen={setIsOpen} />
-        ) : null}
-      </div> */}
-
-      <div className={styles.chatContainer}>
-        {isOpen && (
-          <div className={styles.chatPopover}>
-            {props?.appTarget === "ARTICLE" ? (
-              <NacnArticle {...props} setIsOpen={setIsOpen} />
-            ) : null}
-          </div>
+      <button
+        className={`${styles.chatTrigger} ${isOpen ? styles.active : ""}`}
+        onClick={() => {
+          if (props.onCockpitOpen) {
+            props.onCockpitOpen(!isOpen);
+          }
+          setIsOpen(!isOpen);
+        }}
+        aria-label="Ouvrir le chat"
+      >
+        {isOpen ? (
+          <IconClose size="20" />
+        ) : (
+          <img src={cockpitLogo} alt="NACN AI" width={40} />
         )}
-
-        <button
-          className={`${styles.chatTrigger} ${isOpen ? styles.active : ""}`}
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Ouvrir le chat"
-        >
-          {isOpen ? (
-            <IconClose size="20" />
-          ) : (
-            <img src={cockpitLogo} alt="NACN AI" width={40} />
-          )}
-        </button>
-      </div>
-    </>
+      </button>
+    </div>
   );
 };

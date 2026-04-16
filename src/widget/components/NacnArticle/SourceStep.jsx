@@ -10,7 +10,6 @@ import {
   genetateSingleArticle,
   getArticlesByIds,
   genetateEditArticle,
-  genetateTitle,
 } from "../../api";
 import styles from "./NacnArticle.module.scss";
 import modalStyles from "./Modal.module.scss";
@@ -31,7 +30,6 @@ import IconSpinner from "../../icons/IconSpinner";
 const SourceStep = ({
   onPost,
   onPostHistory,
-  setIsOpen,
   token,
   apiUrl,
   aiUrl,
@@ -44,8 +42,7 @@ const SourceStep = ({
   setSourcesData,
   resultVersions,
   setResultVersions,
-  // selectedVersion,
-  // setSelectedVersion,
+  closeStep,
 }) => {
   const [step, setStep] = useState("SOURCE"); // SOURCE | RESULT
   const [currentType, setCurrentType] = useState("TEXT"); // TEXT | LINK | BLOG | EVENT
@@ -286,31 +283,6 @@ const SourceStep = ({
     // setInstruction("");
   };
 
-  const handleGenerateTitle = async () => {
-    if (!selectedVersion) {
-      return null;
-    }
-
-    setIsFetchingTitle(true);
-    try {
-      const response = await genetateTitle({
-        aiUrl,
-        token,
-        content: selectedVersion.content,
-        language: lng,
-      });
-      if (response && response.title) {
-        alert(response.title);
-      }
-    } catch (e) {}
-    setIsFetching(false);
-
-    // setTimeout(() => {
-    //   alert("ok");
-    //   setIsFetchingTitle(false);
-    // }, 1500);
-  };
-
   const getSourceTab = () => {
     let tab = [];
     if (textSources.length > 0 && textSources[0].length > 0) {
@@ -381,10 +353,16 @@ const SourceStep = ({
 
   return (
     <>
-      <h2 className={styles.title}>
-        <img src={cockpitLogo} alt="NACN AI" width={30} />
-        Générer un article complet
-      </h2>
+      <div className={styles.header}>
+        <h2 className={styles.title}>
+          <img src={cockpitLogo} alt="NACN AI" width={30} />
+          Générer un article complet
+        </h2>
+
+        <span className={styles.header_close} onClick={closeStep}>
+          <IconClose size={20} />
+        </span>
+      </div>
 
       <div className={styles.container}>
         {step === "SOURCE" && (

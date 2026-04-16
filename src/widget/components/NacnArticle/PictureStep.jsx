@@ -9,6 +9,7 @@ import styles from "./NacnArticle.module.scss";
 import IconSpinner from "../../icons/IconSpinner";
 import IconArrowTop from "../../icons/IconArrowTop";
 import IconDoubleCheck from "../../icons/IconDoubleCheck";
+import IconClose from "../../icons/IconClose";
 import Checkbox from "../common/Checkbox";
 
 import dataPicture from "./datapicture.json";
@@ -16,7 +17,6 @@ import dataPicture from "./datapicture.json";
 const PictureStep = ({
   onPost,
   onPostHistory,
-  setIsOpen,
   token,
   apiUrl,
   aiUrl,
@@ -27,6 +27,7 @@ const PictureStep = ({
   setResultVersions,
   historyData,
   showTitleStep,
+  closeStep,
 }) => {
   const [step, setStep] = useState("SELECT"); // SELECT | GENERATE
   const [isFetching, setIsFetching] = useState(false);
@@ -111,12 +112,21 @@ const PictureStep = ({
 
   const handleGenerateUseClick = () => {
     if (onPost) {
-      onPost({
-        type: "PICTURE_NEW",
-        data: {
-          content: selectedVersion.content,
-        },
-      });
+      if (selectedVersion.media) {
+        onPost({
+          type: "PICTURE_MEDIA",
+          data: {
+            content: selectedVersion.media,
+          },
+        });
+      } else {
+        onPost({
+          type: "PICTURE_NEW",
+          data: {
+            content: selectedVersion.content,
+          },
+        });
+      }
       if (onPostHistory) {
         let tabVersions = resultVersions.picture.map((i) => {
           return i.value == selectedVersion.value
@@ -147,8 +157,17 @@ const PictureStep = ({
           content: selectedMedia,
         },
       });
+      if (onPostHistory) {
+        let tabVersions = resultVersions.picture.map((i) => {
+          return { ...i, isUsed: false };
+        });
+        onPostHistory({
+          ...historyData,
+          result: { ...resultVersions, picture: tabVersions },
+        });
+        setResultVersions({ ...resultVersions, picture: tabVersions });
+      }
     }
-    // setSelectedVersion(selectedMedia);
   };
 
   const handleSearchChange = (value) => {
@@ -220,22 +239,65 @@ const PictureStep = ({
     }
   }, [page]);
 
-  const handleInstructionClick = () => {
-    if (instruction.length == 0) {
+  const handleInstructionClick = async () => {
+    if (instruction.length == 0 || !selectedVersion) {
       return null;
     }
 
-    // setResultVersions(tab);
-    // setSelectedVersion(tab[1]);
+    // setIsFetching(true);
+    // try {
+    //   const response = await genetateEditArticle({
+    //     aiUrl,
+    //     token,
+    //     content: selectedVersion.content,
+    //     prompt: instruction,
+    //     language: lng,
+    //   });
+    //   if (response && response.image_base64) {
+    //     const countVersions = resultVersions.picture.length + 1;
+    //     let tab = [
+    //       ...resultVersions.picture,
+    //       {
+    //         value: "version" + countVersions,
+    //         label: "version " + countVersions,
+    //         content: response.image_base64,
+    //         isUsed: false,
+    //       },
+    //     ];
+    //     setResultVersions({ ...resultVersions, picture: tab });
+    //     setSelectedVersion(tab[countVersions - 1]);
+    //     setInstruction("");
+    //   }
+    // } catch (e) {}
+    // setIsFetching(false);
+
+    const countVersions = resultVersions.picture.length + 1;
+    let tab = [
+      ...resultVersions.picture,
+      {
+        value: "version" + countVersions,
+        label: "version " + countVersions,
+        content: dataPicture.image_base64,
+        isUsed: false,
+      },
+    ];
+    setResultVersions({ ...resultVersions, picture: tab });
+    setSelectedVersion(tab[countVersions - 1]);
     setInstruction("");
   };
 
   return (
     <>
-      <h2 className={styles.title}>
-        <img src={cockpitLogo} alt="NACN AI" width={30} />
-        Choisir / Générer image
-      </h2>
+      <div className={styles.header}>
+        <h2 className={styles.title}>
+          <img src={cockpitLogo} alt="NACN AI" width={30} />
+          Choisir / Générer image
+        </h2>
+
+        <span className={styles.header_close} onClick={closeStep}>
+          <IconClose size={20} />
+        </span>
+      </div>
 
       <div className={styles.container}>
         <ul className={styles.tabs}>
@@ -458,7 +520,6 @@ const PictureStep = ({
           <h3 className={styles.subtitle}>Désirez-vous autre chose ?</h3>
           <div className={styles.update_instruction_alt_actions}>
             <button onClick={showTitleStep}>Générer un titre</button>
-            <button>Générer les mots clés</button>
             <button>Générer un post LinkedIn</button>
           </div>
         </div>
